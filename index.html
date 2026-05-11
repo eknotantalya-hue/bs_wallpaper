@@ -44,13 +44,14 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
 </head>
 <body>
 <div class="wrap">
-  <div class="site">DUVAR KAĞIDI OLUŞTURUCU</div>
-    <div class="hint">
+  <div class="site">blacksymbols.com</div>
+  <div class="sub">DUVAR KAĞIDI OLUŞTURUCU</div>
+  <div class="hint">
     <b>Kurallar:</b> Maks. <b>45 karakter</b> • Maks. <b>3 satır</b><br>
-    Satır için <b>|</b>: <b>JUST START | NEW LIFE</b> &nbsp;•&nbsp; <b>LIVE | LOVE | LAUGH</b>
+    Satır için <b>|</b>: <b>JUST START | NEW LIFE</b> &nbsp;•&nbsp; <b>LIVE | LOVE | LAUGH</b><br>Turuncu renk için <b>%</b>: <b>I %LOVE% YOU</b> → LOVE turuncu olur
   </div>
   <div class="inp-row">
-    <input id="inp" value="" placeholder="YAZINIZI GİRİN..." maxlength="47" oninput="bwInput()">
+    <input id="inp" value="JUST START" placeholder="YAZINIZI GİRİN..." maxlength="47" oninput="bwInput()">
     <span class="cc" id="cc">10/45</span>
     <select id="bg" onchange="bwGo()">
       <option value="w">Beyaz</option>
@@ -114,10 +115,23 @@ function vbP(s){const p=s.split(/\s+/).map(Number);return{w:p[2],h:p[3]};}
 function sagAt(t,sag){return 4*sag*t*(1-t);}
 function sagSlope(t,sag,span){return 4*sag*(1-2*t)/span;}
 function parseRows(raw){return raw.toUpperCase().split('|').map(s=>s.trim()).filter(Boolean).slice(0,3);}
+// Parse text into segments: [{text, accent}]
+function parseSegments(rowText){
+  const segs=[];
+  const parts=rowText.split('%');
+  parts.forEach((p,i)=>{if(p)segs.push({text:p,accent:i%2===1});});
+  return segs;
+}
 function visLen(raw){return raw.replace(/\|/g,'').replace(/\s+/g,' ').trim().length;}
 
 function bwInput(){
-  const raw=document.getElementById('inp').value;
+  // Filter: keep only A-Z, space, |, %
+  const inp=document.getElementById('inp');
+  const cur=inp.selectionStart;
+  const orig=inp.value;
+  const filt=orig.replace(/[^A-Za-z |%]/g,'');
+  if(filt!==orig){inp.value=filt;try{inp.setSelectionRange(cur-1,cur-1);}catch(e){}}
+  const raw=inp.value;
   const len=visLen(raw);
   const cc=document.getElementById('cc');
   cc.textContent=len+'/45';
@@ -158,7 +172,7 @@ function measureRow(text, lH, s){
   return w;
 }
 
-function drawRow(ctx, text, W, cY, pal, s, lH, SAG){
+function drawRow(ctx, text, W, cY, pal, s, lH, SAG, accentColor){
   const CG=4*s, WG=lH*1.0, EXT=60*s;
   const chars=Array.from(text.toUpperCase());
   const ws=chars.map(ch=>{
@@ -227,16 +241,18 @@ function renderTo(cv, W, H, raw, bgKey){
   ctx.fillStyle=pal.bg; ctx.fillRect(0,0,W,H);
 
   const rows=parseRows(raw); if(!rows.length)return;
-  const BH=108*s; let gScl=1;
-  rows.forEach(row=>{
-    const rw=measureRow(row,BH,s);
-    const sc=rw>W*.46?W*.46/rw:1;
-    if(sc<gScl)gScl=sc;
-  });
-  const lH=BH*gScl, SAG=34*s, RG=lH*.52;
+  const BH=108*s;
+  // Find longest row → compute scale (can be >1 to scale UP short phrases)
+  let maxRaw=0;
+  rows.forEach(row=>{const rw=measureRow(row,BH,s);if(rw>maxRaw)maxRaw=rw;});
+  const targetW=W*0.46;
+  // Scale: longest row fills targetW; others get same scale (bigger if short)
+  const gScl=maxRaw>0?targetW/maxRaw:1;
+  // Cap: never render letters bigger than 180*s
+  const lH=Math.min(BH*gScl, 180*s), SAG=34*s, RG=lH*.52;
   const tH=rows.length*lH+(rows.length-1)*RG;
   const sCY=H/2-tH/2+lH/2;
-  rows.forEach((row,i)=>drawRow(ctx,row,W,sCY+i*(lH+RG),pal,s,lH,SAG));
+  rows.forEach((row,i)=>drawRow(ctx,row,W,sCY+i*(lH+RG),pal,s,lH,SAG,'#FF8700'));
 
   // Logo
   ctx.save();
