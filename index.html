@@ -191,9 +191,16 @@ function drawRow(ctx,text,W,cY,pal,s,lH,SAG){
     const lcx=x+w/2,t=(lcx-x0)/span,rY=rBY+sagAt(t,SAG),tY=rY-hIY;
     const sl=sagSlope(t,SAG,span),ang=Math.atan(sl)*.65;
     const lb=buildLetter(ch,lHs,pal.letter);
+    // Shadow on separate temp canvas to avoid bleed-through transparent holes
+    const tmp=document.createElement("canvas");
+    tmp.width=Math.ceil(lb.lW+16*s);tmp.height=Math.ceil(lb.lH+16*s);
+    const tc=tmp.getContext("2d");
+    tc.shadowColor="rgba(0,0,0,0.18)";tc.shadowBlur=6*s;
+    tc.shadowOffsetX=2*s;tc.shadowOffsetY=3*s;
+    tc.drawImage(lb.canvas,4*s,4*s);
     ctx.save();ctx.translate(lcx,tY+lHs/2);ctx.rotate(ang);
-    ctx.shadowColor="rgba(0,0,0,0.18)";ctx.shadowBlur=5*s;ctx.shadowOffsetX=2*s;ctx.shadowOffsetY=3*s;
-    ctx.drawImage(lb.canvas,-lb.lW/2,-lb.lH/2);ctx.restore();
+    ctx.drawImage(tmp,-(lb.lW/2+4*s),-(lb.lH/2+4*s));
+    ctx.restore();
     x+=w+(chars[i+1]&&chars[i+1]!==' '?cg:0);
   });
 }
