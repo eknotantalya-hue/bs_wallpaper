@@ -19,12 +19,10 @@ input:focus{border-color:#777}
 select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neue",sans-serif;font-size:.85rem;padding:9px;border-radius:4px;outline:none;cursor:pointer;-webkit-appearance:none}
 .cc{font-family:Georgia,serif;font-size:.68rem;color:#aaa;white-space:nowrap}
 .cc.warn{color:#c84}.cc.over{color:#c44}
-/* 3 previews side by side on wide, stacked on mobile */
 .pvs{display:flex;gap:10px;margin-bottom:14px;width:100%;align-items:flex-start;flex-wrap:wrap}
 .pv{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;min-width:120px}
 .pvl{font-size:.58rem;letter-spacing:.18em;color:#aaa}
 .pv canvas{width:100%;height:auto;display:block;border-radius:4px;box-shadow:0 3px 14px rgba(0,0,0,.11)}
-/* Buttons: 3 side by side on wide, stacked on mobile */
 .dlr{display:flex;gap:7px;margin-bottom:16px;width:100%;flex-wrap:wrap}
 .btn{flex:1;min-width:120px;background:#111;color:#fff;border:none;font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.1em;padding:11px 6px;border-radius:4px;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .btn:active{opacity:.7}
@@ -47,8 +45,9 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
   <div class="site">blacksymbols.com</div>
   <div class="sub">DUVAR KAĞIDI OLUŞTURUCU</div>
   <div class="hint">
-    <b>Kurallar:</b> Maks. <b>45 karakter</b> • Maks. <b>3 satır</b><br>
-    Satır için <b>|</b>: <b>JUST START | NEW LIFE</b> &nbsp;•&nbsp; <b>LIVE | LOVE | LAUGH</b><br>Turuncu renk için <b>%</b>: <b>I %LOVE% YOU</b> → LOVE turuncu olur
+    <b>Kurallar:</b> Maks. <b>45 karakter</b> &bull; Maks. <b>3 satır</b><br>
+    Satır için <b>|</b>: <b>JUST START | NEW LIFE</b> &bull; <b>LIVE | LOVE | LAUGH</b><br>
+    Turuncu için <b>%</b>: <b>I %LOVE% YOU</b> &rarr; LOVE turuncu olur
   </div>
   <div class="inp-row">
     <input id="inp" value="JUST START" placeholder="YAZINIZI GİRİN..." maxlength="47" oninput="bwInput()">
@@ -65,15 +64,16 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
     <div class="pv"><div class="pvl">MASAÜSTÜ 16:9</div><canvas id="cd"></canvas></div>
     <div class="pv"><div class="pvl">KARE 1:1</div><canvas id="cs"></canvas></div>
   </div>
-  <div class="savehint" id="savehint">📱 Resme <b>uzun bas → Fotoğraflara kaydet</b></div>
+  <div class="savehint" id="savehint">📱 Resme <b>uzun bas &rarr; Fotoğraflara kaydet</b></div>
   <div class="dlr">
-    <button class="btn" onclick="bwDl('p')">↓ TELEFON</button>
-    <button class="btn g" onclick="bwDl('d')">↓ MASAÜSTÜ</button>
-    <button class="btn g" onclick="bwDl('s')">↓ KARE</button>
+    <button class="btn" onclick="bwDl('p')">&#8595; TELEFON</button>
+    <button class="btn g" onclick="bwDl('d')">&#8595; MASAÜSTÜ</button>
+    <button class="btn g" onclick="bwDl('s')">&#8595; KARE</button>
   </div>
   <div class="ph">HIZLI CÜMLELER</div>
   <div class="ps" id="ps"></div>
 </div>
+
 <script>
 const SL = {
   "A":{vb:"0 0 148 135",p:["M97 113l-47 0 -7 22 -43 0 51 -135 46 0 51 135 -44 0 -7 -22zm-9 -29l-15 -49 -15 49 30 0zm-29 -74c0,0 -1,0 -1,-1 0,0 -1,0 -1,0 0,0 0,0 0,1 0,1 0,1 -1,1 0,0 0,0 0,0 0,0 0,1 0,1 0,2 1,3 3,3 2,0 3,-1 3,-3 0,0 0,-1 0,-1 0,0 0,0 0,0 -1,0 -1,0 -1,-1 0,0 0,0 0,-1 0,0 -1,0 -1,0 0,0 0,1 -1,1zm30 0c0,0 -1,0 -1,-1 0,0 -1,0 -1,0 0,0 0,0 0,1 0,1 0,1 -1,1 0,0 0,0 0,0 0,0 0,1 0,1 0,2 1,3 3,3 2,0 3,-1 3,-3 0,0 0,-1 0,-1 0,0 0,0 0,0 -1,0 -1,0 -1,-1 0,0 0,0 0,-1 0,0 -1,0 -1,0 0,0 0,1 -1,1z"]},
@@ -104,96 +104,128 @@ const SL = {
   "Z":{vb:"0 0 139 146",p:["M8 0l128 0 0 29 -82 86 85 0 0 31 -139 0 0 -30 81 -85 -73 0 0 -31zm13 10c-1,0 -1,0 -1,-1 0,0 -1,0 -1,1 0,0 0,0 0,1 0,1 0,1 -1,1 0,0 0,0 0,0 0,0 0,1 0,1 0,2 2,3 3,3 2,0 3,-2 3,-3 0,0 0,-1 0,-1 0,0 0,0 0,0 -1,0 -1,0 -1,-1 0,0 0,0 0,-1 0,0 -1,0 -1,-1 0,1 -1,1 -1,1zm102 0c-1,0 -1,0 -1,-1 0,0 -1,0 -1,1 0,0 0,0 0,1 0,1 0,1 -1,1 0,0 0,0 0,0 0,0 0,1 0,1 0,2 2,3 3,3 2,0 3,-2 3,-3 0,0 0,-1 0,-1 0,0 0,0 0,0 -1,0 -1,0 -1,-1 0,0 0,0 0,-1 0,0 -1,0 -1,-1 0,1 -1,1 -1,1z"]},
 };
 
-const PAL={
-  w:{bg:"#f7f7f5",rope:"rgba(40,40,40,0.45)",letter:"#111"},
-  ow:{bg:"#ede9e2",rope:"rgba(60,50,40,0.4)",letter:"#0e0e0a"},
-  lg:{bg:"#e0dfdd",rope:"rgba(50,50,50,0.38)",letter:"#111"},
-  bk:{bg:"#0f0f0f",rope:"rgba(210,210,210,0.4)",letter:"#f0f0ee"},
+const ACCENT = '#FF8700';
+const PAL = {
+  w:  { bg:'#f7f7f5', rope:'rgba(40,40,40,0.45)',    letter:'#111111' },
+  ow: { bg:'#ede9e2', rope:'rgba(60,50,40,0.4)',     letter:'#0e0e0a' },
+  lg: { bg:'#e0dfdd', rope:'rgba(50,50,50,0.38)',    letter:'#111111' },
+  bk: { bg:'#0f0f0f', rope:'rgba(210,210,210,0.4)',  letter:'#f0f0ee' },
 };
 
-function vbP(s){const p=s.split(/\s+/).map(Number);return{w:p[2],h:p[3]};}
-function sagAt(t,sag){return 4*sag*t*(1-t);}
-function sagSlope(t,sag,span){return 4*sag*(1-2*t)/span;}
-function parseRows(raw){return raw.toUpperCase().split('|').map(s=>s.trim()).filter(Boolean).slice(0,3);}
-// Parse text into segments: [{text, accent}]
-function parseSegments(rowText){
-  const segs=[];
-  const parts=rowText.split('%');
-  parts.forEach((p,i)=>{if(p)segs.push({text:p,accent:i%2===1});});
-  return segs;
+function vbP(s){ const p=s.split(/\s+/).map(Number); return {w:p[2],h:p[3]}; }
+function sagAt(t,sag){ return 4*sag*t*(1-t); }
+function sagSlope(t,sag,span){ return 4*sag*(1-2*t)/span; }
+
+// Split raw input by | into rows (max 3)
+function parseRows(raw){
+  return raw.toUpperCase().split('|').map(s=>s.trim()).filter(Boolean).slice(0,3);
 }
-function visLen(raw){return raw.replace(/\|/g,'').replace(/\s+/g,' ').trim().length;}
+
+// Strip % markers from row text for layout purposes
+function stripAccent(text){ return text.replace(/%/g,''); }
+
+// Build color array per character: normal or accent
+// "I %LOVE% YOU" -> chars I,space,L,O,V,E,space,Y,O,U
+//                    cols  n  n  A  A  A  A  n    n  n  n
+function buildColorMap(text, normalColor){
+  const result = [];
+  const parts = text.split('%');
+  parts.forEach((part, i) => {
+    const isAccent = (i % 2 === 1);
+    for(const ch of Array.from(part)){
+      result.push({ ch: ch.toUpperCase(), color: isAccent ? ACCENT : normalColor });
+    }
+  });
+  return result;
+}
+
+// Count visible chars (no %, no |)
+function visLen(raw){
+  return raw.replace(/\|/g,'').replace(/%/g,'').replace(/\s+/g,' ').trim().length;
+}
 
 function bwInput(){
-  // Filter: keep only A-Z, space, |, %
-  const inp=document.getElementById('inp');
-  const cur=inp.selectionStart;
-  const orig=inp.value;
-  const filt=orig.replace(/[^A-Za-z |%]/g,'');
-  if(filt!==orig){inp.value=filt;try{inp.setSelectionRange(cur-1,cur-1);}catch(e){}}
-  const raw=inp.value;
-  const len=visLen(raw);
-  const cc=document.getElementById('cc');
-  cc.textContent=len+'/45';
-  cc.className='cc'+(len>45?' over':len>38?' warn':'');
+  const inp = document.getElementById('inp');
+  const cur = inp.selectionStart;
+  const orig = inp.value;
+  // Allow: A-Z a-z space | %
+  const filt = orig.replace(/[^A-Za-z |%]/g,'');
+  if(filt !== orig){
+    inp.value = filt;
+    try{ inp.setSelectionRange(cur-1,cur-1); }catch(e){}
+  }
+  const len = visLen(inp.value);
+  const cc = document.getElementById('cc');
+  cc.textContent = len+'/45';
+  cc.className = 'cc'+(len>45?' over':len>38?' warn':'');
   bwGo();
 }
 
-// Build letter on offscreen — NO holes, NO shadow
-function buildLetter(ch, lH, lColor){
-  const d=SL[ch];
-  const lW=d?(vbP(d.vb).w/vbP(d.vb).h)*lH:lH*0.75;
-  const oc=document.createElement("canvas");
-  oc.width=Math.ceil(lW); oc.height=Math.ceil(lH);
-  const cx=oc.getContext("2d");
+// Build letter on offscreen canvas — clean, no holes, no shadow
+function buildLetter(ch, lH, letterColor){
+  const d = SL[ch];
+  const lW = d ? (vbP(d.vb).w/vbP(d.vb).h)*lH : lH*0.75;
+  const oc = document.createElement('canvas');
+  oc.width  = Math.ceil(lW);
+  oc.height = Math.ceil(lH);
+  const cx = oc.getContext('2d');
   if(d){
-    const v=vbP(d.vb); const sc=lH/v.h;
+    const v=vbP(d.vb), sc=lH/v.h;
     cx.save(); cx.scale(sc,sc);
-    cx.fillStyle=lColor;
-    d.p.forEach(pd=>cx.fill(new Path2D(pd)));
+    cx.fillStyle = letterColor;
+    d.p.forEach(pd => cx.fill(new Path2D(pd)));
     cx.restore();
   } else {
-    cx.font="900 "+Math.round(lH*.82)+"px 'Montserrat','Arial Black',Impact,sans-serif";
-    cx.fillStyle=lColor;
-    cx.textAlign="center"; cx.textBaseline="middle";
+    cx.fillStyle = letterColor;
+    cx.font = '900 '+Math.round(lH*.82)+"px 'Montserrat','Arial Black',Impact,sans-serif";
+    cx.textAlign = 'center';
+    cx.textBaseline = 'middle';
     cx.fillText(ch, lW/2, lH/2);
   }
-  return {canvas:oc, lW, lH};
+  return { canvas:oc, lW, lH };
 }
 
+// Measure raw pixel width of a row at given lH
 function measureRow(text, lH, s){
-  const CG=4*s, WG=lH*1.0, chars=Array.from(text.toUpperCase());
-  let w=0;
+  const CG=4*s, WG=lH*1.0;
+  const chars = Array.from(stripAccent(text).toUpperCase());
+  let w = 0;
   chars.forEach((ch,i)=>{
-    if(ch===' '){w+=WG;return;}
-    const d=SL[ch]; w+=d?(vbP(d.vb).w/vbP(d.vb).h)*lH:lH*.75;
-    if(i<chars.length-1&&ch!==' '&&chars[i+1]!==' ')w+=CG;
+    if(ch===' '){ w+=WG; return; }
+    const d=SL[ch]; w += d?(vbP(d.vb).w/vbP(d.vb).h)*lH:lH*.75;
+    if(i<chars.length-1 && ch!==' ' && chars[i+1]!==' ') w+=CG;
   });
   return w;
 }
 
-function drawRow(ctx, text, W, cY, pal, s, lH, SAG, accentColor){
+function drawRow(ctx, rawText, W, cY, pal, s, lH, SAG){
   const CG=4*s, WG=lH*1.0, EXT=60*s;
-  const chars=Array.from(text.toUpperCase());
-  const ws=chars.map(ch=>{
-    if(ch===' ')return WG;
+  // Build color map from rawText (with % markers)
+  const colorMap = buildColorMap(rawText, pal.letter);
+  // Filter to visible chars (no spaces handled separately)
+  // chars array = all chars including spaces, with colors
+  const chars = colorMap; // [{ch, color}]
+
+  // Compute widths
+  const ws = chars.map(({ch})=>{
+    if(ch===' ') return WG;
     const d=SL[ch]; return d?(vbP(d.vb).w/vbP(d.vb).h)*lH:lH*.75;
   });
+
   let raw=0;
-  chars.forEach((ch,i)=>{
+  chars.forEach(({ch},i)=>{
     raw+=ws[i];
-    if(i<chars.length-1&&ch!==' '&&chars[i+1]!==' ')raw+=CG;
+    if(i<chars.length-1 && ch!==' ' && chars[i+1].ch!==' ') raw+=CG;
   });
-  const scl=raw>W*.46?W*.46/raw:1;
-  const tW=raw*scl, lHs=lH*scl, cg=CG*scl, ext=EXT*scl;
-  const x0=W/2-tW/2-ext, x1=W/2+tW/2+ext, span=x1-x0;
-  // rope Y: center of garland row + small offset up (hole position)
-  const hIY=lHs*0.09;
-  const rBY=cY-lHs/2+hIY;
+
+  // No extra scaling here — lH already set by caller for uniform size
+  const totalW=raw, lHs=lH, cg=CG, ext=EXT;
+  const x0=W/2-totalW/2-ext, x1=W/2+totalW/2+ext, span=x1-x0;
+  const hIY=lHs*0.09, rBY=cY-lHs/2+hIY;
 
   // Draw rope
   ctx.save();
-  ctx.strokeStyle=pal.rope; ctx.lineWidth=1.4*s; ctx.lineCap="round";
+  ctx.strokeStyle=pal.rope; ctx.lineWidth=1.4*s; ctx.lineCap='round';
   ctx.beginPath();
   for(let i=0;i<=120;i++){
     const t=i/120, rx=x0+t*span, ry=rBY+sagAt(t,SAG);
@@ -201,125 +233,124 @@ function drawRow(ctx, text, W, cY, pal, s, lH, SAG, accentColor){
   }
   ctx.stroke(); ctx.restore();
 
-  // Draw letters with shadow on separate canvas to avoid artifacts
-  let x=W/2-tW/2;
-  chars.forEach((ch,i)=>{
-    const w=ws[i]*scl;
-    if(ch===' '){x+=w;return;}
+  // Draw letters
+  let x = W/2-totalW/2;
+  chars.forEach(({ch,color},i)=>{
+    const w=ws[i];
+    if(ch===' '){ x+=w; return; }
     const lcx=x+w/2;
     const t=(lcx-x0)/span;
-    const rY=rBY+sagAt(t,SAG);
-    const tY=rY-hIY;
-    const sl=sagSlope(t,SAG,span);
-    const ang=Math.atan(sl)*0.65;
-
-    const lb=buildLetter(ch, lHs, pal.letter);
-
-    // Draw shadow first (no composite ops, just offset shadow on clean offscreen)
+    const rY=rBY+sagAt(t,SAG), tY=rY-hIY;
+    const sl=sagSlope(t,SAG,span), ang=Math.atan(sl)*0.65;
+    const lb=buildLetter(ch, lHs, color);
     ctx.save();
     ctx.translate(lcx, tY+lHs/2);
     ctx.rotate(ang);
-    // Shadow via separate draw call with globalAlpha
-    ctx.save();
-    ctx.globalAlpha=0.15;
-    ctx.filter='blur('+(3*s)+'px)';
+    // Soft shadow via globalAlpha trick
+    ctx.globalAlpha=0.12;
+    ctx.filter='blur('+(2*s)+'px)';
     ctx.drawImage(lb.canvas, -lb.lW/2+2*s, -lb.lH/2+3*s);
-    ctx.restore();
-    // Letter itself — clean, no shadow
+    ctx.filter='none'; ctx.globalAlpha=1;
     ctx.drawImage(lb.canvas, -lb.lW/2, -lb.lH/2);
     ctx.restore();
-
-    x+=w+(chars[i+1]&&chars[i+1]!==' '?cg:0);
+    const nextCh = chars[i+1];
+    x += w + (nextCh && nextCh.ch!==' ' ? cg : 0);
   });
 }
 
 function renderTo(cv, W, H, raw, bgKey){
   cv.width=W; cv.height=H;
-  const ctx=cv.getContext("2d");
+  const ctx=cv.getContext('2d');
   const pal=PAL[bgKey]||PAL.w;
   const s=W/1080;
   ctx.fillStyle=pal.bg; ctx.fillRect(0,0,W,H);
 
-  const rows=parseRows(raw); if(!rows.length)return;
+  const rows=parseRows(raw);
+  if(!rows.length) return;
+
+  // Uniform letter height: find longest row, scale so it fills 46% width
   const BH=108*s;
-  // Find longest row → compute scale (can be >1 to scale UP short phrases)
   let maxRaw=0;
-  rows.forEach(row=>{const rw=measureRow(row,BH,s);if(rw>maxRaw)maxRaw=rw;});
+  rows.forEach(row=>{
+    const rw=measureRow(row,BH,s);
+    if(rw>maxRaw) maxRaw=rw;
+  });
   const targetW=W*0.46;
-  // Scale: longest row fills targetW; others get same scale (bigger if short)
   const gScl=maxRaw>0?targetW/maxRaw:1;
-  // Cap: never render letters bigger than 180*s
-  const lH=Math.min(BH*gScl, 180*s), SAG=34*s, RG=lH*.52;
-  const tH=rows.length*lH+(rows.length-1)*RG;
-  const sCY=H/2-tH/2+lH/2;
-  rows.forEach((row,i)=>drawRow(ctx,row,W,sCY+i*(lH+RG),pal,s,lH,SAG,'#FF8700'));
+  // Cap at 180*s so it doesn't get too big for very short phrases
+  const lH=Math.min(BH*gScl, 180*s);
+  const SAG=34*s;
+  const RG=lH*0.52;
+  const totalH=rows.length*lH+(rows.length-1)*RG;
+  const sCY=H/2-totalH/2+lH/2;
+
+  rows.forEach((row,i)=>{
+    drawRow(ctx, row, W, sCY+i*(lH+RG), pal, s, lH, SAG);
+  });
 
   // Logo
   ctx.save();
-  ctx.textAlign="center"; ctx.fillStyle=pal.letter;
+  ctx.textAlign='center';
+  ctx.fillStyle=pal.letter;
   ctx.font=Math.round(24*s)+"px 'Bebas Neue',sans-serif";
-  ctx.fillText("blacksymbols.com", W/2, H-lH*1.8);
+  ctx.fillText('blacksymbols.com', W/2, H-lH*1.8);
   ctx.restore();
 }
 
 const CFGS={p:{W:1080,H:1920},d:{W:1920,H:1080},s:{W:1080,H:1080}};
-const CVS={p:document.getElementById("cp"),d:document.getElementById("cd"),s:document.getElementById("cs")};
+const CVS={p:document.getElementById('cp'),d:document.getElementById('cd'),s:document.getElementById('cs')};
 const CACHE={};
 
 function bwGo(){
-  const raw=document.getElementById("inp").value||"BLACK SYMBOLS";
-  const bg=document.getElementById("bg").value;
+  const raw=(document.getElementById('inp').value||'BLACK SYMBOLS');
+  const bg=document.getElementById('bg').value;
   for(const[key,cfg]of Object.entries(CFGS)){
-    const off=document.createElement("canvas");
+    const off=document.createElement('canvas');
     off.width=cfg.W; off.height=cfg.H;
     renderTo(off,cfg.W,cfg.H,raw,bg);
     CACHE[key]=off;
     const cv=CVS[key];
-    // Set canvas internal size to match aspect ratio, CSS handles display size
-    const asp=cfg.H/cfg.W;
     cv.width=cfg.W; cv.height=cfg.H;
-    cv.getContext("2d").drawImage(off,0,0);
+    cv.getContext('2d').drawImage(off,0,0);
   }
 }
 
 function bwDl(key){
-  const off=CACHE[key]; if(!off)return;
-  const raw=document.getElementById("inp").value||"BS";
-  const slug=raw.replace(/[|]/g,"-").trim().slice(0,12).replace(/\s+/g,"_").toLowerCase();
-  const fname="bs_"+key+"_"+slug+".jpg";
+  const off=CACHE[key]; if(!off) return;
+  const raw=document.getElementById('inp').value||'BS';
+  const slug=stripAccent(raw).replace(/[|]/g,'-').trim().slice(0,12).replace(/\s+/g,'_').toLowerCase();
+  const fname='bs_'+key+'_'+slug+'.jpg';
   off.toBlob(function(blob){
     const url=URL.createObjectURL(blob);
-    const a=document.createElement("a");
+    const a=document.createElement('a');
     a.href=url; a.download=fname;
-    a.style.position="fixed"; a.style.top="-9999px";
+    a.style.position='fixed'; a.style.top='-9999px';
     document.body.appendChild(a);
     a.click();
     setTimeout(()=>{ document.body.removeChild(a); URL.revokeObjectURL(url); },3000);
   },'image/jpeg',0.96);
 }
 
-  document.getElementById("savehint").className="savehint show";
-}
-
 const PRES=[
-  "JUST START","HAYAT GÜZEL","LOVE MORE",
-  "STAY STRONG | MOVE ON","SADECE BEN","GOOD VIBES",
-  "DREAM BIG","NO LIMITS","AŞK BURADA",
-  "MAKE ART","STAY WILD","LIVE | LOVE | LAUGH",
-  "SEN BENİM | HER ŞEYİMSİN","KALBİM SENINLE",
-  "MUTLULUK SEÇİLİR","BE KIND","KEEP GOING",
+  'JUST START','HAYAT GÜZEL','LOVE MORE',
+  'STAY STRONG | MOVE ON','SADECE BEN','GOOD VIBES',
+  'DREAM BIG','NO LIMITS','MAKE ART',
+  'STAY WILD','LIVE | LOVE | LAUGH',
+  'SEN BENİM | HER ŞEYİMSİN',
+  'I %LOVE% YOU','%JUST% START',
+  'MUTLULUK SEÇİLİR','BE KIND','KEEP GOING',
 ];
-const pc=document.getElementById("ps");
+const pc=document.getElementById('ps');
 PRES.forEach(p=>{
-  const b=document.createElement("button"); b.className="pb"; b.textContent=p;
-  b.onclick=()=>{document.getElementById("inp").value=p;bwInput();};
+  const b=document.createElement('button'); b.className='pb'; b.textContent=p;
+  b.onclick=()=>{ document.getElementById('inp').value=p; bwInput(); };
   pc.appendChild(b);
 });
 
-function init(){bwInput();}
-if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}
-else{setTimeout(init,0);}
-window.addEventListener("resize",()=>{clearTimeout(window._rt);window._rt=setTimeout(bwGo,200);});
+function init(){ bwInput(); }
+if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',init); }
+else{ setTimeout(init,0); }
+window.addEventListener('resize',()=>{ clearTimeout(window._rt); window._rt=setTimeout(bwGo,200); });
 </script>
 </body>
 </html>
