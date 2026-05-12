@@ -473,7 +473,7 @@ function renderTo(cv, W, H, raw, bgKey){
   ctx.textAlign='center';
   ctx.fillStyle=pal.letter;
   ctx.font=Math.round(24*s)+"px 'Bebas Neue',sans-serif";
-  ctx.fillText('blacksymbols.com', W/2, H-lH*0.4);
+  ctx.fillText('blacksymbols.com', W/2, H-lH*0.8);
   ctx.restore();
 }
 
@@ -500,18 +500,47 @@ function sendToPim(payload){
     console.warn('PIM URL is not set. Paste the deployed Apps Script /exec URL into APPS_SCRIPT_URL.');
     return false;
   }
-  const body = JSON.stringify(payload);
+
+  // Самый стабильный способ для Google Apps Script Web App из GitHub/Tilda iframe:
+  // обычный HTML form POST в скрытый iframe. Нет CORS preflight, Apps Script получает e.parameter.
   try{
-    if(navigator.sendBeacon){
-      const blob = new Blob([body], {type:'text/plain;charset=utf-8'});
-      if(navigator.sendBeacon(APPS_SCRIPT_URL, blob)) return true;
+    const frameName = 'bs_pim_sink';
+    let frame = document.querySelector('iframe[name="'+frameName+'"]');
+    if(!frame){
+      frame = document.createElement('iframe');
+      frame.name = frameName;
+      frame.style.display = 'none';
+      document.body.appendChild(frame);
     }
-  }catch(e){}
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = APPS_SCRIPT_URL;
+    form.target = frameName;
+    form.style.display = 'none';
+
+    Object.keys(payload).forEach(k=>{
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = k;
+      input.value = payload[k] == null ? '' : String(payload[k]);
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+    setTimeout(()=>{ try{ form.remove(); }catch(e){} }, 5000);
+    return true;
+  }catch(err){
+    console.warn('PIM form post failed, trying fetch', err);
+  }
+
+  // Запасной вариант. Ответ не читаем из-за no-cors, но POST должен уйти.
   fetch(APPS_SCRIPT_URL,{
-    method:'POST', mode:'no-cors',
+    method:'POST', mode:'no-cors', redirect:'follow',
     headers:{'Content-Type':'text/plain;charset=utf-8'},
-    body
-  }).catch(err=>console.warn('PIM send failed', err));
+    body:JSON.stringify(payload)
+  }).catch(err=>console.warn('PIM fetch failed', err));
   return true;
 }
 
