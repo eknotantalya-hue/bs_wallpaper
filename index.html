@@ -14,7 +14,7 @@ html,body{width:100%;overflow-x:hidden;background:#f5f5f3;font-family:"Bebas Neu
 .hint{background:#eee;border:1px solid #ddd;color:#555;font-family:Georgia,serif;font-size:.72rem;line-height:1.65;padding:9px 13px;border-radius:4px;margin-bottom:11px}
 .hint b{color:#222}
 .inp-row{display:flex;gap:7px;align-items:center;margin-bottom:12px;flex-wrap:wrap;width:100%}
-input{flex:1;min-width:150px;background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neue",sans-serif;font-size:.95rem;letter-spacing:.08em;padding:9px 12px;border-radius:4px;outline:none;text-transform:uppercase;-webkit-appearance:none}
+input{flex:1;min-width:150px;background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neue",sans-serif;font-size:.95rem;letter-spacing:.08em;padding:9px 12px;border-radius:4px;outline:none;text-transform:uppercase;-webkit-appearance:none;appearance:none}
 input:focus{border-color:#777}
 select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neue",sans-serif;font-size:.85rem;padding:9px;border-radius:4px;outline:none;cursor:pointer;-webkit-appearance:none}
 .cc{font-family:Georgia,serif;font-size:.68rem;color:#aaa;white-space:nowrap}
@@ -34,17 +34,18 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
 .pb{background:#fff;border:1px solid #ddd;color:#666;font-family:"Bebas Neue",sans-serif;font-size:.72rem;letter-spacing:.04em;padding:5px 9px;border-radius:3px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .pb:active{background:#eee;color:#111}
 .cblock{background:#fff;border:1.5px solid #ddd;border-radius:6px;padding:14px;margin-bottom:14px;width:100%}
-.cblock h3{font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.15em;color:#888;margin-bottom:10px}
+.cblock,.cblock h3,.cblock label,.cblock input,.cblock select,.cblock span{font-family:"Arial Black",Arial,sans-serif}
+.cblock h3{font-size:.76rem;letter-spacing:.08em;color:#888;margin-bottom:10px}
 .cfield{display:flex;flex-direction:column;gap:3px;margin-bottom:10px}
 .cfield label{font-family:Georgia,serif;font-size:.68rem;color:#888}
 .cfield input,.cfield select{background:#f4f4f2;border:1.5px solid #ddd;color:#111;
-  font-family:Georgia,serif;font-size:.85rem;padding:8px 10px;border-radius:4px;outline:none;width:100%;
-  -webkit-appearance:none}
+  font-family:"Arial Black",Arial,sans-serif;font-size:.78rem;letter-spacing:.02em;padding:8px 10px;border-radius:4px;outline:none;width:100%;
+  -webkit-appearance:none;appearance:none}
 .cfield input:focus,.cfield select:focus{border-color:#777}
 .crow{display:flex;gap:8px}
 .crow .cfield{flex:1}
-.ccheck{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-family:Georgia,serif;font-size:.72rem;color:#666;line-height:1.5}
-.ccheck input[type=checkbox]{margin-top:2px;flex-shrink:0;width:16px;height:16px;cursor:pointer}
+.ccheck{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-family:"Arial Black",Arial,sans-serif;font-size:.62rem;color:#666;line-height:1.55}
+.ccheck input[type=checkbox]{box-sizing:border-box;margin:2px 0 0 0!important;display:inline-block!important;flex:0 0 16px!important;min-width:16px!important;width:16px!important;height:16px!important;padding:0!important;border:1.5px solid #111!important;border-radius:2px!important;background:#fff!important;cursor:pointer;-webkit-appearance:checkbox!important;appearance:checkbox!important;accent-color:#111}
 .ccheck a{color:#111}
 .cerr{font-family:Georgia,serif;font-size:.68rem;color:#c44;margin-top:4px;display:none}
 .btn.disabled{opacity:.4;pointer-events:none;cursor:default}
@@ -65,7 +66,7 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
     Turuncu için <b>%</b>: <b>I %LOVE% YOU</b> &rarr; LOVE turuncu olur<br>Rusça ve Türkçe harfler desteklenir
   </div>
   <div class="inp-row">
-    <input id="inp" value="JUST START" placeholder="YAZINIZI GİRİN..." maxlength="47" oninput="bwInput()">
+    <input id="inp" value="JUST START" placeholder="YAZINIZI GİRİN..." maxlength="60" oninput="bwInput(false)" onblur="bwInput(true)">
     <span class="cc" id="cc">10/45</span>
     <select id="bg" onchange="bwGo()">
       <option value="w">Beyaz</option>
@@ -213,11 +214,36 @@ function sagSlope(t,sag,span){ return 4*sag*(1-2*t)/span; }
 
 // Split raw input by | into rows (max 3)
 function parseRows(raw){
-  return raw.toUpperCase().split('|').map(s=>s.trim()).filter(Boolean).slice(0,3);
+  return bsUpper(raw).split('|').map(s=>s.trim()).filter(Boolean).slice(0,3);
 }
 
 // Strip % markers from row text for layout purposes
 function stripAccent(text){ return text.replace(/%/g,''); }
+
+// Turkish-safe uppercase: Latin I stays I, Turkish İ stays İ, lowercase i becomes İ, dotless ı becomes I.
+function bsUpper(text){
+  return String(text||'')
+    .replace(/i/g,'İ')
+    .replace(/ı/g,'I')
+    .toUpperCase();
+}
+
+function normalizeInputValue(value, finalClean=false){
+  let val = String(value||'');
+  // Allow Latin, Turkish, Russian uppercase/lowercase, spaces, row separator | and accent marker %.
+  val = val.replace(/[^A-Za-zА-ЯЁа-яёÇĞİÖŞÜçğıöşü |%]/g,'');
+  val = val.replace(/ /g,' ');
+  // No double spaces.
+  val = val.replace(/ {2,}/g,' ');
+  // No spaces around row separator.
+  val = val.replace(/\s*\|\s*/g,'|');
+  // No leading spaces at beginning of phrase or after each |.
+  val = val.replace(/^ +/,'').replace(/\| +/g,'|');
+  // During typing we keep one temporary trailing space so the next word can be typed.
+  // On blur/download the trailing spaces are removed.
+  if(finalClean){ val = val.split('|').map(seg=>seg.trim()).join('|'); }
+  return bsUpper(val);
+}
 
 // Build color array per character: normal or accent
 // "I %LOVE% YOU" -> chars I,space,L,O,V,E,space,Y,O,U
@@ -228,7 +254,7 @@ function buildColorMap(text, normalColor){
   parts.forEach((part, i) => {
     const isAccent = (i % 2 === 1);
     for(const ch of Array.from(part)){
-      result.push({ ch: ch.toUpperCase(), color: isAccent ? ACCENT : normalColor });
+      result.push({ ch: bsUpper(ch), color: isAccent ? ACCENT : normalColor });
     }
   });
   return result;
@@ -239,8 +265,8 @@ function visLen(raw){
   return raw.replace(/\|/g,'').replace(/%/g,'').replace(/\s+/g,' ').trim().length;
 }
 
-// Apps Script Web App URL for PIM
-const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL';
+// Apps Script Web App URL for PIM. Paste the deployed /exec URL here, NOT the Google Sheet edit URL.
+const APPS_SCRIPT_URL = 'PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_EXEC_URL_HERE';
 
 function validateForm(){
   const name  = (document.getElementById('cname').value||'').trim();
@@ -254,47 +280,35 @@ function validateForm(){
   return ok;
 }
 
-function bwInput(){
+function bwInput(finalClean=false){
   const inp = document.getElementById('inp');
-  const cur = inp.selectionStart;
-  let val = inp.value;
+  const cur = inp.selectionStart || 0;
+  const before = inp.value;
+  let val = normalizeInputValue(before, finalClean);
 
-  // 1. Allow only valid chars
-  val = val.replace(/[^A-Za-zА-ЯЁа-яёÇĞİÖŞÜçğışöü |%]/g,'');
-
-  // 2. Max two | (3 rows max)
+  // Max two | (3 rows max).
   const pipes = val.split('|').length - 1;
   if(pipes > 2){
     let count = 0;
     val = val.replace(/\|/g, m => { count++; return count <= 2 ? m : ''; });
   }
 
-  // 3. Max 15 visible chars per segment between |
-  const segs = val.split('|');
-  val = segs.map(seg => {
-    // count visible chars (no spaces at edges, no %)
-    const visible = seg.replace(/%/g,'').trim();
-    if(visible.length > 15){
-      // truncate to 15 visible chars preserving spaces and %
-      let count = 0, result = '';
-      for(const ch of seg){
-        if(ch !== ' ' && ch !== '%') count++;
-        if(count > 15) break;
-        result += ch;
-      }
-      return result;
+  // Max 15 visible chars per row, preserving % markers. Spaces count as visible chars.
+  val = val.split('|').map(seg => {
+    let count = 0, out = '';
+    for(const ch of seg){
+      if(ch !== '%') count++;
+      if(count > 15) break;
+      out += ch;
     }
-    return seg;
+    return out;
   }).join('|');
 
-  // 4. No leading/trailing spaces, max 1 space between words
-  val = val.split('|').map(seg =>
-    seg.replace(/  +/g,' ').replace(/^ | $/g,'')
-  ).join('|');
-
-  if(val !== inp.value){
+  if(val !== before){
+    const delta = before.length - val.length;
     inp.value = val;
-    try{ inp.setSelectionRange(cur,cur); }catch(e){}
+    const pos = Math.max(0, cur - Math.max(delta,0));
+    try{ inp.setSelectionRange(pos,pos); }catch(e){}
   }
 
   const len = visLen(inp.value);
@@ -304,38 +318,60 @@ function bwInput(){
   bwGo();
 }
 
-// Build letter on offscreen canvas — clean, no holes, no shadow
-function buildLetter(ch, lH, letterColor){
+// Extra zones make the main body of accented/descending letters the same visual height as normal letters.
+// top: accents above rope/base body; bottom: descenders below body. Fractions are relative to body height.
+const LETTER_EXTRA = {
+  'İ':{top:.24,bottom:0}, 'Ü':{top:.22,bottom:0}, 'Ğ':{top:.18,bottom:0}, 'Ö':{top:.22,bottom:0},
+  'Ё':{top:.24,bottom:0}, 'Й':{top:.18,bottom:0},
+  'Ş':{top:0,bottom:.20}, 'Ç':{top:0,bottom:.22},
+  'Ц':{top:0,bottom:.18}, 'Щ':{top:0,bottom:.18}, 'Д':{top:0,bottom:.18}
+};
+function letterExtra(ch){ return LETTER_EXTRA[ch] || {top:0,bottom:0}; }
+
+function letterDims(ch, bodyH){
   const d = SL[ch];
-  const lW = d ? (vbP(d.vb).w/vbP(d.vb).h)*lH : lH*0.75;
+  const ex = letterExtra(ch);
+  if(!d){
+    const h = bodyH * (1 + ex.top + ex.bottom);
+    return { d:null, v:null, sc:1, lW:bodyH*.75, lH:h, anchorY:ex.top*bodyH + bodyH*.09 };
+  }
+  const v = vbP(d.vb);
+  const canvasH = bodyH * (1 + ex.top + ex.bottom);
+  const sc = canvasH / v.h;
+  return { d, v, sc, lW:v.w*sc, lH:canvasH, anchorY:ex.top*bodyH + bodyH*.09 };
+}
+
+// Build letter on offscreen canvas. Uses evenodd so Corel/SVG holes stay transparent.
+function buildLetter(ch, bodyH, letterColor){
+  const dim = letterDims(ch, bodyH);
   const oc = document.createElement('canvas');
-  oc.width  = Math.ceil(lW);
-  oc.height = Math.ceil(lH);
+  oc.width  = Math.max(1, Math.ceil(dim.lW));
+  oc.height = Math.max(1, Math.ceil(dim.lH));
   const cx = oc.getContext('2d');
-  if(d){
-    const v=vbP(d.vb), sc=lH/v.h;
-    cx.save(); cx.scale(sc,sc);
+  if(dim.d){
+    cx.save();
+    cx.scale(dim.sc, dim.sc);
     cx.fillStyle = letterColor;
-    d.p.forEach(pd => cx.fill(new Path2D(pd)));
+    dim.d.p.forEach(pd => cx.fill(new Path2D(pd), 'evenodd'));
     cx.restore();
   } else {
     cx.fillStyle = letterColor;
-    cx.font = '900 '+Math.round(lH*.82)+"px 'Montserrat','Arial Black',Impact,sans-serif";
+    cx.font = '900 '+Math.round(bodyH*.82)+"px 'Arial Black',Impact,sans-serif";
     cx.textAlign = 'center';
     cx.textBaseline = 'middle';
-    cx.fillText(ch, lW/2, lH/2);
+    cx.fillText(ch, dim.lW/2, dim.lH/2);
   }
-  return { canvas:oc, lW, lH };
+  return { canvas:oc, lW:dim.lW, lH:dim.lH, anchorY:dim.anchorY };
 }
 
-// Measure raw pixel width of a row at given lH
-function measureRow(text, lH, s){
-  const CG=4*s, WG=lH*1.0;
-  const chars = Array.from(stripAccent(text).toUpperCase());
+// Measure raw pixel width of a row at given bodyH
+function measureRow(text, bodyH, s){
+  const CG=4*s, WG=bodyH*1.0;
+  const chars = Array.from(bsUpper(stripAccent(text)));
   let w = 0;
   chars.forEach((ch,i)=>{
     if(ch===' '){ w+=WG; return; }
-    const d=SL[ch]; w += d?(vbP(d.vb).w/vbP(d.vb).h)*lH:lH*.75;
+    w += letterDims(ch, bodyH).lW;
     if(i<chars.length-1 && ch!==' ' && chars[i+1]!==' ') w+=CG;
   });
   return w;
@@ -352,7 +388,7 @@ function drawRow(ctx, rawText, W, cY, pal, s, lH, SAG){
   // Compute widths
   const ws = chars.map(({ch})=>{
     if(ch===' ') return WG;
-    const d=SL[ch]; return d?(vbP(d.vb).w/vbP(d.vb).h)*lH:lH*.75;
+    return letterDims(ch, lH).lW;
   });
 
   let raw=0;
@@ -383,11 +419,12 @@ function drawRow(ctx, rawText, W, cY, pal, s, lH, SAG){
     if(ch===' '){ x+=w; return; }
     const lcx=x+w/2;
     const t=(lcx-x0)/span;
-    const rY=rBY+sagAt(t,SAG), tY=rY-hIY;
+    const rY=rBY+sagAt(t,SAG);
     const sl=sagSlope(t,SAG,span), ang=Math.atan(sl)*0.65;
     const lb=buildLetter(ch, lHs, color);
     ctx.save();
-    ctx.translate(lcx, tY+lHs/2);
+    // Align rope to the two punched holes inside the body, not to dots/diacritics.
+    ctx.translate(lcx, rY - lb.anchorY + lb.lH/2);
     ctx.rotate(ang);
     // Soft shadow via globalAlpha trick
     ctx.globalAlpha=0.12;
@@ -458,10 +495,31 @@ function bwGo(){
   }
 }
 
+function sendToPim(payload){
+  if(!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes('PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_EXEC_URL_HERE')){
+    console.warn('PIM URL is not set. Paste the deployed Apps Script /exec URL into APPS_SCRIPT_URL.');
+    return false;
+  }
+  const body = JSON.stringify(payload);
+  try{
+    if(navigator.sendBeacon){
+      const blob = new Blob([body], {type:'text/plain;charset=utf-8'});
+      if(navigator.sendBeacon(APPS_SCRIPT_URL, blob)) return true;
+    }
+  }catch(e){}
+  fetch(APPS_SCRIPT_URL,{
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body
+  }).catch(err=>console.warn('PIM send failed', err));
+  return true;
+}
+
 function bwDl(key){
+  bwInput(true);
   if(!validateForm()) return;
   const off=CACHE[key]; if(!off) return;
-  const raw=document.getElementById("inp").value||"BS";
+  const raw=normalizeInputValue(document.getElementById("inp").value||"BS", true);
   const slug=stripAccent(raw).replace(/[|]/g,'-').trim().slice(0,12).replace(/\s+/g,'_').toLowerCase();
   const fname='bs_'+key+'_'+slug+'.jpg';
 
@@ -471,21 +529,18 @@ function bwDl(key){
   const social= document.getElementById('csocial').value||'';
   const nick  =(document.getElementById('cnick').value||'').trim();
   const pub   = document.getElementById('cpub').checked;
-  const phrase= raw.replace(/\|/g,' ').replace(/  +/g,' ').replace(/%/g,'').trim().toUpperCase();
+  const phrase= bsUpper(raw.replace(/\|/g,' ').replace(/  +/g,' ').replace(/%/g,'').trim());
 
-  // Send to PIM (no-cors, fire and forget)
-  if(APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'YOUR_APPS_SCRIPT_WEB_APP_URL'){
-    fetch(APPS_SCRIPT_URL,{
-      method:'POST', mode:'no-cors',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        source:'wallpaper', phrase,
-        customer_name:name, customer_phone:phone,
-        social_network:social, social_nickname:nick,
-        consent_kvkk:'true', consent_publish:pub?'true':'false'
-      })
-    }).catch(()=>{});
-  }
+  // Send to PIM (fire and forget). Google Apps Script receives JSON as text/plain.
+  sendToPim({
+    created_at:new Date().toISOString(),
+    source:'wallpaper', format:key, filename:fname,
+    phrase, phrase_raw:raw, background:document.getElementById('bg').value,
+    customer_name:name, customer_phone:phone,
+    social_network:social, social_nickname:nick,
+    consent_kvkk:'true', consent_publish:pub?'true':'false',
+    page_url:location.href, user_agent:navigator.userAgent
+  });
 
   // Download image
   off.toBlob(function(blob){
