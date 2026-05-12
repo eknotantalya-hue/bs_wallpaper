@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Black Symbols — Duvar Kağıdı v3</title>
+<title>Black Symbols — Duvar Kağıdı v3.2</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -266,7 +266,7 @@ function visLen(raw){
 }
 
 // Apps Script Web App URL for PIM. Paste the deployed /exec URL here, NOT the Google Sheet edit URL.
-const APPS_SCRIPT_URL = 'PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_EXEC_URL_HERE';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzosg5BAbBB6WKp7RCo6-J8Z18m7JIQNOHSJrkP-zbyNl-p5nzHSN6ylTFe1xD8Cs2x/exec';
 
 function validateForm(){
   const name  = (document.getElementById('cname').value||'').trim();
@@ -438,7 +438,12 @@ function drawRow(ctx, rawText, W, cY, pal, s, lH, SAG){
   });
 }
 
-function renderTo(cv, W, H, raw, bgKey){
+// Позиция подписи blacksymbols.com по форматам.
+// Чем больше коэффициент, тем выше подпись от нижнего края.
+// p=телефон 9:16 — заметно выше; d=desktop — как было; s=квадрат — немного выше.
+const LOGO_Y_FACTOR = { p: 2.35, d: 0.40, s: 1.25 };
+
+function renderTo(cv, W, H, raw, bgKey, fmt){
   cv.width=W; cv.height=H;
   const ctx=cv.getContext('2d');
   const pal=PAL[bgKey]||PAL.w;
@@ -468,12 +473,14 @@ function renderTo(cv, W, H, raw, bgKey){
     drawRow(ctx, row, W, sCY+i*(lH+RG), pal, s, lH, SAG);
   });
 
-  // Logo
+  // Logo / site label
   ctx.save();
   ctx.textAlign='center';
   ctx.fillStyle=pal.letter;
   ctx.font=Math.round(24*s)+"px 'Bebas Neue',sans-serif";
-  ctx.fillText('blacksymbols.com', W/2, H-lH*0.8);
+  const factor = LOGO_Y_FACTOR[fmt] || 1.8;
+  const logoY = Math.max(40*s, Math.min(H-30*s, H-lH*factor));
+  ctx.fillText('blacksymbols.com', W/2, logoY);
   ctx.restore();
 }
 
@@ -487,7 +494,7 @@ function bwGo(){
   for(const[key,cfg]of Object.entries(CFGS)){
     const off=document.createElement('canvas');
     off.width=cfg.W; off.height=cfg.H;
-    renderTo(off,cfg.W,cfg.H,raw,bg);
+    renderTo(off,cfg.W,cfg.H,raw,bg,key);
     CACHE[key]=off;
     const cv=CVS[key];
     cv.width=cfg.W; cv.height=cfg.H;
