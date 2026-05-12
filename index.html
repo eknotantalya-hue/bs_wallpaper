@@ -502,9 +502,13 @@ function bwGo(){
   }
 }
 
+function isPimUrlReady(){
+  return /^https:\/\/script\.google\.com\/macros\/s\/.+\/exec(\?.*)?$/.test(APPS_SCRIPT_URL);
+}
+
 function sendToPim(payload){
-  if(!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes('https://script.google.com/macros/s/AKfycbzosg5BAbBB6WKp7RCo6-J8Z18m7JIQNOHSJrkP-zbyNl-p5nzHSN6ylTFe1xD8Cs2x/exec')){
-    console.warn('PIM URL is not set. Paste the deployed Apps Script /exec URL into APPS_SCRIPT_URL.');
+  if(!isPimUrlReady()){
+    console.warn('PIM URL is not set correctly. Paste the deployed Apps Script /exec URL into the single APPS_SCRIPT_URL constant only.');
     return false;
   }
 
