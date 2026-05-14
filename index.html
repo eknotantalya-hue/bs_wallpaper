@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Black Symbols — Duvar Kağıdı v3.2</title>
+<title>Black Symbols — Duvar Kağıdı v3.4</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -441,7 +441,7 @@ function drawRow(ctx, rawText, W, cY, pal, s, lH, SAG){
 // Позиция подписи blacksymbols.com по форматам.
 // Чем больше коэффициент, тем выше подпись от нижнего края.
 // p=телефон 9:16 — заметно выше; d=desktop — как было; s=квадрат — немного выше.
-const LOGO_Y_FACTOR = { p: 2.35, d: 0.40, s: 1.25 };
+const LOGO_Y_FACTOR = { p: 3.35, d: 1.80, s: 2.25 };
 
 function renderTo(cv, W, H, raw, bgKey, fmt){
   cv.width=W; cv.height=H;
@@ -504,6 +504,12 @@ function bwGo(){
 
 function isPimUrlReady(){
   return /^https:\/\/script\.google\.com\/macros\/s\/.+\/exec(\?.*)?$/.test(APPS_SCRIPT_URL);
+}
+
+function getSourcePageUrl(){
+  // В iframe location.href = GitHub Pages. Для PIM нам нужен адрес страницы сайта Tilda.
+  // document.referrer обычно даёт https://blacksymbols.com/wallpaper
+  return document.referrer || location.href;
 }
 
 function sendToPim(payload){
@@ -579,7 +585,10 @@ function bwDl(key){
     customer_name:name, customer_phone:phone,
     social_network:social, social_nickname:nick,
     consent_kvkk:'true', consent_publish:pub?'true':'false',
-    page_url:location.href, user_agent:navigator.userAgent
+    page_url:getSourcePageUrl(),
+    iframe_url:location.href,
+    referrer_url:document.referrer || '',
+    user_agent:navigator.userAgent
   });
 
   // Download image
