@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Black Symbols — Duvar Kağıdı v3.6</title>
+<title>Black Symbols — Duvar Kağıdı v3.7</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -20,6 +20,7 @@ html,body{width:100%;overflow-x:hidden;background:#f5f5f3;font-family:"Bebas Neu
 .btn.mod{background:#FF8700;color:#fff;border:1.5px solid #FF8700;font-family:"Arial Black",Arial,sans-serif}
 .modmsg{display:none;font-family:"Arial Black",Arial,sans-serif;font-size:.62rem;line-height:1.55;border-radius:6px;padding:10px 12px;margin-bottom:10px}
 .modmsg.ok{display:block;background:#eef8ee;border:1px solid #b8d8b8;color:#245a24}
+.modmsg.yellow{display:block;background:#fff9e8;border:1px solid #ffd07a;color:#7a4700}
 .modmsg.red{display:block;background:#fff0e8;border:1px solid #ffbf99;color:#8a3600}
 .modmsg.wait{display:block;background:#f4f4f2;border:1px solid #ddd;color:#555}
 .inp-row{display:flex;gap:7px;align-items:center;margin-bottom:12px;flex-wrap:wrap;width:100%}
@@ -41,13 +42,13 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
 .btn.g{background:#fff;color:#555;border:1.5px solid #ddd}
 .savehint{font-family:Georgia,serif;font-size:.68rem;color:#999;text-align:center;margin-bottom:10px;line-height:1.5;display:none;padding:0 8px}
 .savehint.show{display:block}
-.ph{color:#aaa;font-size:.6rem;letter-spacing:.2em;margin-bottom:7px;font-family:"Arial Black",Arial,sans-serif}
+.ph{color:#111;font-size:.6rem;letter-spacing:.2em;margin-bottom:7px;font-family:"Arial Black",Arial,sans-serif}
 .ps{display:flex;flex-direction:column;gap:10px}
 .pgroup{background:#fff;border:1px solid #ddd;border-radius:6px;padding:10px}
-.pgt{font-family:"Arial Black",Arial,sans-serif;font-size:.62rem;letter-spacing:.12em;color:#111;margin-bottom:7px}
+.pgt{font-family:"Arial Black",Arial,sans-serif;font-size:.62rem;letter-spacing:.12em;color:#FF8700;margin-bottom:7px}
 .plang{font-family:"Arial Black",Arial,sans-serif;font-size:.54rem;letter-spacing:.12em;color:#aaa;margin:7px 0 4px}
 .pbuttons{display:flex;flex-wrap:wrap;gap:5px}
-.pb{background:#fff;border:1px solid #ddd;color:#666;font-family:"Bebas Neue",sans-serif;font-size:.72rem;letter-spacing:.04em;padding:5px 9px;border-radius:3px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.pb{background:#fff;border:1px solid #ddd;color:#111;font-family:"Bebas Neue",sans-serif;font-size:.72rem;letter-spacing:.04em;padding:5px 9px;border-radius:3px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .pb:active{background:#eee;color:#111}
 .cblock{background:#fff;border:1.5px solid #ddd;border-radius:6px;padding:14px;margin-bottom:14px;width:100%}
 .cblock,.cblock h3,.cblock label,.cblock input,.cblock select,.cblock span{font-family:"Arial Black",Arial,sans-serif}
@@ -85,8 +86,8 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
     Turuncu için <b>%</b>: <b>I %<span class="accent">LOVE</span>% YOU</b> &rarr; <span class="accent">LOVE</span> turuncu olur<br>Türkçe, İngilizce ve Rusça harfler desteklenir
   </div>
   <div class="inp-row">
-    <input id="inp" value="JUST START" placeholder="YAZINIZI GİRİN..." maxlength="60" oninput="bwInput(false)" onblur="bwInput(true)">
-    <span class="cc" id="cc">10/45</span>
+    <input id="inp" value="" placeholder="YAZINIZI GİRİN..." maxlength="60" oninput="bwInput(false)" onblur="bwInput(true)">
+    <span class="cc" id="cc">0/45</span>
     <select id="bg" onchange="bwGo()">
       <option value="w">Beyaz</option>
       <option value="ow">Krem</option>
@@ -109,7 +110,7 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
       </div>
       <div class="cfield">
         <label>Telefon *</label>
-        <input type="tel" id="cphone" value="+90 " placeholder="+90 5XX XXX XX XX" inputmode="numeric" autocomplete="tel" required onfocus="ensurePhonePrefix()" oninput="sanitizePhoneInput(); validateForm()" onblur="sanitizePhoneInput(); validateForm()">
+        <input type="tel" id="cphone" value="+90" placeholder="+905XXXXXXXXX" inputmode="tel" autocomplete="tel" required onfocus="defaultPhonePrefix()" oninput="sanitizePhoneInput(); validateForm()" onblur="sanitizePhoneInput(); validateForm()">
       </div>
     </div>
     <div class="cfield">
@@ -148,7 +149,7 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
     <button class="btn desktop disabled" id="btn-d" onclick="bwDl('d')">&#8595; MASAÜSTÜ</button>
     <button class="btn square disabled" id="btn-s" onclick="bwDl('s')">&#8595; KARE</button>
   </div>
-  <div class="ph">HIZLI CÜMLELER - RUH HALİNE GÖRE</div>
+  <div class="ph">HIZLI CÜMLELER - Ruh Haline Göre</div>
   <div class="ps" id="ps"></div>
 </div>
 
@@ -293,33 +294,87 @@ function visLen(raw){
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzosg5BAbBB6WKp7RCo6-J8Z18m7JIQNOHSJrkP-zbyNl-p5nzHSN6ylTFe1xD8Cs2x/exec';
 
 
-let moderationState = 'pending'; // pending | approved | red
-let lastModeratedSignature = '';
 
-const MODERATION_TEXT_OK = 'Cümleniz kontrol edildi. Görsellerinizi indirebilirsiniz.';
-const MODERATION_TEXT_RED = 'Cümleniz, oluşturucu kurallarına göre otomatik kontrol gerektiren kelimeler içeriyor ve BLACK SYMBOLS hukuk birimine moderasyon için yönlendirilecektir. İnceleme sonrası onaylanırsa görselleriniz size gönderilir; kullanım uygun bulunmazsa bununla ilgili bilgilendirme yapılır.';
+let moderationState = 'pending'; // pending | green | yellow | red
+let lastModeratedSignature = '';
+let lastModerationResult = null;
+
+const MODERATION_TEXT_GREEN = 'Cümleniz kontrol edildi. Görsellerinizi indirebilirsiniz.';
+const MODERATION_TEXT_YELLOW = 'Cümlenizde hassas / küfürlü kelimeler tespit edildi. Görsellerinizde bu kelimelerde yalnızca 1 harf * ile maskelenmiştir. İndirme yapabilirsiniz. Orijinal içerik gerekli görülürse ayrıca BLACK SYMBOLS ekibi tarafından incelenebilir.';
+const MODERATION_TEXT_RED = 'Cümleniz, BLACK SYMBOLS eğlence ve ifade özgürlüğü kurallarına göre otomatik indirme için uygun bulunmadı. Hukuk ekibimizin moderasyonuna iletilecektir. Onay verilirse size ayrıca bilgi paylaşılacaktır.';
 const MODERATION_TEXT_NEED = 'İndirme düğmelerini açmak için önce cümlenizi kontrol edin.';
 
-// Client-side first filter. It is intentionally broad: suspicious phrases go to RED CONTROL instead of being downloaded with the Black Symbols logo.
-// A trailing * means “any continuation of this stem”. Example: ПИЗД* catches common inflected forms.
-const STOP_RULES = [
-  {cat:'profanity', terms:['FUCK*','SHIT','BITCH','CUNT','DICK','PUSSY','ASSHOLE','WHORE','SLUT','AMK','AQ','OROSPU','SIK*','PIC','PEZEVENK','YAVSAK','AMCIK','ХУЙ*','ХУЯ*','ПИЗД*','БЛЯД*','ЕБА*','ЕБАТ*','СУКА','СУКИ','ДОЛБОЕБ*','МУДАК*','ГАНДОН*','ШЛЮХ*']},
-  {cat:'violence', terms:['KILL*','MURDER*','DEATH','DIE','BOMB*','BLOOD','VIOLENCE','RAPE','ABUSE','TERROR*','WAR','GENOCIDE','LYNCH*','OLDUR*','OLUM','BOMBA','KAN','SIDDET','TECAVUZ','ISTISMAR','TEROR*','SAVAS','SOYKIRIM','УБЕЙ','УБИТЬ','УБИЙ*','СМЕРТЬ','УМРИ','БОМБ*','КРОВ*','НАСИЛ*','ИЗНАСИЛ*','ТЕРРОР*','ВОЙН*','ГЕНОЦИД','ЛИНЧ*']},
-  {cat:'child_safety', terms:['CHILD ABUSE','CHILD RAPE','PEDO*','PEDOPHILE','PEDOFILI','COCUK ISTISMAR','COCUK TECAVUZ','ПЕДО*','ПЕДОФИЛ*','ДЕТСКОЕ НАСИЛ*','НАСИЛИЕ НАД ДЕТ*','ИЗНАСИЛОВАНИЕ РЕБ*']},
-  {cat:'religion', terms:['ALLAH','TANRI','GOD','JESUS','ISA','CHRIST*','CHURCH','MOSQUE','CAMI','QURAN','KURAN','BIBLE','INCIL','ISLAM','MUSLIM*','MUSELMA*','CHRISTIAN*','HRISTIYAN*','JEW*','YAHUDI*','RELIGION','DIN','БОГ','АЛЛАХ','ИИСУС','ХРИСТ*','ЦЕРКОВ*','МЕЧЕТ*','КОРАН','БИБЛИ*','ИСЛАМ','МУСУЛЬМАН*','ХРИСТИАН*','ЕВРЕ*','РЕЛИГ*']},
-  {cat:'state_politics', terms:['PRESIDENT','GOVERNMENT','STATE','REVOLUTION','COUP','SEPARAT*','REBELLION','ERDOGAN','PUTIN','ZELENSKY','TRUMP','BIDEN','BASKAN','CUMHURBASKANI','HUKUMET','DEVLET','DEVRIM','DARBE','AYRILIK*','ПРЕЗИДЕНТ*','ПРАВИТЕЛЬСТВ*','ГОСУДАРСТВ*','РЕВОЛЮЦ*','ПЕРЕВОРОТ','СЕПАРАТ*','ВОССТАН*','ЭРДОГАН','ПУТИН','ЗЕЛЕНСК*']},
-  {cat:'nations_countries', terms:['TURKEY','TURKIYE','TURK*','RUSSIA','RUSYA','RUS','UKRAINE','UKRAYNA','UKRAIN*','ISRAEL','ISRAIL','PALESTINE','FILISTIN','ARAB*','ARMENIA','ERMENI*','KURD*','KURT*','GREEK','YUNAN*','ТУРЦ*','ТУРК*','РОССИ*','РУССК*','УКРАИН*','ИЗРАИЛ*','ПАЛЕСТИН*','АРАБ*','АРМЕН*','КУРД*','ГРЕК*','НАРОД*','НАЦИ*']},
-  {cat:'extremism', terms:['NAZI*','HITLER','ISIS','ISIL','DAESH','PKK','FETO','HAMAS','HEZBOLLAH','TALIBAN','AL QAEDA','SWASTIKA','НАЗИ*','ГИТЛЕР','ИГИЛ','ДАИШ','ХАМАС','ХЕЗБОЛЛА*','ТАЛИБАН','АЛЬ КАИДА','СВАСТИК*']},
-  {cat:'illegal_call', terms:['DRUG*','HEROIN','COCAINE','KOKAIN','UYUSTURUCU','HACK*','SCAM','FRAUD','LOOT*','ARSON','НАРКОТИК*','ГЕРОИН','КОКАИН','ВЗЛОМ*','МОШЕННИЧ*','ГРАБ*','ПОДЖОГ*']}
+// YELLOW: profanity / hype words. They are NOT blocked. One internal letter is masked with * in visuals, download stays allowed.
+const YELLOW_RULES = [
+  {cat:'profanity', terms:[
+    // EN
+    'FUCK*','FUCKER','MOTHERFUCKER','SHIT*','BITCH*','CUNT*','DICK*','PUSSY','ASSHOLE','WHORE*','SLUT*','BASTARD*','WANKER','DAMN','BULLSHIT',
+    // TR (normalized without Turkish accents for matching)
+    'AMK','AQ','AMQ','OROSPU*','SIK*','SIKTIR*','SOK*','GOT','GOTVEREN','PIC','PEZEVENK','YAVSAK','AMCIK','AMINA','AMINI','AMINAKOY*','MAL','SALAK',
+    // RU
+    'ХУЙ*','ХУЯ*','ХУЕ*','ХЕР','ПИЗД*','ПИЗДЕЦ','БЛЯ*','БЛЯД*','ЕБ*','ЕБА*','ЕБАТ*','СУКА','СУКИ','СУЧ*','ДОЛБОЕБ*','МУДАК*','ГАНДОН*','ШЛЮХ*','ЖОПА','ЗАДНИЦА'
+  ]}
 ];
 
-function stopTermHit(normalized, term){
-  const stem = term.endsWith('*');
-  const base = stem ? term.slice(0,-1) : term;
-  const escaped = base.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\s+/g,'\\s+');
-  const tail = stem ? '\\S*' : '';
-  return new RegExp('(^|\\s)' + escaped + tail + '(?=\\s|$)', 'i').test(normalized);
-}
+// RED: high-risk categories. Broad by design: better to stop a questionable phrase than publish it with the logo.
+const RED_RULES = [
+  {cat:'violence', terms:[
+    // EN
+    'KILL*','MURDER*','EXECUTE','EXECUTION','DEATH','DIE','DEAD','BOMB*','BLOOD','VIOLENCE','VIOLENT','RAPE*','ABUSE*','TORTURE*','BEAT','LYNCH*','MASSACRE','GENOCIDE','SHOOT*','STAB*','BURN','HANG','DESTROY','ATTACK*','WEAPON*','GUN','KNIFE',
+    // TR
+    'OLDUR*','OLUM','GEBER*','KATIL','CINAYET','INFAZ','BOMBA*','KAN','SIDDET','TECAVUZ*','ISTISMAR*','ISKENCE*','DOV','LINÇ','LINC','KATLİAM','KATLIAM','SOYKIRIM','VUR','BICAK','YAK','SALDIR*','SILAH',
+    // RU
+    'УБЕЙ*','УБИТЬ','УБИЙ*','УБЬЮ','УМРИ','СМЕРТЬ','МЕРТВ*','БОМБ*','КРОВ*','НАСИЛ*','ИЗНАСИЛ*','ПЫТК*','БЕЙ','ИЗБЕЙ','ЛИНЧ*','МАССОВОЕ УБИЙСТВО','ГЕНОЦИД','СТРЕЛЯ*','ЗАРЕЖ*','СЖЕЧЬ','ПОВЕС*','УНИЧТОЖ*','АТАК*','ОРУЖ*','ПИСТОЛЕТ','НОЖ'
+  ]},
+  {cat:'child_safety', terms:[
+    // EN
+    'CHILD ABUSE','CHILD RAPE','CHILD PORN','KID RAPE','PEDO*','PEDOPHILE*','LOLITA','MINOR SEX','BABY RAPE',
+    // TR
+    'COCUK ISTISMAR*','COCUK TECAVUZ*','COCUK PORNO*','PEDOFIL*','PEDO*','REŞIT OLMAYAN','RESIT OLMAYAN',
+    // RU
+    'ПЕДО*','ПЕДОФИЛ*','ДЕТСКОЕ НАСИЛ*','НАСИЛИЕ НАД ДЕТ*','ИЗНАСИЛОВАНИЕ РЕБ*','ДЕТСКОЕ ПОРНО*','СЕКС С РЕБ*','МАЛОЛЕТ*'
+  ]},
+  {cat:'religion', terms:[
+    // EN
+    'ALLAH','GOD','JESUS','CHRIST','CHRISTIAN*','CHURCH','MOSQUE','QURAN','KORAN','BIBLE','TORAH','TALMUD','ISLAM','MUSLIM*','JEW*','JUDAISM','RELIGION','PROPHET','MUHAMMAD','MOHAMMED','DEVIL','SATAN','HOLY',
+    // TR
+    'TANRI','ALLAH','ISA','MESIH','HRISTIYAN*','KILISE','CAMI','KURAN','INCIL','TEVRAT','ISLAM','MUSLUMAN*','YAHUDI*','DIN','PEYGAMBER','MUHAMMED','SEYTAN','KUTSAL',
+    // RU
+    'БОГ','АЛЛАХ','ИИСУС','ХРИСТ*','ХРИСТИАН*','ЦЕРКОВЬ','МЕЧЕТЬ','КОРАН','БИБЛИЯ','ТОРА','ТАЛМУД','ИСЛАМ','МУСУЛЬМАН*','ЕВРЕ*','ИУДЕ*','РЕЛИГ*','ПРОРОК','МУХАММЕД','ДЬЯВОЛ','САТАН*','СВЯТ*'
+  ]},
+  {cat:'politics_state', terms:[
+    // EN
+    'PRESIDENT','GOVERNMENT','STATE','PARLIAMENT','MINISTER','ELECTION','VOTE','REGIME','DICTATOR*','KING','QUEEN','ARMY','POLICE','COURT','LAW','ERDOGAN','PUTIN','ZELENSKY','ZELENSKYY','TRUMP','BIDEN','OBAMA','NETANYAHU',
+    // TR
+    'BASKAN','CUMHURBASKANI','HUKUMET','DEVLET','MECLIS','BAKAN','SECIM','OY VER','REJIM','DIKTATOR*','KRAL','KRALICE','ORDU','POLIS','MAHKEME','KANUN','ERDOGAN','PUTIN','ZELENSKI','TRUMP','BIDEN','NETANYAHU',
+    // RU
+    'ПРЕЗИДЕНТ','ПРАВИТЕЛЬСТВО','ГОСУДАРСТВО','ПАРЛАМЕНТ','МИНИСТР','ВЫБОР*','ГОЛОСОВАТЬ','РЕЖИМ','ДИКТАТОР*','КОРОЛЬ','КОРОЛЕВА','АРМИЯ','ПОЛИЦИЯ','СУД','ЗАКОН','ЭРДОГАН','ПУТИН','ЗЕЛЕНСК*','ТРАМП','БАЙДЕН','ОБАМА','НЕТАНЬЯХУ'
+  ]},
+  {cat:'overthrow_separatism', terms:[
+    // EN
+    'REVOLUTION','COUP','OVERTHROW','REBELLION','UPRISING','RIOT','SEPARAT*','SECESSION','INDEPENDENCE FOR','FREE STATE','DOWN WITH','TAKE POWER','CIVIL WAR',
+    // TR
+    'DEVRIM','DARBE','IKTIDARI DEVIR','AYAKLAN*','ISYAN','SEPARAT*','AYRILIK*','BOLUCU*','BAGIMSIZLIK','KAHROLSUN','IC SAVAS',
+    // RU
+    'РЕВОЛЮЦ*','ПЕРЕВОРОТ','СВЕРГ*','ВОССТАН*','БАЙКОР*','БУНТ','СЕПАРАТ*','ОТДЕЛЕНИЕ','НЕЗАВИСИМОСТЬ ДЛЯ','СВОБОДУ','ДОЛОЙ','ЗАХВАТИТЬ ВЛАСТЬ','ГРАЖДАНСКАЯ ВОЙНА'
+  ]},
+  {cat:'nations_countries', terms:[
+    // EN / international
+    'TURKEY','TURKIYE','TURK*','RUSSIA','RUSSIAN*','RUSYA','RUS','UKRAINE','UKRAINIAN*','UKRAYNA','ISRAEL','ISRAELI*','ISRAIL','PALESTINE','PALESTINIAN*','FILISTIN','ARAB*','ARMENIA','ARMENIAN*','ERMENI*','KURD*','KURT*','GREEK*','YUNAN*','AMERICA','AMERICAN*','USA','EUROPE','EUROPEAN*','CHINA','CHINESE','IRAN','IRANIAN*','SYRIA','SYRIAN*','AFRICA','AFRICAN*','NATION*','PEOPLE','ETHNIC*','RACE',
+    // TR
+    'TURKIYE','TURK*','RUSYA','RUS','UKRAYNA','UKRAYNALI*','ISRAIL','YAHUDI*','FILISTIN','ARAP*','ERMENI*','KURT*','YUNAN*','AMERIKA','CIN','IRAN','SURIYE','SURIYELI*','MILLET','HALK','IRK','ETNIK',
+    // RU
+    'ТУРЦ*','ТУРОК','ТУРК*','РОССИ*','РУССК*','УКРАИН*','ИЗРАИЛ*','ПАЛЕСТИН*','АРАБ*','АРМЕН*','КУРД*','ГРЕК*','АМЕРИК*','США','ЕВРОП*','КИТА*','ИРАН*','СИРИ*','АФРИК*','НАРОД*','НАЦИ*','ЭТНИЧ*','РАСА','РАСОВ*'
+  ]},
+  {cat:'extremism_terror', terms:[
+    // EN / international
+    'TERROR*','TERRORIST*','EXTREMIST*','JIHAD*','MARTYR','NAZI*','HITLER','SS','SWASTIKA','ISIS','ISIL','DAESH','AL QAEDA','ALQAEDA','TALIBAN','HAMAS','HEZBOLLAH','PKK','FETO','KU KLUX','KKK','FASCIST*','FASCISM',
+    // TR
+    'TEROR*','TERORIST*','ASIRI*','CIHAD*','SEHIT','NAZI*','HITLER','GAMALI HAC','ISID','DEAŞ','DEAS','EL KAIDE','TALIBAN','HAMAS','HIZBULLAH','PKK','FETO','FASIST*','FASIZM',
+    // RU
+    'ТЕРРОР*','ТЕРРОРИСТ*','ЭКСТРЕМИСТ*','ДЖИХАД*','ШАХИД','НАЗИ*','ГИТЛЕР','СС','СВАСТИК*','ИГИЛ','ДАИШ','АЛЬ КАИДА','АЛЬКАИДА','ТАЛИБАН','ХАМАС','ХЕЗБОЛЛА','ПКК','ФЕТО','ФАШИСТ*','ФАШИЗМ'
+  ]}
+];
 
 function normalizeForModeration(text){
   return String(text||'')
@@ -339,13 +394,109 @@ function phraseModerationSignature(){
   return normalizeForModeration(normalizeInputValue(document.getElementById('inp').value||'', true));
 }
 
-function checkPhraseModeration(raw){
-  const normalized = normalizeForModeration(raw);
+function escapeRegExp(str){ return String(str).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+function termToRegExp(term){
+  let t = normalizeForModeration(term);
+  const prefix = /\*$/.test(String(term));
+  if(prefix) t = t.replace(/\*+$/,'');
+  if(!t) return null;
+  const pattern = escapeRegExp(t).replace(/\\ /g,'\\s+');
+  return new RegExp('(^|\\s)' + pattern + (prefix ? '[A-ZА-ЯЕ0-9]*' : '') + '(?=\\s|$)', 'i');
+}
+
+function findRuleHits(normalized, rules){
   const hits = [];
-  STOP_RULES.forEach(rule=>{
-    if((rule.terms||[]).some(term=>stopTermHit(normalized, term))) hits.push(rule.cat);
+  rules.forEach(rule=>{
+    (rule.terms||[]).forEach(term=>{
+      const re = termToRegExp(term);
+      if(re && re.test(normalized)) hits.push({cat:rule.cat, term:normalizeForModeration(term).replace(/\*+$/,'')});
+    });
   });
-  return {ok:hits.length===0, categories:[...new Set(hits)], normalized};
+  return hits;
+}
+
+function isYellowWord(word){
+  const norm = normalizeForModeration(word);
+  return !!findRuleHits(norm, YELLOW_RULES).length;
+}
+
+function maskOneInternalLetter(word){
+  const chars = Array.from(word);
+  if(chars.length <= 1) return '*';
+  const alpha = /[A-Za-zА-ЯЁа-яёÇĞİÖŞÜçğıöşü]/;
+  const candidates = [];
+  for(let i=1;i<chars.length-1;i++){
+    if(alpha.test(chars[i])) candidates.push(i);
+  }
+  let pos;
+  if(candidates.length) pos = candidates[Math.floor(candidates.length/2)];
+  else pos = chars.length === 2 ? 1 : Math.floor(chars.length/2);
+  chars[pos] = '*';
+  return chars.join('');
+}
+
+function maskProfanityInPhrase(raw){
+  const masked = [];
+  const seen = new Set();
+  const phrase = String(raw||'').replace(/[A-Za-zА-ЯЁа-яёÇĞİÖŞÜçğıöşü]+/g, word=>{
+    if(isYellowWord(word)){
+      const out = maskOneInternalLetter(word);
+      const key = bsUpper(word) + '→' + bsUpper(out);
+      if(!seen.has(key)){ seen.add(key); masked.push(key); }
+      return out;
+    }
+    return word;
+  });
+  return {phrase_visual_raw:phrase, masked_words:masked};
+}
+
+function checkPhraseModeration(raw){
+  const phrase_original_raw = normalizeInputValue(raw||'', true);
+  const normalized = normalizeForModeration(phrase_original_raw);
+  const redHits = findRuleHits(normalized, RED_RULES);
+  if(redHits.length){
+    return {
+      status:'RED', ok:false, download_allowed:false,
+      phrase_original_raw,
+      phrase_original:bsUpper(phrase_original_raw.replace(/\|/g,' ').replace(/%/g,'').replace(/\s+/g,' ').trim()),
+      phrase_clean:normalized,
+      phrase_visual_raw:'BLACK SYMBOLS',
+      phrase_visual:'BLACK SYMBOLS',
+      masked_words:[],
+      detected_terms:[...new Set(redHits.map(h=>h.term))],
+      categories:[...new Set(redHits.map(h=>h.cat))],
+      moderation_reason:'HIGH_RISK_CONTENT',
+      visual_mode:'BLOCKED'
+    };
+  }
+  const masked = maskProfanityInPhrase(phrase_original_raw);
+  const yellowHits = findRuleHits(normalized, YELLOW_RULES);
+  if(yellowHits.length){
+    return {
+      status:'YELLOW', ok:true, download_allowed:true,
+      phrase_original_raw,
+      phrase_original:bsUpper(phrase_original_raw.replace(/\|/g,' ').replace(/%/g,'').replace(/\s+/g,' ').trim()),
+      phrase_clean:normalized,
+      phrase_visual_raw:masked.phrase_visual_raw,
+      phrase_visual:bsUpper(masked.phrase_visual_raw.replace(/\|/g,' ').replace(/%/g,'').replace(/\s+/g,' ').trim()),
+      masked_words:masked.masked_words,
+      detected_terms:[...new Set(yellowHits.map(h=>h.term))],
+      categories:[...new Set(yellowHits.map(h=>h.cat))],
+      moderation_reason:'PROFANITY_MASKED',
+      visual_mode:'MASKED'
+    };
+  }
+  return {
+    status:'GREEN', ok:true, download_allowed:true,
+    phrase_original_raw,
+    phrase_original:bsUpper(phrase_original_raw.replace(/\|/g,' ').replace(/%/g,'').replace(/\s+/g,' ').trim()),
+    phrase_clean:normalized,
+    phrase_visual_raw:phrase_original_raw,
+    phrase_visual:bsUpper(phrase_original_raw.replace(/\|/g,' ').replace(/%/g,'').replace(/\s+/g,' ').trim()),
+    masked_words:[], detected_terms:[], categories:[],
+    moderation_reason:'AUTO_OK', visual_mode:'ORIGINAL'
+  };
 }
 
 function setModerationMessage(type, text){
@@ -358,25 +509,55 @@ function setModerationMessage(type, text){
 function resetModeration(showNeed=false){
   moderationState = 'pending';
   lastModeratedSignature = '';
+  lastModerationResult = null;
   if(showNeed) setModerationMessage('wait', MODERATION_TEXT_NEED);
   else setModerationMessage('', '');
   updateActionButtons();
 }
 
+function getActiveModerationResult(){
+  const sig = phraseModerationSignature();
+  if(lastModeratedSignature && sig === lastModeratedSignature && lastModerationResult){ return lastModerationResult; }
+  return null;
+}
+
+function getRenderPhraseRaw(){
+  const raw = document.getElementById('inp').value || '';
+  const active = getActiveModerationResult();
+  if(active && active.status === 'YELLOW') return active.phrase_visual_raw || raw || 'BLACK SYMBOLS';
+  if(active && active.status === 'RED') return 'BLACK SYMBOLS';
+  return raw || 'BLACK SYMBOLS';
+}
+
 function collectCustomerPayloadBase(extra={}){
-  const raw = normalizeInputValue(document.getElementById('inp').value||'BS', true);
-  const phrase = bsUpper(raw.replace(/\|/g,' ').replace(/  +/g,' ').replace(/%/g,'').trim());
+  const raw = normalizeInputValue(document.getElementById('inp').value||'', true);
+  const active = getActiveModerationResult() || checkPhraseModeration(raw);
   const pub = document.getElementById('cpub').checked;
   return Object.assign({
     created_at:new Date().toISOString(),
     source:'wallpaper',
-    phrase, phrase_raw:raw,
+    phrase:active.phrase_original,
+    phrase_raw:active.phrase_original_raw,
+    phrase_original:active.phrase_original,
+    phrase_original_raw:active.phrase_original_raw,
+    phrase_clean:active.phrase_clean,
+    phrase_visual:active.phrase_visual,
+    phrase_visual_raw:active.phrase_visual_raw,
+    masked_words:(active.masked_words||[]).join(','),
+    detected_terms:(active.detected_terms||[]).join(','),
+    risk_category:(active.categories||[]).join(','),
+    moderation_status:active.status,
+    row_status:active.status,
+    moderation_reason:active.moderation_reason,
+    download_allowed:active.download_allowed?'true':'false',
+    visual_mode:active.visual_mode,
+    moderation_checked_at:new Date().toISOString(),
     background:document.getElementById('bg').value,
     customer_name:(document.getElementById('cname').value||'').trim(),
-    customer_phone:(document.getElementById('cphone').value||'').trim(),
+    customer_phone:phoneForPim(),
     social_network:document.getElementById('csocial').value||'',
     social_nickname:(document.getElementById('cnick').value||'').trim(),
-    consent_kvkk:'true', consent_publish:pub?'true':'false',
+    consent_kvkk:'true', consent_publish:pub?'true':'false', consent_legal:'true',
     page_url:getSourcePageUrl(),
     iframe_url:location.href,
     referrer_url:document.referrer || '',
@@ -387,7 +568,7 @@ function collectCustomerPayloadBase(extra={}){
 function updateActionButtons(){
   const formOK = validateForm(false);
   const sig = phraseModerationSignature();
-  const approved = formOK && moderationState === 'approved' && lastModeratedSignature === sig;
+  const approved = formOK && (moderationState === 'green' || moderationState === 'yellow') && lastModeratedSignature === sig;
   const modBtn = document.getElementById('btn-mod');
   if(modBtn) modBtn.classList.toggle('disabled', !formOK);
   ['btn-p','btn-d','btn-s'].forEach(id=>{
@@ -403,26 +584,35 @@ function runModeration(){
   const raw = normalizeInputValue(document.getElementById('inp').value||'', true);
   const result = checkPhraseModeration(raw);
   lastModeratedSignature = phraseModerationSignature();
-  if(result.ok){
-    moderationState = 'approved';
-    setModerationMessage('ok', MODERATION_TEXT_OK);
+  lastModerationResult = result;
+
+  if(result.status === 'GREEN'){
+    moderationState = 'green';
+    setModerationMessage('ok', MODERATION_TEXT_GREEN);
     updateActionButtons();
-    alert(MODERATION_TEXT_OK);
+    bwGo();
+    alert(MODERATION_TEXT_GREEN);
+    return true;
+  }
+
+  if(result.status === 'YELLOW'){
+    moderationState = 'yellow';
+    setModerationMessage('yellow', MODERATION_TEXT_YELLOW);
+    updateActionButtons();
+    bwGo();
+    alert(MODERATION_TEXT_YELLOW);
     return true;
   }
 
   moderationState = 'red';
-  updateActionButtons();
   setModerationMessage('red', MODERATION_TEXT_RED);
+  updateActionButtons();
+  bwGo();
   alert(MODERATION_TEXT_RED);
 
+  // RED goes to PIM immediately because download is blocked.
   sendToPim(collectCustomerPayloadBase({
-    moderation_status:'RED CONTROL',
-    row_status:'RED CONTROL',
-    download_blocked:'true',
-    moderation_reason:'STOP_WORD_DETECTED',
-    moderation_categories:result.categories.join(','),
-    moderation_checked_at:new Date().toISOString()
+    format:'blocked', filename:'', download_blocked:'true'
   }));
   return false;
 }
@@ -439,31 +629,36 @@ function sanitizeNameInput(){
     .replace(/^ +/,'');
 }
 
-function ensurePhonePrefix(){
+function defaultPhonePrefix(){
   const el = document.getElementById('cphone');
-  if(el && !String(el.value||'').trim()) el.value = '+90 ';
-}
-
-function formatTRPhoneDigits(digits){
-  digits = String(digits||'').replace(/\D/g,'');
-  if(digits.startsWith('0')) digits = digits.replace(/^0+/,'');
-  if(!digits.startsWith('90')) digits = '90' + digits;
-  digits = digits.slice(0,12);
-  const local = digits.slice(2);
-  let out = '+90';
-  if(local.length) out += ' ' + local.slice(0,3);
-  if(local.length > 3) out += ' ' + local.slice(3,6);
-  if(local.length > 6) out += ' ' + local.slice(6,8);
-  if(local.length > 8) out += ' ' + local.slice(8,10);
-  return out + (local.length ? '' : ' ');
+  if(el && !String(el.value||'').trim()) el.value = '+90';
 }
 
 function sanitizePhoneInput(){
   const el = document.getElementById('cphone');
   if(!el) return;
-  let digits = String(el.value||'').replace(/\D/g,'');
-  if(!digits || digits === '90'){ el.value = '+90 '; return; }
-  el.value = formatTRPhoneDigits(digits);
+  let raw = String(el.value||'')
+    .replace(/[^\d+]/g,'')     // only digits and plus
+    .replace(/(?!^)\+/g,'');    // plus only at the beginning
+
+  if(!raw){ el.value = ''; return; }
+  if(raw[0] !== '+') raw = '+' + raw;
+
+  const digits = raw.replace(/\D/g,'').slice(0,15); // international max length
+  el.value = digits ? ('+' + digits) : '';
+}
+
+function phoneDigitsOnly(){
+  return (document.getElementById('cphone').value||'').replace(/\D/g,'');
+}
+
+function phoneForPim(){
+  const digits = phoneDigitsOnly();
+  // Turkey default: send the same 10-digit local number as the earlier working PIM rows.
+  if(digits.startsWith('90') && digits.length === 12) return digits.slice(2);
+  if(digits.startsWith('0') && digits.length === 11) return digits.slice(1);
+  // Other countries: send digits only, without plus, so Google Sheets does not treat it as a formula.
+  return digits;
 }
 
 function validateForm(updateButtons=true){
@@ -471,8 +666,9 @@ function validateForm(updateButtons=true){
   const nameRaw = (document.getElementById('cname').value||'').trim();
   const nameOK = nameRaw.replace(/\s/g,'').length >= 2 && !NAME_INVALID_RE.test(nameRaw);
 
-  const phoneDigits = (document.getElementById('cphone').value||'').replace(/\D/g,'');
-  const phoneOK = phoneDigits.startsWith('90') && phoneDigits.length === 12;
+  const phoneValue = (document.getElementById('cphone').value||'').trim();
+  const phoneDigits = phoneDigitsOnly();
+  const phoneOK = /^\+\d{8,15}$/.test(phoneValue) && phoneDigits.length >= 8 && phoneDigits.length <= 15;
 
   const social = document.getElementById('csocial').value || '';
   const nick = (document.getElementById('cnick').value||'').trim();
@@ -489,6 +685,7 @@ function bwInput(finalClean=false){
   const inp = document.getElementById('inp');
   const cur = inp.selectionStart || 0;
   const before = inp.value;
+  const beforeSig = phraseModerationSignature();
   let val = normalizeInputValue(before, finalClean);
 
   // Max two | (3 rows max).
@@ -521,10 +718,13 @@ function bwInput(finalClean=false){
   const cc = document.getElementById('cc');
   cc.textContent = len+'/45';
   cc.className = 'cc'+(len>45?' over':len>38?' warn':'');
-  const sigNow = phraseModerationSignature();
-  if(lastModeratedSignature && sigNow !== lastModeratedSignature){
+
+  const afterSig = phraseModerationSignature();
+  const phraseChanged = !lastModeratedSignature || afterSig !== lastModeratedSignature;
+  if(phraseChanged){
     moderationState = 'pending';
     lastModeratedSignature = '';
+    lastModerationResult = null;
     setModerationMessage('', '');
   }
   updateActionButtons();
@@ -702,7 +902,7 @@ const CVS={p:document.getElementById('cp'),d:document.getElementById('cd'),s:doc
 const CACHE={};
 
 function bwGo(){
-  const raw=(document.getElementById('inp').value||'BLACK SYMBOLS');
+  const raw = getRenderPhraseRaw();
   const bg=document.getElementById('bg').value;
   for(const[key,cfg]of Object.entries(CFGS)){
     const off=document.createElement('canvas');
@@ -775,7 +975,6 @@ function sendToPim(payload){
 }
 
 function bwDl(key){
-  bwInput(true);
   if(!validateForm()) return;
   if(!updateActionButtons()){
     setModerationMessage('wait', MODERATION_TEXT_NEED);
@@ -783,14 +982,15 @@ function bwDl(key){
     return;
   }
   const off=CACHE[key]; if(!off) return;
-  const raw=normalizeInputValue(document.getElementById("inp").value||"BS", true);
-  const slug=stripAccent(raw).replace(/[|]/g,'-').trim().slice(0,12).replace(/\s+/g,'_').toLowerCase();
+  const active = getActiveModerationResult() || checkPhraseModeration(document.getElementById('inp').value||'');
+  const slugSource = active.phrase_visual_raw || active.phrase_original_raw || 'BS';
+  const slug=stripAccent(slugSource).replace(/[|]/g,'-').trim().slice(0,18).replace(/[^A-Za-zА-Яа-я0-9*]+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'').toLowerCase() || 'bs';
   const fname='bs_'+key+'_'+slug+'.jpg';
 
-  // Send to PIM (fire and forget). Google Apps Script receives JSON as text/plain.
-  // Standard flow stays the same: approved phrases go to PIM only when the user clicks a download button.
+  // GREEN and YELLOW go to PIM only when the user clicks a download button.
+  // YELLOW sends both original phrase and masked visual phrase.
   sendToPim(collectCustomerPayloadBase({
-    format:key, filename:fname
+    format:key, filename:fname, download_blocked:'false'
   }));
 
   // Download image
@@ -805,45 +1005,70 @@ function bwDl(key){
 }
 
 const PHRASE_GROUPS=[
-  {title:'MUTLULUK', langs:{
-    TR:['MUTLULUK|SEÇİLİR','HAYAT GÜZEL','BUGÜN GÜZEL','GÜLÜMSE','NEŞE EVDE'],
-    EN:['CHOOSE JOY','GOOD VIBES','SMILE MORE','HAPPY PLACE','LIFE IS GOOD'],
-    RU:['СЧАСТЬЕ ЕСТЬ','РАДОСТЬ ДОМА','УЛЫБНИСЬ','ЖИВИ ЛЕГКО','ВСЕ ХОРОШО']
+  {title:"❤️ Aşk", langs:{
+    TR:["AŞK EVDE", "SEN VE BEN", "KALBİM SENDE", "İYİ Kİ VARSIN", "SEVMEK GÜZEL", "BİZ BİRİZ"],
+    EN:["LOVE LIVES|HERE", "YOU AND ME", "MY HEART", "ONLY YOU", "FOREVER US", "LOVE MORE"],
+    RU:["ЛЮБОВЬ ДОМА", "ТЫ МОЙ СВЕТ", "МЫ ВМЕСТЕ", "СЕРДЦЕ ЗНАЕТ", "ЛЮБИ СИЛЬНЕЕ", "ТОЛЬКО ТЫ"]
   }},
-  {title:'AŞK', langs:{
-    TR:['SEN BENİM|HER ŞEYİMSİN','AŞK EVDE','KALBİM SENDE','BİZ GÜZELİZ','SEVMEK GÜZEL'],
-    EN:['LOVE MORE','YOU AND ME','LOVE LIVES HERE','MY HEART','FOREVER US'],
-    RU:['ЛЮБОВЬ ДОМА','ТЫ МОЙ СВЕТ','МЫ ВМЕСТЕ','СЕРДЦЕ ЗНАЕТ','ЛЮБИ СИЛЬНЕЕ']
+  {title:"🎉 Coşku", langs:{
+    TR:["COŞKU EVDE", "HAYDİ GÜL", "BUGÜN BİZİM", "ENERJİ YÜKSEK", "DANS ZAMANI", "YAŞASIN AN"],
+    EN:["GOOD VIBES", "PARTY MOOD", "DANCE MORE", "FEEL THE BEAT", "HAPPY NOISE", "JOY IS LOUD"],
+    RU:["РАДОСТЬ ДОМА", "ТАНЦУЙ ЕЩЕ", "ДЕНЬ НАШ", "МНОГО СВЕТА", "БУДЬ ЯРЧЕ", "УРА СЕГОДНЯ"]
   }},
-  {title:'MOTİVASYON', langs:{
-    TR:['JUST START','DEVAM ET','KENDİNE İNAN','SINIR YOK','YENİ GÜN'],
-    EN:['KEEP GOING','DREAM BIG','NO LIMITS','MAKE ART','START NOW'],
-    RU:['НАЧНИ СЕЙЧАС','ИДИ ВПЕРЕД','ВЕРЬ В СЕБЯ','БЕЗ ГРАНИЦ','ДЕЛАЙ ДЕЛО']
+  {title:"🌶️ Cesur", langs:{
+    TR:["CESUR OL", "KORKMA", "KENDİN OL", "RİSK AL", "YÜREK VAR", "ADIM AT"],
+    EN:["BE BRAVE", "NO FEAR", "DARE MORE", "TAKE THE LEAP", "BOLD HEART", "GO FIRST"],
+    RU:["НЕ БОЙСЯ", "БУДЬ СМЕЛЫМ", "ШАГ ВПЕРЕД", "РИСКНИ", "СМЕЛО ЖИВИ", "ТЫ СМОЖЕШЬ"]
   }},
-  {title:'SAKİNLİK', langs:{
-    TR:['SAKİN KAL','YAVAŞLA','NEFES AL','EVDE HUZUR','AZ ÇOKTUR'],
-    EN:['STAY CALM','BREATHE IN','SLOW DOWN','PEACE AT HOME','LESS IS MORE'],
-    RU:['ТИШИНА ДОМА','ДЫШИ ГЛУБЖЕ','НЕ СПЕШИ','СПОКОЙНО','МЕНЬШЕ ЛИШНЕГО']
+  {title:"👑 Özgüven", langs:{
+    TR:["BEN YAPARIM", "KENDİME İNAN", "GÜCÜM İÇİMDE", "SAHNE BENİM", "DEĞERLİYİM", "PARLA"],
+    EN:["I CAN DO IT", "TRUST YOURSELF", "I AM ENOUGH", "OWN YOUR POWER", "SHINE ON", "MY WAY"],
+    RU:["Я СМОГУ", "ВЕРЬ В СЕБЯ", "Я ДОСТОИН", "МОЯ СИЛА", "МОЙ ПУТЬ", "СИЯЙ"]
   }},
-  {title:'GÜÇ', langs:{
-    TR:['GÜÇLÜ KAL','KORKMA','AYAĞA KALK','BEN YAPARIM','İÇİNDE GÜÇ VAR'],
-    EN:['STAY STRONG','BE BRAVE','RISE AGAIN','I CAN DO IT','POWER WITHIN'],
-    RU:['БУДЬ СИЛЬНЫМ','НЕ БОЙСЯ','ВСТАНЬ СНОВА','Я СМОГУ','СИЛА ВНУТРИ']
+  {title:"👯‍♀️ Dostluk", langs:{
+    TR:["DOSTLUK EVDE", "BİRLİKTE İYİ", "CAN DOSTUM", "GÜLÜŞ PAYLAŞ", "HEP YANIMDA", "BİZ EKİBİZ"],
+    EN:["BEST FRIENDS", "SIDE BY SIDE", "GOOD COMPANY", "FRIENDS FOREVER", "LAUGH TOGETHER", "OUR CREW"],
+    RU:["ДРУЖБА ДОМА", "РЯДОМ ЛУЧШЕ", "МОЙ ДРУГ", "ВМЕСТЕ ЛЕГКО", "НАШ КРУГ", "СМЕЕМСЯ ВМЕСТЕ"]
   }},
-  {title:'İRONİ', langs:{
-    TR:['DRAMA YOK','BELKİ YARIN','KAFAM GÜZEL','PLAN YOK','SADECE BEN'],
-    EN:['NO DRAMA','MAYBE LATER','NOT TODAY','JUST ME','CHAOS CLUB'],
-    RU:['БЕЗ ДРАМЫ','НЕ СЕГОДНЯ','МОЖЕТ ЗАВТРА','ПЛАНА НЕТ','КЛУБ ХАОСА']
+  {title:"😏 İroni", langs:{
+    TR:["DRAMA YOK", "BELKİ YARIN", "KAFAM GÜZEL", "PLAN YOK", "SAKİN GİBİ", "HİÇ ŞAŞIRMADIM"],
+    EN:["NO DRAMA", "NOT TODAY", "MAYBE LATER", "JUST PRETEND", "CHAOS CLUB", "FINE I GUESS"],
+    RU:["БЕЗ ДРАМЫ", "НЕ СЕГОДНЯ", "МОЖЕТ ЗАВТРА", "ВСЕ НОРМАЛЬНО", "НУ ДА", "ПЛАНА НЕТ"]
   }},
-  {title:'HÜZÜN', langs:{
-    TR:['GEÇER','BİRAZ SESSİZ','KALBİM YORGUN','YAĞMUR İÇİMDE','YİNE DE GÜL'],
-    EN:['THIS WILL PASS','QUIET HEART','SAD BUT OK','RAIN INSIDE','STILL SMILE'],
-    RU:['ЭТО ПРОЙДЕТ','ТИХО ВНУТРИ','СЕРДЦЕ УСТАЛО','ДОЖДЬ ВНУТРИ','ВСЕ РАВНО|УЛЫБНИСЬ']
+  {title:"😂 Komik", langs:{
+    TR:["GÜL GEÇ", "KOMİK EV", "ŞAKA GİBİ", "CİDDİ DEĞİL", "KAHKAHA VAR", "AŞIRI KOMİK"],
+    EN:["LOL AT HOME", "FUNNY MOOD", "JUST KIDDING", "LAUGH LOUD", "SILLY DAY", "COMEDY CLUB"],
+    RU:["СМЕХ ДОМА", "ШУТКА ДНЯ", "НЕ СЕРЬЕЗНО", "ОЧЕНЬ СМЕШНО", "ХА ХА ХА", "ЦИРК УЕХАЛ"]
   }},
-  {title:'ÖZGÜRLÜK', langs:{
-    TR:['ÖZGÜR RUH','YOLUM BENİM','UÇMAK SERBEST','KURAL YOK','KENDİN OL'],
-    EN:['FREE SPIRIT','MY WAY','STAY WILD','BE YOURSELF','WILD HEART'],
-    RU:['СВОБОДНЫЙ ДУХ','МОЙ ПУТЬ','БУДЬ СОБОЙ','ДИКОЕ СЕРДЦЕ','ВОЛЯ ВНУТРИ']
+  {title:"🔥 Motivasyon", langs:{
+    TR:["JUST START", "DEVAM ET", "KENDİNE İNAN", "BUGÜN BAŞLA", "HEDEF BELLİ", "PES ETME"],
+    EN:["KEEP GOING", "START NOW", "DREAM BIG", "MAKE IT REAL", "NO LIMITS", "DO THE THING"],
+    RU:["НАЧНИ СЕЙЧАС", "ИДИ ВПЕРЕД", "ВЕРЬ В СЕБЯ", "ДЕЛАЙ ДЕЛО", "БЕЗ ГРАНИЦ", "ВРЕМЯ ДЕЛАТЬ"]
+  }},
+  {title:"🍷 Efkar", langs:{
+    TR:["EFKAR VAKTİ", "KALBİM YORGUN", "BİRAZ SESSİZ", "GEÇER", "İÇİMDE YAĞMUR", "YİNE DE GÜL"],
+    EN:["QUIET HEART", "SAD BUT OK", "THIS WILL PASS", "RAIN INSIDE", "SOFT SORROW", "STILL SMILE"],
+    RU:["ТИХО ВНУТРИ", "ЭТО ПРОЙДЕТ", "СЕРДЦЕ УСТАЛО", "ДОЖДЬ ВНУТРИ", "ГРУСТНО НО ОК", "ВСЕ РАВНО|УЛЫБНИСЬ"]
+  }},
+  {title:"🤘 İsyan", langs:{
+    TR:["BEN BÖYLEYİM", "KURAL YOK", "SESİM VAR", "KENDİ YOLUM", "SUSMAM", "YABANİ RUH"],
+    EN:["MY WAY", "WILD HEART", "NO RULES", "SPEAK UP", "NOT YOUR PLAN", "FREE SOUL"],
+    RU:["МОЙ ПУТЬ", "Я НЕ МОЛЧУ", "БЕЗ ПРАВИЛ", "ДИКИЙ ДУХ", "МОЙ ГОЛОС", "НЕ ПО ПЛАНУ"]
+  }},
+  {title:"🏡 Huzur", langs:{
+    TR:["HUZUR EVDE", "SAKİN KAL", "NEFES AL", "YAVAŞLA", "AZ ÇOKTUR", "EVİM SESSİZ"],
+    EN:["STAY CALM", "BREATHE IN", "SLOW DOWN", "PEACE AT HOME", "LESS IS MORE", "SOFT HOME"],
+    RU:["ТИШИНА ДОМА", "ДЫШИ ГЛУБЖЕ", "НЕ СПЕШИ", "СПОКОЙНО", "МЕНЬШЕ ЛИШНЕГО", "ДОМ ТИХИЙ"]
+  }},
+  {title:"🎁 Sürpriz", langs:{
+    TR:["SÜRPRİZ VAR", "KAPINI AÇ", "BUGÜN HEDİYE", "TATLI AN", "SENİN İÇİN", "GİZLİ NEŞE"],
+    EN:["SURPRISE", "OPEN JOY", "GIFT INSIDE", "FOR YOU", "SWEET MOMENT", "MAGIC DAY"],
+    RU:["СЮРПРИЗ ТУТ", "ОТКРОЙ РАДОСТЬ", "ПОДАРОК ВНУТРИ", "ДЛЯ ТЕБЯ", "СЛАДКИЙ МИГ", "МАГИЯ ДНЯ"]
+  }},
+  {title:"🦉 Felsefe", langs:{
+    TR:["AZ ÇOKTUR", "ANLAM ARAMA", "DÜŞÜN BİRAZ", "SORU KALDI", "SESSİZ CEVAP", "YOL İÇİNDE"],
+    EN:["LESS IS MORE", "THINK AGAIN", "ASK WHY", "QUIET ANSWER", "MEANING LIVES", "INNER ROAD"],
+    RU:["МЕНЬШЕ БОЛЬШЕ", "ПОДУМАЙ ЕЩЕ", "ЗАЧЕМ", "ТИХИЙ ОТВЕТ", "СМЫСЛ ВНУТРИ", "ПУТЬ ВНУТРИ"]
   }}
 ];
 const pc=document.getElementById('ps');
@@ -873,7 +1098,7 @@ PHRASE_GROUPS.forEach(group=>{
   pc.appendChild(box);
 });
 
-function init(){ ensurePhonePrefix(); sanitizePhoneInput(); validateForm(); bwInput(); }
+function init(){ defaultPhonePrefix(); sanitizePhoneInput(); validateForm(); bwInput(); }
 if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',init); }
 else{ setTimeout(init,0); }
 window.addEventListener('resize',()=>{ clearTimeout(window._rt); window._rt=setTimeout(bwGo,200); });
