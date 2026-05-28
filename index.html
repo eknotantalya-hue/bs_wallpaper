@@ -3,16 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Black Symbols — Duvar Kağıdı v3.4</title>
+<title>Black Symbols — Duvar Kağıdı v3.6</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;overflow-x:hidden;background:#f5f5f3;font-family:"Bebas Neue",sans-serif;color:#111}
 .wrap{max-width:980px;margin:0 auto;padding:20px 14px 40px}
 .site{font-size:1.05rem;letter-spacing:.15em;text-align:center;margin-bottom:1px}
-.sub{font-size:.6rem;letter-spacing:.22em;color:#aaa;text-align:center;margin-bottom:14px}
-.hint{background:#eee;border:1px solid #ddd;color:#555;font-family:Georgia,serif;font-size:.72rem;line-height:1.65;padding:9px 13px;border-radius:4px;margin-bottom:11px}
+.sub{font-size:.6rem;letter-spacing:.22em;color:#aaa;text-align:center;margin-bottom:14px;font-family:"Arial Black",Arial,sans-serif}
+.hint{background:#eee;border:1px solid #ddd;color:#555;font-family:"Arial Black",Arial,sans-serif;font-size:.66rem;line-height:1.7;padding:9px 13px;border-radius:4px;margin-bottom:11px}
 .hint b{color:#222}
+.hint .accent{color:#FF8700}
+.policy{background:#fff;border:1.5px solid #ddd;color:#555;font-family:"Arial Black",Arial,sans-serif;font-size:.62rem;line-height:1.65;padding:11px 13px;border-radius:6px;margin-bottom:11px}
+.policy b{color:#111}
+.modrow{display:flex;gap:7px;margin-bottom:8px;width:100%;flex-wrap:wrap}
+.btn.mod{background:#FF8700;color:#fff;border:1.5px solid #FF8700;font-family:"Arial Black",Arial,sans-serif}
+.modmsg{display:none;font-family:"Arial Black",Arial,sans-serif;font-size:.62rem;line-height:1.55;border-radius:6px;padding:10px 12px;margin-bottom:10px}
+.modmsg.ok{display:block;background:#eef8ee;border:1px solid #b8d8b8;color:#245a24}
+.modmsg.red{display:block;background:#fff0e8;border:1px solid #ffbf99;color:#8a3600}
+.modmsg.wait{display:block;background:#f4f4f2;border:1px solid #ddd;color:#555}
 .inp-row{display:flex;gap:7px;align-items:center;margin-bottom:12px;flex-wrap:wrap;width:100%}
 input{flex:1;min-width:150px;background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neue",sans-serif;font-size:.95rem;letter-spacing:.08em;padding:9px 12px;border-radius:4px;outline:none;text-transform:uppercase;-webkit-appearance:none;appearance:none}
 input:focus{border-color:#777}
@@ -26,18 +35,25 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
 .dlr{display:flex;gap:7px;margin-bottom:16px;width:100%;flex-wrap:wrap}
 .btn{flex:1;min-width:120px;background:#111;color:#fff;border:none;font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.1em;padding:11px 6px;border-radius:4px;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .btn:active{opacity:.7}
+.btn.phone{background:#FF8700;color:#fff;border:1.5px solid #FF8700}
+.btn.desktop{background:#111;color:#fff;border:1.5px solid #111}
+.btn.square{background:#fff;color:#555;border:1.5px solid #ddd}
 .btn.g{background:#fff;color:#555;border:1.5px solid #ddd}
 .savehint{font-family:Georgia,serif;font-size:.68rem;color:#999;text-align:center;margin-bottom:10px;line-height:1.5;display:none;padding:0 8px}
 .savehint.show{display:block}
-.ph{color:#aaa;font-size:.6rem;letter-spacing:.2em;margin-bottom:7px}
-.ps{display:flex;flex-wrap:wrap;gap:5px}
+.ph{color:#aaa;font-size:.6rem;letter-spacing:.2em;margin-bottom:7px;font-family:"Arial Black",Arial,sans-serif}
+.ps{display:flex;flex-direction:column;gap:10px}
+.pgroup{background:#fff;border:1px solid #ddd;border-radius:6px;padding:10px}
+.pgt{font-family:"Arial Black",Arial,sans-serif;font-size:.62rem;letter-spacing:.12em;color:#111;margin-bottom:7px}
+.plang{font-family:"Arial Black",Arial,sans-serif;font-size:.54rem;letter-spacing:.12em;color:#aaa;margin:7px 0 4px}
+.pbuttons{display:flex;flex-wrap:wrap;gap:5px}
 .pb{background:#fff;border:1px solid #ddd;color:#666;font-family:"Bebas Neue",sans-serif;font-size:.72rem;letter-spacing:.04em;padding:5px 9px;border-radius:3px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .pb:active{background:#eee;color:#111}
 .cblock{background:#fff;border:1.5px solid #ddd;border-radius:6px;padding:14px;margin-bottom:14px;width:100%}
 .cblock,.cblock h3,.cblock label,.cblock input,.cblock select,.cblock span{font-family:"Arial Black",Arial,sans-serif}
 .cblock h3{font-size:.76rem;letter-spacing:.08em;color:#888;margin-bottom:10px}
 .cfield{display:flex;flex-direction:column;gap:3px;margin-bottom:10px}
-.cfield label{font-family:Georgia,serif;font-size:.68rem;color:#888}
+.cfield label{font-family:"Arial Black",Arial,sans-serif;font-size:.68rem;color:#888}
 .cfield input,.cfield select{background:#f4f4f2;border:1.5px solid #ddd;color:#111;
   font-family:"Arial Black",Arial,sans-serif;font-size:.78rem;letter-spacing:.02em;padding:8px 10px;border-radius:4px;outline:none;width:100%;
   -webkit-appearance:none;appearance:none}
@@ -59,11 +75,14 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
 <body>
 <div class="wrap">
   <div class="site">blacksymbols.com</div>
-  <div class="sub">DUVAR KAĞIDI OLUŞTURUCU</div>
+  <div class="sub">ÜCRETSİZ DUVAR KAĞIDI OLUŞTURUCU</div>
+  <div class="policy">
+    <b>Bu ücretsiz oluşturucu</b>, kişisel ifadelerinizi ve duygularınızı eğlenceli bir duvar kağıdı olarak hazırlamanız için tasarlanmıştır. Black Symbols; şiddet çağrısı, nefret söylemi, dinlerin/kutsal değerlerin, devletlerin, ülkelerin, ulusların veya halkların aşağılanması, çocuk istismarı, cinsel şiddet, terör, ayrılıkçılık, yasa dışı eylem çağrısı veya eğlence amaçlı içerik fikriyle çelişen metinlerde yer almak istemez. Bu nedenle, gerekli gördüğümüz ifadeleri hukuk birimimizin moderasyonuna yönlendirme hakkımız saklıdır.
+  </div>
   <div class="hint">
     <b>Kurallar:</b> Maks. <b>45 karakter</b> &bull; Maks. <b>3 satır</b><br>
     Satır için <b>|</b>: <b>JUST START | NEW LIFE</b> &bull; <b>LIVE | LOVE | LAUGH</b><br>
-    Turuncu için <b>%</b>: <b>I %LOVE% YOU</b> &rarr; LOVE turuncu olur<br>Rusça ve Türkçe harfler desteklenir
+    Turuncu için <b>%</b>: <b>I %<span class="accent">LOVE</span>% YOU</b> &rarr; <span class="accent">LOVE</span> turuncu olur<br>Türkçe, İngilizce ve Rusça harfler desteklenir
   </div>
   <div class="inp-row">
     <input id="inp" value="JUST START" placeholder="YAZINIZI GİRİN..." maxlength="60" oninput="bwInput(false)" onblur="bwInput(true)">
@@ -86,17 +105,17 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
     <div class="crow">
       <div class="cfield">
         <label>Ad Soyad *</label>
-        <input type="text" id="cname" placeholder="Adınız Soyadınız" oninput="validateForm()">
+        <input type="text" id="cname" placeholder="Adınız Soyadınız" autocomplete="name" required oninput="sanitizeNameInput(); validateForm()">
       </div>
       <div class="cfield">
         <label>Telefon *</label>
-        <input type="tel" id="cphone" placeholder="+90 5XX XXX XX XX" oninput="validateForm()">
+        <input type="tel" id="cphone" value="+90 " placeholder="+90 5XX XXX XX XX" inputmode="numeric" autocomplete="tel" required onfocus="ensurePhonePrefix()" oninput="sanitizePhoneInput(); validateForm()" onblur="sanitizePhoneInput(); validateForm()">
       </div>
     </div>
     <div class="cfield">
-      <label>Sosyal Medya</label>
+      <label>Sosyal Medya *</label>
       <div class="crow" style="align-items:center">
-        <select id="csocial" style="max-width:120px;flex:0 0 auto" onchange="validateForm()">
+        <select id="csocial" style="max-width:120px;flex:0 0 auto" required onchange="validateForm()">
           <option value="">Seçin</option>
           <option value="instagram">Instagram</option>
           <option value="tiktok">TikTok</option>
@@ -105,27 +124,31 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
           <option value="other">Diğer</option>
         </select>
         <div class="cfield" style="flex:1;margin:0">
-          <input type="text" id="cnick" placeholder="@kullanıcıadı" oninput="validateForm()">
+          <input type="text" id="cnick" placeholder="@kullanıcıadı" autocomplete="off" required oninput="validateForm()">
         </div>
       </div>
     </div>
     <div class="ccheck">
-      <input type="checkbox" id="ckvkk" onchange="validateForm()">
+      <input type="checkbox" id="ckvkk" required onchange="validateForm()">
       <span><a href="https://blacksymbols.com/kvkk" target="_blank">KVKK</a>'yı okudum, kişisel verilerimin işlenmesine ve haber bültenine izin veriyorum *</span>
     </div>
     <div class="ccheck">
-      <input type="checkbox" id="cpub" onchange="validateForm()">
-      <span>Cümlemi blacksymbols.com sitesinde yayımlamayı kabul ediyorum</span>
+      <input type="checkbox" id="cpub" required onchange="validateForm()">
+      <span>Cümlemi blacksymbols.com sitesinde yayımlamayı kabul ediyorum *</span>
     </div>
   </div>
 
   <div class="savehint" id="savehint">📱 Resme <b>uzun bas &rarr; Fotoğraflara kaydet</b></div>
-  <div class="dlr">
-    <button class="btn disabled" id="btn-p" onclick="bwDl('p')">&#8595; TELEFON</button>
-    <button class="btn g disabled" id="btn-d" onclick="bwDl('d')">&#8595; MASAÜSTÜ</button>
-    <button class="btn g disabled" id="btn-s" onclick="bwDl('s')">&#8595; KARE</button>
+  <div class="modrow">
+    <button class="btn mod disabled" id="btn-mod" onclick="runModeration()">CÜMLEYİ KONTROL ET</button>
   </div>
-  <div class="ph">HIZLI CÜMLELER</div>
+  <div class="modmsg" id="modmsg"></div>
+  <div class="dlr">
+    <button class="btn phone disabled" id="btn-p" onclick="bwDl('p')">&#8595; TELEFON</button>
+    <button class="btn desktop disabled" id="btn-d" onclick="bwDl('d')">&#8595; MASAÜSTÜ</button>
+    <button class="btn square disabled" id="btn-s" onclick="bwDl('s')">&#8595; KARE</button>
+  </div>
+  <div class="ph">HIZLI CÜMLELER - RUH HALİNE GÖRE</div>
   <div class="ps" id="ps"></div>
 </div>
 
@@ -220,10 +243,11 @@ function parseRows(raw){
 // Strip % markers from row text for layout purposes
 function stripAccent(text){ return text.replace(/%/g,''); }
 
-// Turkish-safe uppercase: Latin I stays I, Turkish İ stays İ, lowercase i becomes İ, dotless ı becomes I.
+// Black Symbols uppercase: product letters are uppercase.
+// English lowercase i must become Latin I. Turkish uppercase İ stays İ when entered explicitly.
 function bsUpper(text){
   return String(text||'')
-    .replace(/i/g,'İ')
+    .replace(/i/g,'I')
     .replace(/ı/g,'I')
     .toUpperCase();
 }
@@ -268,15 +292,196 @@ function visLen(raw){
 // Apps Script Web App URL for PIM. Paste the deployed /exec URL here, NOT the Google Sheet edit URL.
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzosg5BAbBB6WKp7RCo6-J8Z18m7JIQNOHSJrkP-zbyNl-p5nzHSN6ylTFe1xD8Cs2x/exec';
 
-function validateForm(){
-  const name  = (document.getElementById('cname').value||'').trim();
-  const phone = (document.getElementById('cphone').value||'').replace(/\D/g,'');
-  const kvkk  = document.getElementById('ckvkk').checked;
-  const ok    = name.length > 1 && phone.length >= 7 && kvkk;
+
+let moderationState = 'pending'; // pending | approved | red
+let lastModeratedSignature = '';
+
+const MODERATION_TEXT_OK = 'Cümleniz kontrol edildi. Görsellerinizi indirebilirsiniz.';
+const MODERATION_TEXT_RED = 'Cümleniz, oluşturucu kurallarına göre otomatik kontrol gerektiren kelimeler içeriyor ve BLACK SYMBOLS hukuk birimine moderasyon için yönlendirilecektir. İnceleme sonrası onaylanırsa görselleriniz size gönderilir; kullanım uygun bulunmazsa bununla ilgili bilgilendirme yapılır.';
+const MODERATION_TEXT_NEED = 'İndirme düğmelerini açmak için önce cümlenizi kontrol edin.';
+
+// Client-side first filter. It is intentionally broad: suspicious phrases go to RED CONTROL instead of being downloaded with the Black Symbols logo.
+// A trailing * means “any continuation of this stem”. Example: ПИЗД* catches common inflected forms.
+const STOP_RULES = [
+  {cat:'profanity', terms:['FUCK*','SHIT','BITCH','CUNT','DICK','PUSSY','ASSHOLE','WHORE','SLUT','AMK','AQ','OROSPU','SIK*','PIC','PEZEVENK','YAVSAK','AMCIK','ХУЙ*','ХУЯ*','ПИЗД*','БЛЯД*','ЕБА*','ЕБАТ*','СУКА','СУКИ','ДОЛБОЕБ*','МУДАК*','ГАНДОН*','ШЛЮХ*']},
+  {cat:'violence', terms:['KILL*','MURDER*','DEATH','DIE','BOMB*','BLOOD','VIOLENCE','RAPE','ABUSE','TERROR*','WAR','GENOCIDE','LYNCH*','OLDUR*','OLUM','BOMBA','KAN','SIDDET','TECAVUZ','ISTISMAR','TEROR*','SAVAS','SOYKIRIM','УБЕЙ','УБИТЬ','УБИЙ*','СМЕРТЬ','УМРИ','БОМБ*','КРОВ*','НАСИЛ*','ИЗНАСИЛ*','ТЕРРОР*','ВОЙН*','ГЕНОЦИД','ЛИНЧ*']},
+  {cat:'child_safety', terms:['CHILD ABUSE','CHILD RAPE','PEDO*','PEDOPHILE','PEDOFILI','COCUK ISTISMAR','COCUK TECAVUZ','ПЕДО*','ПЕДОФИЛ*','ДЕТСКОЕ НАСИЛ*','НАСИЛИЕ НАД ДЕТ*','ИЗНАСИЛОВАНИЕ РЕБ*']},
+  {cat:'religion', terms:['ALLAH','TANRI','GOD','JESUS','ISA','CHRIST*','CHURCH','MOSQUE','CAMI','QURAN','KURAN','BIBLE','INCIL','ISLAM','MUSLIM*','MUSELMA*','CHRISTIAN*','HRISTIYAN*','JEW*','YAHUDI*','RELIGION','DIN','БОГ','АЛЛАХ','ИИСУС','ХРИСТ*','ЦЕРКОВ*','МЕЧЕТ*','КОРАН','БИБЛИ*','ИСЛАМ','МУСУЛЬМАН*','ХРИСТИАН*','ЕВРЕ*','РЕЛИГ*']},
+  {cat:'state_politics', terms:['PRESIDENT','GOVERNMENT','STATE','REVOLUTION','COUP','SEPARAT*','REBELLION','ERDOGAN','PUTIN','ZELENSKY','TRUMP','BIDEN','BASKAN','CUMHURBASKANI','HUKUMET','DEVLET','DEVRIM','DARBE','AYRILIK*','ПРЕЗИДЕНТ*','ПРАВИТЕЛЬСТВ*','ГОСУДАРСТВ*','РЕВОЛЮЦ*','ПЕРЕВОРОТ','СЕПАРАТ*','ВОССТАН*','ЭРДОГАН','ПУТИН','ЗЕЛЕНСК*']},
+  {cat:'nations_countries', terms:['TURKEY','TURKIYE','TURK*','RUSSIA','RUSYA','RUS','UKRAINE','UKRAYNA','UKRAIN*','ISRAEL','ISRAIL','PALESTINE','FILISTIN','ARAB*','ARMENIA','ERMENI*','KURD*','KURT*','GREEK','YUNAN*','ТУРЦ*','ТУРК*','РОССИ*','РУССК*','УКРАИН*','ИЗРАИЛ*','ПАЛЕСТИН*','АРАБ*','АРМЕН*','КУРД*','ГРЕК*','НАРОД*','НАЦИ*']},
+  {cat:'extremism', terms:['NAZI*','HITLER','ISIS','ISIL','DAESH','PKK','FETO','HAMAS','HEZBOLLAH','TALIBAN','AL QAEDA','SWASTIKA','НАЗИ*','ГИТЛЕР','ИГИЛ','ДАИШ','ХАМАС','ХЕЗБОЛЛА*','ТАЛИБАН','АЛЬ КАИДА','СВАСТИК*']},
+  {cat:'illegal_call', terms:['DRUG*','HEROIN','COCAINE','KOKAIN','UYUSTURUCU','HACK*','SCAM','FRAUD','LOOT*','ARSON','НАРКОТИК*','ГЕРОИН','КОКАИН','ВЗЛОМ*','МОШЕННИЧ*','ГРАБ*','ПОДЖОГ*']}
+];
+
+function stopTermHit(normalized, term){
+  const stem = term.endsWith('*');
+  const base = stem ? term.slice(0,-1) : term;
+  const escaped = base.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\s+/g,'\\s+');
+  const tail = stem ? '\\S*' : '';
+  return new RegExp('(^|\\s)' + escaped + tail + '(?=\\s|$)', 'i').test(normalized);
+}
+
+function normalizeForModeration(text){
+  return String(text||'')
+    .replace(/%/g,' ')
+    .replace(/\|/g,' ')
+    .replace(/Ё/g,'Е').replace(/ё/g,'е')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g,'')
+    .replace(/İ/g,'I').replace(/ı/g,'I')
+    .toUpperCase()
+    .replace(/[^A-ZА-ЯЕ0-9 ]+/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function phraseModerationSignature(){
+  return normalizeForModeration(normalizeInputValue(document.getElementById('inp').value||'', true));
+}
+
+function checkPhraseModeration(raw){
+  const normalized = normalizeForModeration(raw);
+  const hits = [];
+  STOP_RULES.forEach(rule=>{
+    if((rule.terms||[]).some(term=>stopTermHit(normalized, term))) hits.push(rule.cat);
+  });
+  return {ok:hits.length===0, categories:[...new Set(hits)], normalized};
+}
+
+function setModerationMessage(type, text){
+  const el = document.getElementById('modmsg');
+  if(!el) return;
+  el.className = 'modmsg' + (type ? ' ' + type : '');
+  el.textContent = text || '';
+}
+
+function resetModeration(showNeed=false){
+  moderationState = 'pending';
+  lastModeratedSignature = '';
+  if(showNeed) setModerationMessage('wait', MODERATION_TEXT_NEED);
+  else setModerationMessage('', '');
+  updateActionButtons();
+}
+
+function collectCustomerPayloadBase(extra={}){
+  const raw = normalizeInputValue(document.getElementById('inp').value||'BS', true);
+  const phrase = bsUpper(raw.replace(/\|/g,' ').replace(/  +/g,' ').replace(/%/g,'').trim());
+  const pub = document.getElementById('cpub').checked;
+  return Object.assign({
+    created_at:new Date().toISOString(),
+    source:'wallpaper',
+    phrase, phrase_raw:raw,
+    background:document.getElementById('bg').value,
+    customer_name:(document.getElementById('cname').value||'').trim(),
+    customer_phone:(document.getElementById('cphone').value||'').trim(),
+    social_network:document.getElementById('csocial').value||'',
+    social_nickname:(document.getElementById('cnick').value||'').trim(),
+    consent_kvkk:'true', consent_publish:pub?'true':'false',
+    page_url:getSourcePageUrl(),
+    iframe_url:location.href,
+    referrer_url:document.referrer || '',
+    user_agent:navigator.userAgent
+  }, extra);
+}
+
+function updateActionButtons(){
+  const formOK = validateForm(false);
+  const sig = phraseModerationSignature();
+  const approved = formOK && moderationState === 'approved' && lastModeratedSignature === sig;
+  const modBtn = document.getElementById('btn-mod');
+  if(modBtn) modBtn.classList.toggle('disabled', !formOK);
   ['btn-p','btn-d','btn-s'].forEach(id=>{
     const b = document.getElementById(id);
-    if(b){ b.classList.toggle('disabled', !ok); }
+    if(b){ b.classList.toggle('disabled', !approved); }
   });
+  return approved;
+}
+
+function runModeration(){
+  bwInput(true);
+  if(!validateForm(true)) return;
+  const raw = normalizeInputValue(document.getElementById('inp').value||'', true);
+  const result = checkPhraseModeration(raw);
+  lastModeratedSignature = phraseModerationSignature();
+  if(result.ok){
+    moderationState = 'approved';
+    setModerationMessage('ok', MODERATION_TEXT_OK);
+    updateActionButtons();
+    alert(MODERATION_TEXT_OK);
+    return true;
+  }
+
+  moderationState = 'red';
+  updateActionButtons();
+  setModerationMessage('red', MODERATION_TEXT_RED);
+  alert(MODERATION_TEXT_RED);
+
+  sendToPim(collectCustomerPayloadBase({
+    moderation_status:'RED CONTROL',
+    row_status:'RED CONTROL',
+    download_blocked:'true',
+    moderation_reason:'STOP_WORD_DETECTED',
+    moderation_categories:result.categories.join(','),
+    moderation_checked_at:new Date().toISOString()
+  }));
+  return false;
+}
+
+const NAME_CLEAN_RE = /[^A-Za-zА-ЯЁа-яёÇĞİÖŞÜçğıöşü ]/g;
+const NAME_INVALID_RE = /[^A-Za-zА-ЯЁа-яёÇĞİÖŞÜçğıöşü ]/;
+
+function sanitizeNameInput(){
+  const el = document.getElementById('cname');
+  if(!el) return;
+  el.value = String(el.value||'')
+    .replace(NAME_CLEAN_RE,'')
+    .replace(/ {2,}/g,' ')
+    .replace(/^ +/,'');
+}
+
+function ensurePhonePrefix(){
+  const el = document.getElementById('cphone');
+  if(el && !String(el.value||'').trim()) el.value = '+90 ';
+}
+
+function formatTRPhoneDigits(digits){
+  digits = String(digits||'').replace(/\D/g,'');
+  if(digits.startsWith('0')) digits = digits.replace(/^0+/,'');
+  if(!digits.startsWith('90')) digits = '90' + digits;
+  digits = digits.slice(0,12);
+  const local = digits.slice(2);
+  let out = '+90';
+  if(local.length) out += ' ' + local.slice(0,3);
+  if(local.length > 3) out += ' ' + local.slice(3,6);
+  if(local.length > 6) out += ' ' + local.slice(6,8);
+  if(local.length > 8) out += ' ' + local.slice(8,10);
+  return out + (local.length ? '' : ' ');
+}
+
+function sanitizePhoneInput(){
+  const el = document.getElementById('cphone');
+  if(!el) return;
+  let digits = String(el.value||'').replace(/\D/g,'');
+  if(!digits || digits === '90'){ el.value = '+90 '; return; }
+  el.value = formatTRPhoneDigits(digits);
+}
+
+function validateForm(updateButtons=true){
+  sanitizeNameInput();
+  const nameRaw = (document.getElementById('cname').value||'').trim();
+  const nameOK = nameRaw.replace(/\s/g,'').length >= 2 && !NAME_INVALID_RE.test(nameRaw);
+
+  const phoneDigits = (document.getElementById('cphone').value||'').replace(/\D/g,'');
+  const phoneOK = phoneDigits.startsWith('90') && phoneDigits.length === 12;
+
+  const social = document.getElementById('csocial').value || '';
+  const nick = (document.getElementById('cnick').value||'').trim();
+  const kvkk = document.getElementById('ckvkk').checked;
+  const pub = document.getElementById('cpub').checked;
+  const phraseOK = visLen(document.getElementById('inp').value||'') > 0;
+
+  const ok = nameOK && phoneOK && !!social && nick.length >= 2 && kvkk && pub && phraseOK;
+  if(updateButtons){ updateActionButtons(); }
   return ok;
 }
 
@@ -294,6 +499,7 @@ function bwInput(finalClean=false){
   }
 
   // Max 15 visible chars per row, preserving % markers. Spaces count as visible chars.
+  // Total limit remains 45 because max 3 rows × 15 chars.
   val = val.split('|').map(seg => {
     let count = 0, out = '';
     for(const ch of seg){
@@ -315,6 +521,13 @@ function bwInput(finalClean=false){
   const cc = document.getElementById('cc');
   cc.textContent = len+'/45';
   cc.className = 'cc'+(len>45?' over':len>38?' warn':'');
+  const sigNow = phraseModerationSignature();
+  if(lastModeratedSignature && sigNow !== lastModeratedSignature){
+    moderationState = 'pending';
+    lastModeratedSignature = '';
+    setModerationMessage('', '');
+  }
+  updateActionButtons();
   bwGo();
 }
 
@@ -323,7 +536,7 @@ function bwInput(finalClean=false){
 const LETTER_EXTRA = {
   'İ':{top:.24,bottom:0}, 'Ü':{top:.22,bottom:0}, 'Ğ':{top:.18,bottom:0}, 'Ö':{top:.22,bottom:0},
   'Ё':{top:.24,bottom:0}, 'Й':{top:.18,bottom:0},
-  'Ş':{top:0,bottom:.20}, 'Ç':{top:0,bottom:.22},
+  'Ş':{top:0,bottom:.20}, 'Ç':{top:0,bottom:.22}, 'Q':{top:0,bottom:.20},
   'Ц':{top:0,bottom:.18}, 'Щ':{top:0,bottom:.18}, 'Д':{top:0,bottom:.18}
 };
 function letterExtra(ch){ return LETTER_EXTRA[ch] || {top:0,bottom:0}; }
@@ -564,32 +777,21 @@ function sendToPim(payload){
 function bwDl(key){
   bwInput(true);
   if(!validateForm()) return;
+  if(!updateActionButtons()){
+    setModerationMessage('wait', MODERATION_TEXT_NEED);
+    alert(MODERATION_TEXT_NEED);
+    return;
+  }
   const off=CACHE[key]; if(!off) return;
   const raw=normalizeInputValue(document.getElementById("inp").value||"BS", true);
   const slug=stripAccent(raw).replace(/[|]/g,'-').trim().slice(0,12).replace(/\s+/g,'_').toLowerCase();
   const fname='bs_'+key+'_'+slug+'.jpg';
 
-  // Collect customer data
-  const name  =(document.getElementById('cname').value||'').trim();
-  const phone =(document.getElementById('cphone').value||'').trim();
-  const social= document.getElementById('csocial').value||'';
-  const nick  =(document.getElementById('cnick').value||'').trim();
-  const pub   = document.getElementById('cpub').checked;
-  const phrase= bsUpper(raw.replace(/\|/g,' ').replace(/  +/g,' ').replace(/%/g,'').trim());
-
   // Send to PIM (fire and forget). Google Apps Script receives JSON as text/plain.
-  sendToPim({
-    created_at:new Date().toISOString(),
-    source:'wallpaper', format:key, filename:fname,
-    phrase, phrase_raw:raw, background:document.getElementById('bg').value,
-    customer_name:name, customer_phone:phone,
-    social_network:social, social_nickname:nick,
-    consent_kvkk:'true', consent_publish:pub?'true':'false',
-    page_url:getSourcePageUrl(),
-    iframe_url:location.href,
-    referrer_url:document.referrer || '',
-    user_agent:navigator.userAgent
-  });
+  // Standard flow stays the same: approved phrases go to PIM only when the user clicks a download button.
+  sendToPim(collectCustomerPayloadBase({
+    format:key, filename:fname
+  }));
 
   // Download image
   off.toBlob(function(blob){
@@ -602,23 +804,76 @@ function bwDl(key){
   },'image/jpeg',0.96);
 }
 
-const PRES=[
-  'JUST START','HAYAT GÜZEL','LOVE MORE',
-  'STAY STRONG | MOVE ON','SADECE BEN','GOOD VIBES',
-  'DREAM BIG','NO LIMITS','MAKE ART',
-  'STAY WILD','LIVE | LOVE | LAUGH',
-  'SEN BENİM | HER ŞEYİMSİN',
-  'I %LOVE% YOU','%JUST% START',
-  'MUTLULUK SEÇİLİR','BE KIND','KEEP GOING',
+const PHRASE_GROUPS=[
+  {title:'MUTLULUK', langs:{
+    TR:['MUTLULUK|SEÇİLİR','HAYAT GÜZEL','BUGÜN GÜZEL','GÜLÜMSE','NEŞE EVDE'],
+    EN:['CHOOSE JOY','GOOD VIBES','SMILE MORE','HAPPY PLACE','LIFE IS GOOD'],
+    RU:['СЧАСТЬЕ ЕСТЬ','РАДОСТЬ ДОМА','УЛЫБНИСЬ','ЖИВИ ЛЕГКО','ВСЕ ХОРОШО']
+  }},
+  {title:'AŞK', langs:{
+    TR:['SEN BENİM|HER ŞEYİMSİN','AŞK EVDE','KALBİM SENDE','BİZ GÜZELİZ','SEVMEK GÜZEL'],
+    EN:['LOVE MORE','YOU AND ME','LOVE LIVES HERE','MY HEART','FOREVER US'],
+    RU:['ЛЮБОВЬ ДОМА','ТЫ МОЙ СВЕТ','МЫ ВМЕСТЕ','СЕРДЦЕ ЗНАЕТ','ЛЮБИ СИЛЬНЕЕ']
+  }},
+  {title:'MOTİVASYON', langs:{
+    TR:['JUST START','DEVAM ET','KENDİNE İNAN','SINIR YOK','YENİ GÜN'],
+    EN:['KEEP GOING','DREAM BIG','NO LIMITS','MAKE ART','START NOW'],
+    RU:['НАЧНИ СЕЙЧАС','ИДИ ВПЕРЕД','ВЕРЬ В СЕБЯ','БЕЗ ГРАНИЦ','ДЕЛАЙ ДЕЛО']
+  }},
+  {title:'SAKİNLİK', langs:{
+    TR:['SAKİN KAL','YAVAŞLA','NEFES AL','EVDE HUZUR','AZ ÇOKTUR'],
+    EN:['STAY CALM','BREATHE IN','SLOW DOWN','PEACE AT HOME','LESS IS MORE'],
+    RU:['ТИШИНА ДОМА','ДЫШИ ГЛУБЖЕ','НЕ СПЕШИ','СПОКОЙНО','МЕНЬШЕ ЛИШНЕГО']
+  }},
+  {title:'GÜÇ', langs:{
+    TR:['GÜÇLÜ KAL','KORKMA','AYAĞA KALK','BEN YAPARIM','İÇİNDE GÜÇ VAR'],
+    EN:['STAY STRONG','BE BRAVE','RISE AGAIN','I CAN DO IT','POWER WITHIN'],
+    RU:['БУДЬ СИЛЬНЫМ','НЕ БОЙСЯ','ВСТАНЬ СНОВА','Я СМОГУ','СИЛА ВНУТРИ']
+  }},
+  {title:'İRONİ', langs:{
+    TR:['DRAMA YOK','BELKİ YARIN','KAFAM GÜZEL','PLAN YOK','SADECE BEN'],
+    EN:['NO DRAMA','MAYBE LATER','NOT TODAY','JUST ME','CHAOS CLUB'],
+    RU:['БЕЗ ДРАМЫ','НЕ СЕГОДНЯ','МОЖЕТ ЗАВТРА','ПЛАНА НЕТ','КЛУБ ХАОСА']
+  }},
+  {title:'HÜZÜN', langs:{
+    TR:['GEÇER','BİRAZ SESSİZ','KALBİM YORGUN','YAĞMUR İÇİMDE','YİNE DE GÜL'],
+    EN:['THIS WILL PASS','QUIET HEART','SAD BUT OK','RAIN INSIDE','STILL SMILE'],
+    RU:['ЭТО ПРОЙДЕТ','ТИХО ВНУТРИ','СЕРДЦЕ УСТАЛО','ДОЖДЬ ВНУТРИ','ВСЕ РАВНО|УЛЫБНИСЬ']
+  }},
+  {title:'ÖZGÜRLÜK', langs:{
+    TR:['ÖZGÜR RUH','YOLUM BENİM','UÇMAK SERBEST','KURAL YOK','KENDİN OL'],
+    EN:['FREE SPIRIT','MY WAY','STAY WILD','BE YOURSELF','WILD HEART'],
+    RU:['СВОБОДНЫЙ ДУХ','МОЙ ПУТЬ','БУДЬ СОБОЙ','ДИКОЕ СЕРДЦЕ','ВОЛЯ ВНУТРИ']
+  }}
 ];
 const pc=document.getElementById('ps');
-PRES.forEach(p=>{
-  const b=document.createElement('button'); b.className='pb'; b.textContent=p;
-  b.onclick=()=>{ document.getElementById('inp').value=p; bwInput(); };
-  pc.appendChild(b);
+PHRASE_GROUPS.forEach(group=>{
+  const box=document.createElement('div');
+  box.className='pgroup';
+  const title=document.createElement('div');
+  title.className='pgt';
+  title.textContent=group.title;
+  box.appendChild(title);
+  ['TR','EN','RU'].forEach(lang=>{
+    const langTitle=document.createElement('div');
+    langTitle.className='plang';
+    langTitle.textContent=lang;
+    box.appendChild(langTitle);
+    const holder=document.createElement('div');
+    holder.className='pbuttons';
+    (group.langs[lang]||[]).forEach(p=>{
+      const b=document.createElement('button');
+      b.className='pb';
+      b.textContent=p;
+      b.onclick=()=>{ document.getElementById('inp').value=p; bwInput(); };
+      holder.appendChild(b);
+    });
+    box.appendChild(holder);
+  });
+  pc.appendChild(box);
 });
 
-function init(){ bwInput(); }
+function init(){ ensurePhonePrefix(); sanitizePhoneInput(); validateForm(); bwInput(); }
 if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',init); }
 else{ setTimeout(init,0); }
 window.addEventListener('resize',()=>{ clearTimeout(window._rt); window._rt=setTimeout(bwGo,200); });
