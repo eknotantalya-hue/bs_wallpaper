@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Black Symbols — PIM Kare Görsel Oluşturucu v1.3 v1.2</title>
+<title>Black Symbols — PIM Kare Görsel Oluşturucu v1.4 v1.2</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -146,7 +146,7 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
   <div class="savehint" id="savehint">📱 Resme <b>uzun bas &rarr; Fotoğraflara kaydet</b></div>
   <div class="dlr">
     <button class="btn square disabled" id="btn-s" onclick="bwDl('s')">&#8595; KARE İÇİN İNDİR</button>
-    <button class="btn square disabled" id="btn-sp" onclick="bwDl('sp')">&#8595; PERSPEKTİF İNDİR</button>
+    <button class="btn square disabled" id="btn-sp" onclick="bwDl('sp')">&#8595; KARE PERSPEKTİF İNDİR</button>
   </div>
   <div class="ph">HIZLI CÜMLELER - Ruh Haline Göre</div>
   <div class="ps" id="ps"></div>
@@ -901,9 +901,106 @@ function drawRow(ctx, rawText, W, cY, pal, s, lH, SAG){
     const nextCh = chars[i+1];
     x += w + (nextCh && nextCh.ch!==' ' ? cg : 0);
   });
+
+}
+
+function perspectiveScaleAt(t){
+  // Left side closer to camera, right side farther.
+  return 1.16 - 0.28*t; // ~1.16 -> 0.88
+}
+
+function perspectiveYOffsetAt(t, lH){
+  // Near side hangs slightly lower, far side slightly higher.
+  return lH * (0.06 - 0.12*t);
+}
+
+function perspectiveRopeBaseY(t, rBY, lH){
+  return rBY + perspectiveYOffsetAt(t, lH) * 0.55;
+}
+
+function drawRowPerspective(ctx, rawText, W, cY, pal, s, lH, SAG){
+  const CG = 4*s, WG = lH*1.0, EXT = 70*s;
+  const colorMap = buildColorMap(rawText, pal.letter);
+  const chars = colorMap;
+  const count = Math.max(chars.length, 1);
+
+  const scales = chars.map((_, i)=>{
+    const t = count <= 1 ? 0.5 : i / (count - 1);
+    return perspectiveScaleAt(t);
+  });
+
+  const ws = chars.map(({ch}, i)=>{
+    const sc = scales[i];
+    if(ch === ' ') return WG * ((sc + 1) / 2);
+    return letterDims(ch, lH).lW * sc;
+  });
+
+  let raw = 0;
+  chars.forEach(({ch}, i)=>{
+    raw += ws[i];
+    if(i < chars.length - 1 && ch !== ' ' && chars[i+1].ch !== ' '){
+      raw += CG * ((scales[i] + scales[i+1]) / 2);
+    }
+  });
+
+  const totalW = raw;
+  const ext = EXT;
+  const x0 = W/2 - totalW/2 - ext;
+  const x1 = W/2 + totalW/2 + ext;
+  const span = Math.max(1, x1 - x0);
+  const hIY = lH * 0.09;
+  const rBY = cY - lH/2 + hIY;
+
+  // Rope with perspective-aware baseline and sag.
+  ctx.save();
+  ctx.strokeStyle = pal.rope;
+  ctx.lineWidth = 1.4*s;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  for(let i=0;i<=140;i++){
+    const t = i/140;
+    const rx = x0 + t*span;
+    const ry = perspectiveRopeBaseY(t, rBY, lH) + sagAt(t, SAG*0.92);
+    i===0 ? ctx.moveTo(rx, ry) : ctx.lineTo(rx, ry);
+  }
+  ctx.stroke();
+  ctx.restore();
+
+  let x = W/2 - totalW/2;
+  chars.forEach(({ch, color}, i)=>{
+    const w = ws[i];
+    const sc = scales[i];
+    if(ch === ' '){ x += w; return; }
+
+    const lcx = x + w/2;
+    const t = count <= 1 ? 0.5 : i / (count - 1);
+    const slopeLinear = (-0.12*lH) / span;
+    const rY = perspectiveRopeBaseY(t, rBY, lH) + sagAt(t, SAG*0.92);
+    const sl = sagSlope(t, SAG*0.92, span) + slopeLinear;
+    const ang = Math.atan(sl) * 0.65;
+
+    const lb = buildLetter(ch, lH, color);
+
+    ctx.save();
+    ctx.translate(lcx, rY - (lb.anchorY * sc) + (lb.lH * sc)/2 + perspectiveYOffsetAt(t, lH));
+    ctx.rotate(ang);
+
+    // Shadow with scaled draw
+    ctx.globalAlpha = 0.12;
+    ctx.filter = 'blur(' + (2*s) + 'px)';
+    ctx.drawImage(lb.canvas, -lb.lW*sc/2 + 2*s, -lb.lH*sc/2 + 3*s, lb.lW*sc, lb.lH*sc);
+    ctx.filter = 'none';
+    ctx.globalAlpha = 1;
+    ctx.drawImage(lb.canvas, -lb.lW*sc/2, -lb.lH*sc/2, lb.lW*sc, lb.lH*sc);
+    ctx.restore();
+
+    const nextCh = chars[i+1];
+    x += w + (nextCh && nextCh.ch !== ' ' ? CG * ((sc + (scales[i+1] || sc))/2) : 0);
+  });
 }
 
 // Позиция подписи blacksymbols.com по форматам.
+
 // Чем больше коэффициент, тем выше подпись от нижнего края.
 // p=телефон 9:16 — заметно выше; d=desktop — как было; s=квадрат — немного выше.
 const LOGO_Y_FACTOR = { p: 3.35, d: 1.80, s: 2.25 };
@@ -918,24 +1015,28 @@ function renderTo(cv, W, H, raw, bgKey, fmt){
   const rows=parseRows(raw);
   if(!rows.length) return;
 
-  // Uniform letter height: find longest row, scale so it fills 46% width
+  // Uniform letter height: find longest row, scale so it fills target width
   const BH=108*s;
   let maxRaw=0;
   rows.forEach(row=>{
     const rw=measureRow(row,BH,s);
     if(rw>maxRaw) maxRaw=rw;
   });
-  const targetW=W*0.46;
+  const targetW = fmt === 'sp' ? W*0.40 : W*0.46;
   const gScl=maxRaw>0?targetW/maxRaw:1;
-  // Cap at 180*s so it doesn't get too big for very short phrases
-  const lH=Math.min(BH*gScl, 180*s);
-  const SAG=34*s;
-  const RG=lH*0.52;
+  // Slightly smaller base for perspective because near-side letters become larger.
+  const lH=Math.min(BH*gScl, fmt === 'sp' ? 168*s : 180*s);
+  const SAG=fmt === 'sp' ? 30*s : 34*s;
+  const RG=lH*(fmt === 'sp' ? 0.56 : 0.52);
   const totalH=rows.length*lH+(rows.length-1)*RG;
   const sCY=H/2-totalH/2+lH/2;
 
   rows.forEach((row,i)=>{
-    drawRow(ctx, row, W, sCY+i*(lH+RG), pal, s, lH, SAG);
+    if(fmt === 'sp'){
+      drawRowPerspective(ctx, row, W, sCY+i*(lH+RG), pal, s, lH, SAG);
+    } else {
+      drawRow(ctx, row, W, sCY+i*(lH+RG), pal, s, lH, SAG);
+    }
   });
 
   // Logo / site label
