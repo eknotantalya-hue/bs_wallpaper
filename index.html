@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Black Symbols — Duvar Kağıdı v3.7</title>
+<title>Black Symbols — Duvar Kağıdı v3.8</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -36,9 +36,12 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
 .dlr{display:flex;gap:7px;margin-bottom:16px;width:100%;flex-wrap:wrap}
 .btn{flex:1;min-width:120px;background:#111;color:#fff;border:none;font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.1em;padding:11px 6px;border-radius:4px;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .btn:active{opacity:.7}
-.btn.phone{background:#FF8700;color:#fff;border:1.5px solid #FF8700}
+.btn.phone{background:#111;color:#fff;border:1.5px solid #111}
 .btn.desktop{background:#111;color:#fff;border:1.5px solid #111}
-.btn.square{background:#fff;color:#555;border:1.5px solid #ddd}
+.btn.square{background:#111;color:#fff;border:1.5px solid #111}
+.temp-hide{display:none !important}
+.rules-title{font-family:"Arial Black",Arial,sans-serif;font-size:.72rem;line-height:1.5;letter-spacing:.08em;text-align:center;margin:0 0 8px;color:#111}
+.rules-list{padding-left:18px;margin:0}.rules-list li{margin:4px 0}
 .btn.g{background:#fff;color:#555;border:1.5px solid #ddd}
 .savehint{font-family:Georgia,serif;font-size:.68rem;color:#999;text-align:center;margin-bottom:10px;line-height:1.5;display:none;padding:0 8px}
 .savehint.show{display:block}
@@ -81,9 +84,14 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
     <b>Bu ücretsiz oluşturucu</b>, kişisel ifadelerinizi ve duygularınızı eğlenceli bir duvar kağıdı olarak hazırlamanız için tasarlanmıştır. Black Symbols; şiddet çağrısı, nefret söylemi, dinlerin/kutsal değerlerin, devletlerin, ülkelerin, ulusların veya halkların aşağılanması, çocuk istismarı, cinsel şiddet, terör, ayrılıkçılık, yasa dışı eylem çağrısı veya eğlence amaçlı içerik fikriyle çelişen metinlerde yer almak istemez. Bu nedenle, gerekli gördüğümüz ifadeleri hukuk birimimizin moderasyonuna yönlendirme hakkımız saklıdır.
   </div>
   <div class="hint">
-    <b>Kurallar:</b> Maks. <b>45 karakter</b> &bull; Maks. <b>3 satır</b><br>
-    Satır için <b>|</b>: <b>JUST START | NEW LIFE</b> &bull; <b>LIVE | LOVE | LAUGH</b><br>
-    Turuncu için <b>%</b>: <b>I %<span class="accent">LOVE</span>% YOU</b> &rarr; <span class="accent">LOVE</span> turuncu olur<br>Türkçe, İngilizce ve Rusça harfler desteklenir
+    <div class="rules-title">ВНИМАТЕЛЬНО ИЗУЧИТЕ 5 ПРОСТЫХ ПРАВИЛ</div>
+    <ol class="rules-list">
+      <li>Frazanızı her zaman <b>BÜYÜK HARFLERLE</b> yazın.</li>
+      <li>Maksimum <b>45 karakter</b> ve maksimum <b>3 satır</b> kullanın.</li>
+      <li>Yeni satır için <b>|</b> kullanın: <b>LIVE | LOVE | LAUGH</b>.</li>
+      <li>Turuncu vurgu için <b>%</b> kullanın: <b>I %<span class="accent">LOVE</span>% YOU</b>.</li>
+      <li>Türkçe, İngilizce ve Rusça harfler desteklenir.</li>
+    </ol>
   </div>
   <div class="inp-row">
     <input id="inp" value="" placeholder="YAZINIZI GİRİN..." maxlength="60" oninput="bwInput(false)" onblur="bwInput(true)">
@@ -96,9 +104,9 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
     </select>
   </div>
   <div class="pvs">
-    <div class="pv"><div class="pvl">TELEFON 9:16</div><canvas id="cp"></canvas></div>
-    <div class="pv"><div class="pvl">MASAÜSTÜ 16:9</div><canvas id="cd"></canvas></div>
-    <div class="pv"><div class="pvl">KARE 1:1</div><canvas id="cs"></canvas></div>
+    <div class="pv" id="pv-phone"><div class="pvl">TELEFON 9:16</div><canvas id="cp"></canvas></div>
+    <div class="pv" id="pv-desktop"><div class="pvl">MASAÜSTÜ 16:9</div><canvas id="cd"></canvas></div>
+    <div class="pv temp-hide" id="pv-square"><div class="pvl">KARE 1:1</div><canvas id="cs"></canvas></div>
   </div>
   <!-- Customer data block -->
   <div class="cblock" id="cblock">
@@ -110,7 +118,7 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
       </div>
       <div class="cfield">
         <label>Telefon *</label>
-        <input type="tel" id="cphone" value="+90" placeholder="+905XXXXXXXXX" inputmode="tel" autocomplete="tel" required onfocus="defaultPhonePrefix()" oninput="sanitizePhoneInput(); validateForm()" onblur="sanitizePhoneInput(); validateForm()">
+        <input type="tel" id="cphone" value="+90" placeholder="+905346137011" inputmode="tel" autocomplete="tel" required onfocus="defaultPhonePrefix()" oninput="sanitizePhoneInput(); validateForm()" onblur="sanitizePhoneInput(); validateForm()">
       </div>
     </div>
     <div class="cfield">
@@ -145,9 +153,9 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
   </div>
   <div class="modmsg" id="modmsg"></div>
   <div class="dlr">
-    <button class="btn phone disabled" id="btn-p" onclick="bwDl('p')">&#8595; TELEFON</button>
-    <button class="btn desktop disabled" id="btn-d" onclick="bwDl('d')">&#8595; MASAÜSTÜ</button>
-    <button class="btn square disabled" id="btn-s" onclick="bwDl('s')">&#8595; KARE</button>
+    <button class="btn phone disabled" id="btn-p" onclick="bwDl('p')">&#8595; TELEFON İÇİN İNDİR</button>
+    <button class="btn desktop disabled" id="btn-d" onclick="bwDl('d')">&#8595; MASAÜSTÜ İÇİN İNDİR</button>
+    <button class="btn square disabled temp-hide" id="btn-s" onclick="bwDl('s')">&#8595; KARE İÇİN İNDİR</button>
   </div>
   <div class="ph">HIZLI CÜMLELER - Ruh Haline Göre</div>
   <div class="ps" id="ps"></div>
@@ -322,7 +330,7 @@ const RED_RULES = [
     // EN
     'KILL*','MURDER*','EXECUTE','EXECUTION','DEATH','DIE','DEAD','BOMB*','BLOOD','VIOLENCE','VIOLENT','RAPE*','ABUSE*','TORTURE*','BEAT','LYNCH*','MASSACRE','GENOCIDE','SHOOT*','STAB*','BURN','HANG','DESTROY','ATTACK*','WEAPON*','GUN','KNIFE',
     // TR
-    'OLDUR*','OLUM','GEBER*','KATIL','CINAYET','INFAZ','BOMBA*','KAN','SIDDET','TECAVUZ*','ISTISMAR*','ISKENCE*','DOV','LINÇ','LINC','KATLİAM','KATLIAM','SOYKIRIM','VUR','BICAK','YAK','SALDIR*','SILAH',
+    'OLDUR*','OLUM','OL','GEBER*','KATIL','CINAYET','INFAZ','BOMBA*','KAN','SIDDET','TECAVUZ*','ISTISMAR*','ISKENCE*','DOV','LINÇ','LINC','KATLİAM','KATLIAM','SOYKIRIM','VUR','BICAK','YAK','SALDIR*','SILAH',
     // RU
     'УБЕЙ*','УБИТЬ','УБИЙ*','УБЬЮ','УМРИ','СМЕРТЬ','МЕРТВ*','БОМБ*','КРОВ*','НАСИЛ*','ИЗНАСИЛ*','ПЫТК*','БЕЙ','ИЗБЕЙ','ЛИНЧ*','МАССОВОЕ УБИЙСТВО','ГЕНОЦИД','СТРЕЛЯ*','ЗАРЕЖ*','СЖЕЧЬ','ПОВЕС*','УНИЧТОЖ*','АТАК*','ОРУЖ*','ПИСТОЛЕТ','НОЖ'
   ]},
@@ -344,11 +352,11 @@ const RED_RULES = [
   ]},
   {cat:'politics_state', terms:[
     // EN
-    'PRESIDENT','GOVERNMENT','STATE','PARLIAMENT','MINISTER','ELECTION','VOTE','REGIME','DICTATOR*','KING','QUEEN','ARMY','POLICE','COURT','LAW','ERDOGAN','PUTIN','ZELENSKY','ZELENSKYY','TRUMP','BIDEN','OBAMA','NETANYAHU',
+    'PRESIDENT','GOVERNMENT','STATE','PARLIAMENT','MINISTER','ELECTION','VOTE','REGIME','DICTATOR*','KING','QUEEN','ARMY','POLICE','COURT','LAW','ERDOGAN*','PUTIN*','ZELENSKY*','ZELENSKYY*','TRUMP*','BIDEN*','OBAMA*','NETANYAHU*',
     // TR
-    'BASKAN','CUMHURBASKANI','HUKUMET','DEVLET','MECLIS','BAKAN','SECIM','OY VER','REJIM','DIKTATOR*','KRAL','KRALICE','ORDU','POLIS','MAHKEME','KANUN','ERDOGAN','PUTIN','ZELENSKI','TRUMP','BIDEN','NETANYAHU',
+    'BASKAN','CUMHURBASKANI','HUKUMET','DEVLET','MECLIS','BAKAN','SECIM','OY VER','REJIM','DIKTATOR*','KRAL','KRALICE','ORDU','POLIS','MAHKEME','KANUN','ERDOGAN*','PUTIN*','ZELENSKI*','TRUMP*','BIDEN*','NETANYAHU*',
     // RU
-    'ПРЕЗИДЕНТ','ПРАВИТЕЛЬСТВО','ГОСУДАРСТВО','ПАРЛАМЕНТ','МИНИСТР','ВЫБОР*','ГОЛОСОВАТЬ','РЕЖИМ','ДИКТАТОР*','КОРОЛЬ','КОРОЛЕВА','АРМИЯ','ПОЛИЦИЯ','СУД','ЗАКОН','ЭРДОГАН','ПУТИН','ЗЕЛЕНСК*','ТРАМП','БАЙДЕН','ОБАМА','НЕТАНЬЯХУ'
+    'ПРЕЗИДЕНТ','ПРАВИТЕЛЬСТВО','ГОСУДАРСТВО','ПАРЛАМЕНТ','МИНИСТР','ВЫБОР*','ГОЛОСОВАТЬ','РЕЖИМ','ДИКТАТОР*','КОРОЛЬ','КОРОЛЕВА','АРМИЯ','ПОЛИЦИЯ','СУД','ЗАКОН','ЭРДОГАН*','ПУТИН*','ЗЕЛЕНСК*','ТРАМП*','БАЙДЕН*','ОБАМА*','НЕТАНЬЯХУ*'
   ]},
   {cat:'overthrow_separatism', terms:[
     // EN
@@ -360,9 +368,9 @@ const RED_RULES = [
   ]},
   {cat:'nations_countries', terms:[
     // EN / international
-    'TURKEY','TURKIYE','TURK*','RUSSIA','RUSSIAN*','RUSYA','RUS','UKRAINE','UKRAINIAN*','UKRAYNA','ISRAEL','ISRAELI*','ISRAIL','PALESTINE','PALESTINIAN*','FILISTIN','ARAB*','ARMENIA','ARMENIAN*','ERMENI*','KURD*','KURT*','GREEK*','YUNAN*','AMERICA','AMERICAN*','USA','EUROPE','EUROPEAN*','CHINA','CHINESE','IRAN','IRANIAN*','SYRIA','SYRIAN*','AFRICA','AFRICAN*','NATION*','PEOPLE','ETHNIC*','RACE',
+    'TURKEY','TURKIYE','TURK*','RUSSIA','RUSSIAN*','RUSYA','RUS*','UKRAINE','UKRAINIAN*','UKRAYNA','ISRAEL','ISRAELI*','ISRAIL','PALESTINE','PALESTINIAN*','FILISTIN','ARAB*','ARMENIA','ARMENIAN*','ERMENI*','KURD*','KURT*','GREEK*','YUNAN*','AMERICA','AMERICAN*','USA','EUROPE','EUROPEAN*','CHINA','CHINESE','IRAN','IRANIAN*','SYRIA','SYRIAN*','AFRICA','AFRICAN*','NATION*','PEOPLE','ETHNIC*','RACE',
     // TR
-    'TURKIYE','TURK*','RUSYA','RUS','UKRAYNA','UKRAYNALI*','ISRAIL','YAHUDI*','FILISTIN','ARAP*','ERMENI*','KURT*','YUNAN*','AMERIKA','CIN','IRAN','SURIYE','SURIYELI*','MILLET','HALK','IRK','ETNIK',
+    'TURKIYE','TURK*','RUSYA','RUS*','UKRAYNA','UKRAYNALI*','ISRAIL','YAHUDI*','FILISTIN','ARAP*','ERMENI*','KURT*','YUNAN*','AMERIKA','CIN','IRAN','SURIYE','SURIYELI*','MILLET','HALK','IRK','ETNIK',
     // RU
     'ТУРЦ*','ТУРОК','ТУРК*','РОССИ*','РУССК*','УКРАИН*','ИЗРАИЛ*','ПАЛЕСТИН*','АРАБ*','АРМЕН*','КУРД*','ГРЕК*','АМЕРИК*','США','ЕВРОП*','КИТА*','ИРАН*','СИРИ*','АФРИК*','НАРОД*','НАЦИ*','ЭТНИЧ*','РАСА','РАСОВ*'
   ]},
@@ -421,6 +429,16 @@ function isYellowWord(word){
   return !!findRuleHits(norm, YELLOW_RULES).length;
 }
 
+function preferredMaskPosition(word){
+  const chars = Array.from(word);
+  if(chars.length <= 2) return Math.min(1, chars.length-1);
+  const norm = normalizeForModeration(word);
+  const has = stem => norm.startsWith(stem);
+  if(has('ПИЗД') || has('БЛЯ') || has('ХУ') || has('СУК') || has('ЕБ') || has('ЕБА') || has('ПИД')) return Math.min(2, chars.length-2);
+  if(has('SIK') || has('AMK') || has('FUCK') || has('CUNT') || has('DICK') || has('PUSS') || has('SHIT') || has('BITCH') || has('OROSPU') || has('AMINA') || has('AMCIK')) return 1;
+  return chars.length >= 5 ? 2 : 1;
+}
+
 function maskOneInternalLetter(word){
   const chars = Array.from(word);
   if(chars.length <= 1) return '*';
@@ -429,9 +447,13 @@ function maskOneInternalLetter(word){
   for(let i=1;i<chars.length-1;i++){
     if(alpha.test(chars[i])) candidates.push(i);
   }
-  let pos;
-  if(candidates.length) pos = candidates[Math.floor(candidates.length/2)];
-  else pos = chars.length === 2 ? 1 : Math.floor(chars.length/2);
+  let pos = preferredMaskPosition(word);
+  if(candidates.length){
+    const exact = candidates.includes(pos) ? pos : candidates.find(i=>i>=pos) ?? candidates[candidates.length-1];
+    pos = exact;
+  } else {
+    pos = chars.length === 2 ? 1 : Math.floor(chars.length/2);
+  }
   chars[pos] = '*';
   return chars.join('');
 }
@@ -551,6 +573,13 @@ function collectCustomerPayloadBase(extra={}){
     moderation_reason:active.moderation_reason,
     download_allowed:active.download_allowed?'true':'false',
     visual_mode:active.visual_mode,
+    phrase_masked:active.phrase_visual,
+    phrase_for_display:active.phrase_visual,
+    phrase_display:active.phrase_visual,
+    masked_visual:active.phrase_visual,
+    moderation:active.status,
+    status:active.status,
+    moderation_categories:(active.categories||[]).join(','),
     moderation_checked_at:new Date().toISOString(),
     background:document.getElementById('bg').value,
     customer_name:(document.getElementById('cname').value||'').trim(),
@@ -644,7 +673,7 @@ function sanitizePhoneInput(){
   if(!raw){ el.value = ''; return; }
   if(raw[0] !== '+') raw = '+' + raw;
 
-  const digits = raw.replace(/\D/g,'').slice(0,15); // international max length
+  const digits = raw.replace(/\D/g,'').slice(0,13); // allow total length 12-14 including +
   el.value = digits ? ('+' + digits) : '';
 }
 
@@ -668,7 +697,7 @@ function validateForm(updateButtons=true){
 
   const phoneValue = (document.getElementById('cphone').value||'').trim();
   const phoneDigits = phoneDigitsOnly();
-  const phoneOK = /^\+\d{8,15}$/.test(phoneValue) && phoneDigits.length >= 8 && phoneDigits.length <= 15;
+  const phoneOK = /^\+\d{11,13}$/.test(phoneValue) && phoneValue.length >= 12 && phoneValue.length <= 14 && phoneDigits.length >= 11 && phoneDigits.length <= 13;
 
   const social = document.getElementById('csocial').value || '';
   const nick = (document.getElementById('cnick').value||'').trim();
