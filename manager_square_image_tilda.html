@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Black Symbols — PIM Kare Görsel Oluşturucu v1.2 v1.2</title>
+<title>Black Symbols — PIM Kare Görsel Oluşturucu v1.3 v1.2</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -40,15 +40,13 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
 .btn.desktop{background:#111;color:#fff;border:1.5px solid #111}
 .btn.square{background:#111;color:#fff;border:1.5px solid #111}
 .temp-hide{display:none !important}
-.manager-only-note{font-family:"Arial Black",Arial,sans-serif;font-size:.66rem;line-height:1.6;color:#555;background:#fff;border:1px solid #ddd;border-radius:6px;padding:10px 12px;margin-bottom:10px;text-align:center}
+.manager-only-note{font-family:"Arial Black",Arial,sans-serif;font-size:.60rem;line-height:1.55;color:#555;background:#fff;border:1px solid #ddd;border-radius:6px;padding:9px 10px;margin-bottom:8px;text-align:center}
 .manager-wrap .policy,.manager-wrap .hint,.manager-wrap #savehint,.manager-wrap #cblock,.manager-wrap #btn-mod,.manager-wrap #modmsg,.manager-wrap .ph,.manager-wrap #ps,.manager-wrap #pv-phone,.manager-wrap #pv-desktop{display:none !important}
-.manager-wrap .wrap{max-width:620px}.manager-wrap .pv{max-width:420px;margin:0 auto 14px}.manager-wrap .sub{margin-bottom:10px}
+.manager-wrap .wrap{max-width:760px}.manager-wrap .pv{max-width:420px;margin:0 auto 12px}.manager-wrap .sub{margin-bottom:8px}.manager-wrap .pvs{gap:12px}
 .manager-wrap .inp-row{align-items:stretch}
 .insert-btn{flex:0 0 auto;min-width:54px;background:#111;color:#fff;border:1.5px solid #111;font-family:"Arial Black",Arial,sans-serif;font-size:.78rem;letter-spacing:.04em;padding:9px 10px;border-radius:4px;cursor:pointer}
 .insert-btn.adult{background:#fff;color:#D92626;border:1.5px solid #D92626}
 .insert-btn:active{opacity:.7}
-.rules-title{font-family:"Arial Black",Arial,sans-serif;font-size:.72rem;line-height:1.5;letter-spacing:.08em;text-align:center;margin:0 0 8px;color:#111}
-.rules-list{padding-left:18px;margin:0}.rules-list li{margin:4px 0}
 .btn.g{background:#fff;color:#555;border:1.5px solid #ddd}
 .savehint{font-family:Georgia,serif;font-size:.68rem;color:#999;text-align:center;margin-bottom:10px;line-height:1.5;display:none;padding:0 8px}
 .savehint.show{display:block}
@@ -87,15 +85,7 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
 <div class="wrap">
   <div class="site">blacksymbols.com</div>
   <div class="sub">PIM KARE GÖRSEL OLUŞTURUCU</div>
-  <div class="manager-only-note">Bu iç araç yalnızca yönetici kullanımı içindir. <b>*</b> işareti kare görselde <b>18+</b> rozeti olarak gösterilir. Örnek: <b>Pİ*DA</b>.</div>
-<ol class="rules-list">
-      <li>Frazanızı her zaman <b>BÜYÜK HARFLERLE</b> yazın.</li>
-      <li>Maksimum <b>45 karakter</b> ve maksimum <b>3 satır</b> kullanın.</li>
-      <li>Yeni satır için <b>|</b> kullanın: <b>LIVE | LOVE | LAUGH</b>.</li>
-      <li>Turuncu vurgu için <b>%</b> kullanın: <b>I %<span class="accent">LOVE</span>% YOU</b>.</li>
-      <li>Türkçe, İngilizce ve Rusça harfler desteklenir.</li>
-    </ol>
-  </div>
+  <div class="manager-only-note">Bu iç araç yalnızca yönetici kullanımı içindir. <b>*</b> işareti kare görselde <b>18+</b> rozeti olarak gösterilir. Örnek: <b>Pİ*DA</b>. <b>1)</b> Frazanızı her zaman <b>BÜYÜK HARFLERLE</b> yazın. <b>2)</b> Maksimum <b>100 karakter</b> ve maksimum <b>10 satır</b> kullanın. <b>3)</b> Yeni satır için <b>|</b> kullanın: <b>LIVE | LOVE | LAUGH</b>. <b>4)</b> Turuncu vurgu için <b>I %<span class="accent">LOVE</span>% YOU</b> kullanın.</div>
   <div class="inp-row">
     <input id="inp" value="" placeholder="FRAZIYI YAZIN...  * = 18+ rozet" maxlength="140" oninput="bwInput(false)" onblur="bwInput(true)">
     <button type="button" class="insert-btn" onclick="insertPhraseToken('|')" title="Satır ekle">|</button>
@@ -112,6 +102,7 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
     <div class="pv" id="pv-phone"><div class="pvl">TELEFON 9:16</div><canvas id="cp"></canvas></div>
     <div class="pv" id="pv-desktop"><div class="pvl">MASAÜSTÜ 16:9</div><canvas id="cd"></canvas></div>
     <div class="pv" id="pv-square"><div class="pvl">KARE 1:1</div><canvas id="cs"></canvas></div>
+    <div class="pv" id="pv-square-perspective"><div class="pvl">KARE PERSPEKTİF 1:1</div><canvas id="cs2"></canvas></div>
   </div>
   <!-- Customer data block -->
   <div class="cblock" id="cblock">
@@ -155,6 +146,7 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
   <div class="savehint" id="savehint">📱 Resme <b>uzun bas &rarr; Fotoğraflara kaydet</b></div>
   <div class="dlr">
     <button class="btn square disabled" id="btn-s" onclick="bwDl('s')">&#8595; KARE İÇİN İNDİR</button>
+    <button class="btn square disabled" id="btn-sp" onclick="bwDl('sp')">&#8595; PERSPEKTİF İNDİR</button>
   </div>
   <div class="ph">HIZLI CÜMLELER - Ruh Haline Göre</div>
   <div class="ps" id="ps"></div>
@@ -245,7 +237,7 @@ function sagSlope(t,sag,span){ return 4*sag*(1-2*t)/span; }
 
 // Split raw input by | into rows (max 3)
 function parseRows(raw){
-  return bsUpper(raw).split('|').map(s=>s.trim()).filter(Boolean).slice(0,7);
+  return bsUpper(raw).split('|').map(s=>s.trim()).filter(Boolean).slice(0,10);
 }
 
 // Strip % markers from row text for layout purposes
@@ -957,8 +949,8 @@ function renderTo(cv, W, H, raw, bgKey, fmt){
   ctx.restore();
 }
 
-const CFGS={p:{W:1080,H:1920},d:{W:1920,H:1080},s:{W:1080,H:1080}};
-const CVS={p:document.getElementById('cp'),d:document.getElementById('cd'),s:document.getElementById('cs')};
+const CFGS={p:{W:1080,H:1920},d:{W:1920,H:1080},s:{W:1080,H:1080},sp:{W:1080,H:1080}};
+const CVS={p:document.getElementById('cp'),d:document.getElementById('cd'),s:document.getElementById('cs'),sp:document.getElementById('cs2')};
 const CACHE={};
 
 function bwGo(){
@@ -1067,7 +1059,7 @@ function bwDl(key){
 
 // Manager-mode overrides
 if(MANAGER_MODE){
-  const MANAGER_MAX_ROWS = 7;
+  const MANAGER_MAX_ROWS = 10;
   const MANAGER_MAX_PER_ROW = 20;
   const MANAGER_MAX_TOTAL = 100;
   let managerRenderPending = false;
@@ -1075,7 +1067,7 @@ if(MANAGER_MODE){
   function applyManagerLimits(value, finalClean=false){
     let val = normalizeInputValue(value || '', finalClean);
 
-    // Max 7 rows = 6 separators.
+    // Max 10 rows = 9 separators.
     const maxPipes = MANAGER_MAX_ROWS - 1;
     const pipes = val.split('|').length - 1;
     if(pipes > maxPipes){
@@ -1112,6 +1104,29 @@ if(MANAGER_MODE){
     });
   }
 
+  function renderPerspectiveSquare(srcCanvas, W, H){
+    const out = document.createElement('canvas');
+    out.width = W; out.height = H;
+    const ctx = out.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0,0,W,H);
+
+    ctx.save();
+    ctx.translate(W*0.50, H*0.53);
+    ctx.rotate(-0.045);
+    ctx.transform(1, -0.03, 0.15, 1, 0, 0);
+    const drawW = W*0.82;
+    const drawH = H*0.82;
+    ctx.shadowColor = 'rgba(0,0,0,0.14)';
+    ctx.shadowBlur = 28;
+    ctx.shadowOffsetX = 16;
+    ctx.shadowOffsetY = 22;
+    ctx.drawImage(srcCanvas, -drawW/2, -drawH/2, drawW, drawH);
+    ctx.restore();
+
+    return out;
+  }
+
   validateForm = function(updateButtons=true){
     const phraseOK = visLen(document.getElementById('inp').value||'') > 0;
     if(updateButtons){ updateActionButtons(); }
@@ -1120,8 +1135,10 @@ if(MANAGER_MODE){
 
   updateActionButtons = function(){
     const phraseOK = validateForm(false);
-    const b = document.getElementById('btn-s');
-    if(b) b.classList.toggle('disabled', !phraseOK);
+    const b1 = document.getElementById('btn-s');
+    const b2 = document.getElementById('btn-sp');
+    if(b1) b1.classList.toggle('disabled', !phraseOK);
+    if(b2) b2.classList.toggle('disabled', !phraseOK);
     return phraseOK;
   };
 
@@ -1151,15 +1168,26 @@ if(MANAGER_MODE){
 
   bwGo = function(){
     const raw = document.getElementById('inp').value || 'BLACK SYMBOLS';
-    const bg=document.getElementById('bg').value;
-    const cfg=CFGS.s;
-    const off=document.createElement('canvas');
-    off.width=cfg.W; off.height=cfg.H;
-    renderTo(off,cfg.W,cfg.H,raw,bg,'s');
-    CACHE.s=off;
-    const cv=CVS.s;
-    cv.width=cfg.W; cv.height=cfg.H;
-    cv.getContext('2d').drawImage(off,0,0);
+    const bg = document.getElementById('bg').value;
+
+    // Normal square
+    const cfg = CFGS.s;
+    const normal = document.createElement('canvas');
+    normal.width = cfg.W; normal.height = cfg.H;
+    renderTo(normal, cfg.W, cfg.H, raw, bg, 's');
+    CACHE.s = normal;
+    const cv = CVS.s;
+    cv.width = cfg.W; cv.height = cfg.H;
+    cv.getContext('2d').clearRect(0,0,cv.width,cv.height);
+    cv.getContext('2d').drawImage(normal, 0, 0);
+
+    // Perspective square
+    const perspective = renderPerspectiveSquare(normal, CFGS.sp.W, CFGS.sp.H);
+    CACHE.sp = perspective;
+    const cv2 = CVS.sp;
+    cv2.width = CFGS.sp.W; cv2.height = CFGS.sp.H;
+    cv2.getContext('2d').clearRect(0,0,cv2.width,cv2.height);
+    cv2.getContext('2d').drawImage(perspective, 0, 0);
   };
 
   resetModeration = function(showNeed=false){
@@ -1181,22 +1209,22 @@ if(MANAGER_MODE){
   };
 
   bwDl = function(key){
-    if(key !== 's') return;
+    if(key !== 's' && key !== 'sp') return;
     bwInput(true);
     if(!validateForm()) return;
-    if(!CACHE.s) bwGo();
-    const off=CACHE.s; if(!off) return;
+    if(!CACHE[key]) bwGo();
+    const off = CACHE[key]; if(!off) return;
     const slugSource = normalizeInputValue(document.getElementById('inp').value||'', true) || 'BS';
-    const slug=stripAccent(slugSource).replace(/[|]/g,'-').trim().slice(0,30).replace(/[^A-Za-zА-Яа-я0-9*]+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'').toLowerCase() || 'bs';
-    const fname='bs_square_'+slug+'.jpg';
+    const slug = stripAccent(slugSource).replace(/[|]/g,'-').trim().slice(0,30).replace(/[^A-Za-zА-Яа-я0-9*]+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'').toLowerCase() || 'bs';
+    const fname = key === 'sp' ? 'bs_square_perspective_'+slug+'.jpg' : 'bs_square_'+slug+'.jpg';
     off.toBlob(function(blob){
-      const url=URL.createObjectURL(blob);
-      const a=document.createElement('a');
-      a.href=url; a.download=fname;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = fname;
       a.style.position='fixed'; a.style.top='-9999px';
       document.body.appendChild(a); a.click();
       setTimeout(()=>{ document.body.removeChild(a); URL.revokeObjectURL(url); },3000);
-    },'image/jpeg',0.96);
+    }, 'image/jpeg', 0.96);
   };
 }
 
