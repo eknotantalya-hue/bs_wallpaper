@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Black Symbols — PIM Kare Görsel Oluşturucu</title>
+<title>Black Symbols — PIM Kare Görsel Oluşturucu v1.2 v1.2</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -43,6 +43,10 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
 .manager-only-note{font-family:"Arial Black",Arial,sans-serif;font-size:.66rem;line-height:1.6;color:#555;background:#fff;border:1px solid #ddd;border-radius:6px;padding:10px 12px;margin-bottom:10px;text-align:center}
 .manager-wrap .policy,.manager-wrap .hint,.manager-wrap #savehint,.manager-wrap #cblock,.manager-wrap #btn-mod,.manager-wrap #modmsg,.manager-wrap .ph,.manager-wrap #ps,.manager-wrap #pv-phone,.manager-wrap #pv-desktop{display:none !important}
 .manager-wrap .wrap{max-width:620px}.manager-wrap .pv{max-width:420px;margin:0 auto 14px}.manager-wrap .sub{margin-bottom:10px}
+.manager-wrap .inp-row{align-items:stretch}
+.insert-btn{flex:0 0 auto;min-width:54px;background:#111;color:#fff;border:1.5px solid #111;font-family:"Arial Black",Arial,sans-serif;font-size:.78rem;letter-spacing:.04em;padding:9px 10px;border-radius:4px;cursor:pointer}
+.insert-btn.adult{background:#fff;color:#D92626;border:1.5px solid #D92626}
+.insert-btn:active{opacity:.7}
 .rules-title{font-family:"Arial Black",Arial,sans-serif;font-size:.72rem;line-height:1.5;letter-spacing:.08em;text-align:center;margin:0 0 8px;color:#111}
 .rules-list{padding-left:18px;margin:0}.rules-list li{margin:4px 0}
 .btn.g{background:#fff;color:#555;border:1.5px solid #ddd}
@@ -84,12 +88,7 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
   <div class="site">blacksymbols.com</div>
   <div class="sub">PIM KARE GÖRSEL OLUŞTURUCU</div>
   <div class="manager-only-note">Bu iç araç yalnızca yönetici kullanımı içindir. <b>*</b> işareti kare görselde <b>18+</b> rozeti olarak gösterilir. Örnek: <b>Pİ*DA</b>.</div>
-  <div class="policy">
-    <b>Bu ücretsiz oluşturucu</b>, kişisel ifadelerinizi ve duygularınızı eğlenceli bir duvar kağıdı olarak hazırlamanız için tasarlanmıştır. Black Symbols; şiddet çağrısı, nefret söylemi, dinlerin/kutsal değerlerin, devletlerin, ülkelerin, ulusların veya halkların aşağılanması, çocuk istismarı, cinsel şiddet, terör, ayrılıkçılık, yasa dışı eylem çağrısı veya eğlence amaçlı içerik fikriyle çelişen metinlerde yer almak istemez. Bu nedenle, gerekli gördüğümüz ifadeleri hukuk birimimizin moderasyonuna yönlendirme hakkımız saklıdır.
-  </div>
-  <div class="hint">
-    <div class="rules-title">ВНИМАТЕЛЬНО ИЗУЧИТЕ 5 ПРОСТЫХ ПРАВИЛ</div>
-    <ol class="rules-list">
+<ol class="rules-list">
       <li>Frazanızı her zaman <b>BÜYÜK HARFLERLE</b> yazın.</li>
       <li>Maksimum <b>45 karakter</b> ve maksimum <b>3 satır</b> kullanın.</li>
       <li>Yeni satır için <b>|</b> kullanın: <b>LIVE | LOVE | LAUGH</b>.</li>
@@ -98,8 +97,10 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
     </ol>
   </div>
   <div class="inp-row">
-    <input id="inp" value="" placeholder="FRAZIYI YAZIN...  * = 18+ rozet" maxlength="60" oninput="bwInput(false)" onblur="bwInput(true)">
-    <span class="cc" id="cc">0/45</span>
+    <input id="inp" value="" placeholder="FRAZIYI YAZIN...  * = 18+ rozet" maxlength="140" oninput="bwInput(false)" onblur="bwInput(true)">
+    <button type="button" class="insert-btn" onclick="insertPhraseToken('|')" title="Satır ekle">|</button>
+    <button type="button" class="insert-btn adult" onclick="insertPhraseToken('*')" title="18+ işareti">18+</button>
+    <span class="cc" id="cc">0/100</span>
     <select id="bg" onchange="bwGo()">
       <option value="w">Beyaz</option>
       <option value="ow">Krem</option>
@@ -244,7 +245,7 @@ function sagSlope(t,sag,span){ return 4*sag*(1-2*t)/span; }
 
 // Split raw input by | into rows (max 3)
 function parseRows(raw){
-  return bsUpper(raw).split('|').map(s=>s.trim()).filter(Boolean).slice(0,3);
+  return bsUpper(raw).split('|').map(s=>s.trim()).filter(Boolean).slice(0,7);
 }
 
 // Strip % markers from row text for layout purposes
@@ -298,6 +299,7 @@ function visLen(raw){
 
 // Apps Script Web App URL for PIM. Paste the deployed /exec URL here, NOT the Google Sheet edit URL.
 const MANAGER_MODE = true;
+const MANAGER_VERSION = 'manager_square_v1_1';
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzosg5BAbBB6WKp7RCo6-J8Z18m7JIQNOHSJrkP-zbyNl-p5nzHSN6ylTFe1xD8Cs2x/exec';
 
 
@@ -770,6 +772,9 @@ const LETTER_EXTRA = {
 function letterExtra(ch){ return LETTER_EXTRA[ch] || {top:0,bottom:0}; }
 
 function letterDims(ch, bodyH){
+  if(MANAGER_MODE && ch==='*'){
+    return { d:null, v:null, sc:1, lW:bodyH*1.12, lH:bodyH*1.12, anchorY:bodyH*.09 };
+  }
   const d = SL[ch];
   const ex = letterExtra(ch);
   if(!d){
@@ -790,21 +795,31 @@ function buildLetter(ch, bodyH, letterColor){
   oc.height = Math.max(1, Math.ceil(dim.lH));
   const cx = oc.getContext('2d');
   if(MANAGER_MODE && ch==='*'){
-    const size = Math.min(oc.width, oc.height)*0.86;
+    const size = Math.min(oc.width, oc.height)*0.96;
     const cx0 = oc.width/2, cy0 = oc.height/2;
     cx.save();
     cx.beginPath();
     cx.arc(cx0, cy0, size/2, 0, Math.PI*2);
     cx.fillStyle = '#fff';
     cx.fill();
-    cx.lineWidth = Math.max(2, size*0.08);
+    cx.lineWidth = Math.max(3, size*0.075);
     cx.strokeStyle = '#D92626';
     cx.stroke();
+
+    // Diagonal prohibition slash
+    cx.beginPath();
+    cx.lineWidth = Math.max(4, size*0.10);
+    cx.lineCap = 'round';
+    cx.moveTo(cx0 - size*0.34, cy0 + size*0.34);
+    cx.lineTo(cx0 + size*0.34, cy0 - size*0.34);
+    cx.strokeStyle = '#D92626';
+    cx.stroke();
+
     cx.fillStyle = '#D92626';
-    cx.font = '900 '+Math.max(12, Math.round(size*0.33))+"px 'Arial Black',Arial,sans-serif";
+    cx.font = '900 '+Math.max(14, Math.round(size*0.34))+"px 'Arial Black',Arial,sans-serif";
     cx.textAlign='center';
     cx.textBaseline='middle';
-    cx.fillText('18+', cx0, cy0+1);
+    cx.fillText('18+', cx0, cy0+size*0.02);
     cx.restore();
   } else if(dim.d){
     cx.save();
@@ -1052,6 +1067,51 @@ function bwDl(key){
 
 // Manager-mode overrides
 if(MANAGER_MODE){
+  const MANAGER_MAX_ROWS = 7;
+  const MANAGER_MAX_PER_ROW = 20;
+  const MANAGER_MAX_TOTAL = 100;
+  let managerRenderPending = false;
+
+  function applyManagerLimits(value, finalClean=false){
+    let val = normalizeInputValue(value || '', finalClean);
+
+    // Max 7 rows = 6 separators.
+    const maxPipes = MANAGER_MAX_ROWS - 1;
+    const pipes = val.split('|').length - 1;
+    if(pipes > maxPipes){
+      let count = 0;
+      val = val.replace(/\|/g, m => { count++; return count <= maxPipes ? m : ''; });
+    }
+
+    let total = 0;
+    const rows = val.split('|').slice(0, MANAGER_MAX_ROWS).map(seg=>{
+      let rowCount = 0;
+      let out = '';
+      for(const ch of Array.from(seg)){
+        const visible = ch !== '%';
+        if(visible){
+          if(rowCount >= MANAGER_MAX_PER_ROW) break;
+          if(total >= MANAGER_MAX_TOTAL) break;
+          rowCount++;
+          total++;
+        }
+        out += ch;
+      }
+      return out;
+    });
+
+    return rows.join('|');
+  }
+
+  function scheduleManagerRender(){
+    if(managerRenderPending) return;
+    managerRenderPending = true;
+    requestAnimationFrame(()=>{
+      managerRenderPending = false;
+      bwGo();
+    });
+  }
+
   validateForm = function(updateButtons=true){
     const phraseOK = visLen(document.getElementById('inp').value||'') > 0;
     if(updateButtons){ updateActionButtons(); }
@@ -1065,6 +1125,43 @@ if(MANAGER_MODE){
     return phraseOK;
   };
 
+  bwInput = function(finalClean=false){
+    const inp = document.getElementById('inp');
+    const cur = inp.selectionStart || 0;
+    const before = inp.value;
+    const val = applyManagerLimits(before, finalClean);
+
+    if(val !== before){
+      const delta = before.length - val.length;
+      inp.value = val;
+      const pos = Math.max(0, cur - Math.max(delta,0));
+      try{ inp.setSelectionRange(pos,pos); }catch(e){}
+    }
+
+    const len = visLen(inp.value);
+    const cc = document.getElementById('cc');
+    if(cc){
+      cc.textContent = len + '/' + MANAGER_MAX_TOTAL;
+      cc.className = 'cc' + (len > MANAGER_MAX_TOTAL ? ' over' : len > 85 ? ' warn' : '');
+    }
+
+    updateActionButtons();
+    scheduleManagerRender();
+  };
+
+  bwGo = function(){
+    const raw = document.getElementById('inp').value || 'BLACK SYMBOLS';
+    const bg=document.getElementById('bg').value;
+    const cfg=CFGS.s;
+    const off=document.createElement('canvas');
+    off.width=cfg.W; off.height=cfg.H;
+    renderTo(off,cfg.W,cfg.H,raw,bg,'s');
+    CACHE.s=off;
+    const cv=CVS.s;
+    cv.width=cfg.W; cv.height=cfg.H;
+    cv.getContext('2d').drawImage(off,0,0);
+  };
+
   resetModeration = function(showNeed=false){
     moderationState = 'green';
     lastModeratedSignature = phraseModerationSignature();
@@ -1072,13 +1169,25 @@ if(MANAGER_MODE){
     updateActionButtons();
   };
 
+  insertPhraseToken = function(token){
+    const inp = document.getElementById('inp');
+    inp.focus();
+    const start = inp.selectionStart ?? inp.value.length;
+    const end = inp.selectionEnd ?? inp.value.length;
+    inp.value = inp.value.slice(0,start) + token + inp.value.slice(end);
+    const pos = start + token.length;
+    bwInput(false);
+    try{ inp.setSelectionRange(pos,pos); }catch(e){}
+  };
+
   bwDl = function(key){
     if(key !== 's') return;
     bwInput(true);
     if(!validateForm()) return;
-    const off=CACHE['s']; if(!off) return;
+    if(!CACHE.s) bwGo();
+    const off=CACHE.s; if(!off) return;
     const slugSource = normalizeInputValue(document.getElementById('inp').value||'', true) || 'BS';
-    const slug=stripAccent(slugSource).replace(/[|]/g,'-').trim().slice(0,18).replace(/[^A-Za-zА-Яа-я0-9*]+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'').toLowerCase() || 'bs';
+    const slug=stripAccent(slugSource).replace(/[|]/g,'-').trim().slice(0,30).replace(/[^A-Za-zА-Яа-я0-9*]+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'').toLowerCase() || 'bs';
     const fname='bs_square_'+slug+'.jpg';
     off.toBlob(function(blob){
       const url=URL.createObjectURL(blob);
@@ -1185,10 +1294,10 @@ PHRASE_GROUPS.forEach(group=>{
   pc.appendChild(box);
 });
 
-function init(){ defaultPhonePrefix(); sanitizePhoneInput(); validateForm(); bwInput(); }
+function init(){ validateForm(); bwInput(); }
 if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',init); }
 else{ setTimeout(init,0); }
-window.addEventListener('resize',()=>{ clearTimeout(window._rt); window._rt=setTimeout(bwGo,200); });
+window.addEventListener('resize',()=>{ clearTimeout(window._rt); window._rt=setTimeout(bwGo,120); });
 </script>
 </body>
 </html>
