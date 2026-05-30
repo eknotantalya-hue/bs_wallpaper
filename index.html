@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Black Symbols — Duvar Kağıdı v3.8</title>
+<title>Black Symbols — Duvar Kağıdı v4.0 Social Gate</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -40,6 +40,7 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
 .btn.desktop{background:#111;color:#fff;border:1.5px solid #111}
 .btn.square{background:#111;color:#fff;border:1.5px solid #111}
 .temp-hide{display:none !important}
+.hp-field{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important}
 .rules-title{font-family:"Arial Black",Arial,sans-serif;font-size:.72rem;line-height:1.5;letter-spacing:.08em;text-align:center;margin:0 0 8px;color:#111}
 .rules-list{padding-left:18px;margin:0}.rules-list li{margin:4px 0}
 .btn.g{background:#fff;color:#555;border:1.5px solid #ddd}
@@ -74,15 +75,40 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
   .pv{width:100%}
   .dlr{flex-direction:column}
 }
+
+.hidden{display:none!important}
+.flowblock{background:#fff;border:1.5px solid #ddd;border-radius:6px;padding:12px;margin-bottom:12px;width:100%;font-family:"Arial Black",Arial,sans-serif}
+.flowblock h3{font-size:.72rem;letter-spacing:.08em;color:#111;margin-bottom:8px}
+.flowblock p{font-size:.62rem;line-height:1.6;color:#666;margin-bottom:8px}
+.flow-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.social-btn,.mini-btn{flex:1;min-width:110px;background:#111;color:#fff;border:1.5px solid #111;border-radius:4px;padding:10px 8px;font-family:"Arial Black",Arial,sans-serif;font-size:.68rem;letter-spacing:.04em;cursor:pointer;text-align:center;text-decoration:none}
+.social-btn.instagram{background:#E4405F;border-color:#E4405F}
+.social-btn.tiktok{background:#111;border-color:#111}
+.social-btn.pinterest{background:#BD081C;border-color:#BD081C}
+.social-btn.youtube{background:#FF0000;border-color:#FF0000}
+.mini-btn.light{background:#fff;color:#111;border-color:#ddd}
+.mini-btn.orange{background:#FF8700;color:#fff;border-color:#FF8700}
+.mini-btn.red{background:#fff;color:#c44;border-color:#c44}
+.notice-inline{font-family:"Arial Black",Arial,sans-serif;font-size:.6rem;line-height:1.55;color:#666;margin-top:7px}
+.notice-inline.ok{color:#277a3e}.notice-inline.warn{color:#a66a00}.notice-inline.red{color:#c44}
+.nav-cta{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.nav-cta a{flex:1;min-width:110px;background:#111;color:#fff;border-radius:4px;padding:10px 8px;text-align:center;text-decoration:none;font-family:"Arial Black",Arial,sans-serif;font-size:.64rem;letter-spacing:.04em}
+.download-promo{display:none;background:#fff6ea;border:1.5px solid #FF8700;border-radius:6px;padding:11px;margin-bottom:12px;font-family:"Arial Black",Arial,sans-serif;font-size:.62rem;line-height:1.55;color:#4b3a22}
+.download-promo.show{display:block}
+.contact-title-status{font-family:"Arial Black",Arial,sans-serif;font-size:.62rem;line-height:1.55;color:#666;margin-bottom:10px}
+
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="site">blacksymbols.com</div>
   <div class="sub">ÜCRETSİZ DUVAR KAĞIDI OLUŞTURUCU</div>
+
   <div class="policy">
-    <b>Bu ücretsiz oluşturucu</b>, kişisel ifadelerinizi ve duygularınızı eğlenceli bir duvar kağıdı olarak hazırlamanız için tasarlanmıştır. Black Symbols; şiddet çağrısı, nefret söylemi, dinlerin/kutsal değerlerin, devletlerin, ülkelerin, ulusların veya halkların aşağılanması, çocuk istismarı, cinsel şiddet, terör, ayrılıkçılık, yasa dışı eylem çağrısı veya eğlence amaçlı içerik fikriyle çelişen metinlerde yer almak istemez. Bu nedenle, gerekli gördüğümüz ifadeleri hukuk birimimizin moderasyonuna yönlendirme hakkımız saklıdır.
+    <b>BLACK SYMBOLS</b>, kişisel ifadeleri ve duyguları görsel bir dile dönüştüren eğlenceli bir ifade aracıdır.
+    Bu oluşturucuya girilen her ifade BLACK SYMBOLS tarafından incelenebilir, ilham kaynağı olarak kullanılabilir ve uygun görülürse blacksymbols.com üzerinde hazır ürün / cümle fikri olarak yayımlanabilir.
   </div>
+
   <div class="hint">
     <div class="rules-title">ВНИМАТЕЛЬНО ИЗУЧИТЕ 5 ПРОСТЫХ ПРАВИЛ</div>
     <ol class="rules-list">
@@ -93,6 +119,17 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
       <li>Türkçe, İngilizce ve Rusça harfler desteklenir.</li>
     </ol>
   </div>
+
+  <div class="flowblock" id="culture-block">
+    <h3>BLACK SYMBOLS ALT KÜLTÜRÜNÜN BİR PARÇASI OL</h3>
+    <p>Kendi cümleni öner — belki de senin ifaden başka insanlara ilham verir. Black Symbols dünyasına katıl, fikir üret, paylaş ve kendi tarzını duvara taşı.</p>
+    <div class="nav-cta">
+      <a href="https://blacksymbols.com/" target="_blank">ANA SAYFA</a>
+      <a href="https://blacksymbols.com/store" target="_blank">MAĞAZA</a>
+      <a href="https://blacksymbols.com/individual" target="_blank">KENDİ HARF SÜSÜNÜ OLUŞTUR</a>
+    </div>
+  </div>
+
   <div class="inp-row">
     <input id="inp" value="" placeholder="YAZINIZI GİRİN..." maxlength="60" oninput="bwInput(false)" onblur="bwInput(true)">
     <span class="cc" id="cc">0/45</span>
@@ -103,60 +140,102 @@ select{background:#fff;border:1.5px solid #ddd;color:#111;font-family:"Bebas Neu
       <option value="bk">Siyah</option>
     </select>
   </div>
+
   <div class="pvs">
     <div class="pv" id="pv-phone"><div class="pvl">TELEFON 9:16</div><canvas id="cp"></canvas></div>
     <div class="pv" id="pv-desktop"><div class="pvl">MASAÜSTÜ 16:9</div><canvas id="cd"></canvas></div>
     <div class="pv temp-hide" id="pv-square"><div class="pvl">KARE 1:1</div><canvas id="cs"></canvas></div>
   </div>
-  <!-- Customer data block -->
-  <div class="cblock" id="cblock">
-    <h3>BİLGİLERİNİZİ GİRİN — İNDİRMEK İÇİN GEREKLİ</h3>
+
+  <div class="flowblock" id="social-gate">
+    <h3>ÜCRETSİZ GÖRSEL İÇİN BİZE DESTEK OL</h3>
+    <p>Bu araç ücretsizdir. Görselinizi hazırlamak için BLACK SYMBOLS sosyal medya hesaplarından birini takip ederek bize destek olun.</p>
+    <div class="flow-actions">
+      <button class="social-btn instagram" onclick="socialGateClick('instagram')">Instagram</button>
+      <button class="social-btn tiktok" onclick="socialGateClick('tiktok')">TikTok</button>
+      <button class="social-btn pinterest" onclick="socialGateClick('pinterest')">Pinterest</button>
+      <button class="social-btn youtube" onclick="socialGateClick('youtube')">YouTube</button>
+    </div>
+    <div id="social-click-note" class="notice-inline hidden"></div>
+    <div class="flow-actions hidden" id="social-confirm-row">
+      <button class="mini-btn orange" onclick="confirmSocialGate()">TAKİP ETTİM, DEVAM ET</button>
+    </div>
+  </div>
+
+  <div class="savehint" id="savehint">📱 Resme <b>uzun bas &rarr; Fotoğraflara kaydet</b></div>
+
+  <div class="modrow">
+    <button class="btn mod disabled" id="btn-mod" onclick="runModeration()">GÖRSELİ HAZIRLA</button>
+  </div>
+
+  <div class="modmsg" id="modmsg"></div>
+
+  <div class="flowblock hidden" id="decision-block">
+    <h3 id="decision-title">BLACK SYMBOLS KONTROLÜ</h3>
+    <p id="decision-text"></p>
+    <div class="flow-actions" id="decision-actions"></div>
+  </div>
+
+  <div class="cblock hidden" id="cblock">
+    <h3>İLETİŞİM FORMU — MANUEL KONTROL İÇİN</h3>
+    <div class="contact-title-status" id="contact-context"></div>
+    <input class="hp-field" type="text" id="cwebsite" name="website" autocomplete="off" tabindex="-1" aria-hidden="true">
     <div class="crow">
       <div class="cfield">
         <label>Ad Soyad *</label>
-        <input type="text" id="cname" placeholder="Adınız Soyadınız" autocomplete="name" required oninput="sanitizeNameInput(); validateForm()">
+        <input type="text" id="cname" placeholder="Adınız Soyadınız" autocomplete="name" oninput="sanitizeNameInput(); validateContactForm()">
       </div>
       <div class="cfield">
         <label>Telefon *</label>
-        <input type="tel" id="cphone" value="+90" placeholder="+905346137011" inputmode="tel" autocomplete="tel" required onfocus="defaultPhonePrefix()" oninput="sanitizePhoneInput(); validateForm()" onblur="sanitizePhoneInput(); validateForm()">
+        <input type="tel" id="cphone" value="+90" placeholder="+905346137011" inputmode="tel" autocomplete="tel" onfocus="defaultPhonePrefix()" oninput="sanitizePhoneInput(); validateContactForm()" onblur="sanitizePhoneInput(); validateContactForm()">
       </div>
     </div>
     <div class="cfield">
       <label>Sosyal Medya *</label>
       <div class="crow" style="align-items:center">
-        <select id="csocial" style="max-width:120px;flex:0 0 auto" required onchange="validateForm()">
+        <select id="csocial" style="max-width:120px;flex:0 0 auto" onchange="validateContactForm()">
           <option value="">Seçin</option>
           <option value="instagram">Instagram</option>
           <option value="tiktok">TikTok</option>
           <option value="twitter">Twitter/X</option>
           <option value="facebook">Facebook</option>
+          <option value="youtube">YouTube</option>
           <option value="other">Diğer</option>
         </select>
         <div class="cfield" style="flex:1;margin:0">
-          <input type="text" id="cnick" placeholder="@kullanıcıadı" autocomplete="off" required oninput="validateForm()">
+          <input type="text" id="cnick" placeholder="@kullanıcıadı" autocomplete="off" oninput="validateContactForm()">
         </div>
       </div>
     </div>
     <div class="ccheck">
-      <input type="checkbox" id="ckvkk" required onchange="validateForm()">
-      <span><a href="https://blacksymbols.com/kvkk" target="_blank">KVKK</a>'yı okudum, kişisel verilerimin işlenmesine ve haber bültenine izin veriyorum *</span>
+      <input type="checkbox" id="ckvkk" onchange="validateContactForm()">
+      <span><a href="https://blacksymbols.com/kvkk" target="_blank">KVKK</a>'yı okudum; kişisel verilerimin iletişim, moderasyon ve değerlendirme amacıyla işlenmesini kabul ediyorum *</span>
     </div>
     <div class="ccheck">
-      <input type="checkbox" id="cpub" required onchange="validateForm()">
-      <span>Cümlemi blacksymbols.com sitesinde yayımlamayı kabul ediyorum *</span>
+      <input type="checkbox" id="cpub" onchange="validateContactForm()">
+      <span>Cümlemi blacksymbols.com sitesinde yayımlamayı ve ürün / hazır cümle fikri olarak kullanılmasını kabul ediyorum *</span>
+    </div>
+    <div class="flow-actions">
+      <button class="mini-btn orange disabled" id="btn-contact-submit" onclick="submitContactForm()">FORMU GÖNDER</button>
+      <button class="mini-btn light" onclick="hideContactForm()">VAZGEÇ</button>
     </div>
   </div>
 
-  <div class="savehint" id="savehint">📱 Resme <b>uzun bas &rarr; Fotoğraflara kaydet</b></div>
-  <div class="modrow">
-    <button class="btn mod disabled" id="btn-mod" onclick="runModeration()">CÜMLEYİ KONTROL ET</button>
+  <div class="download-promo" id="download-promo">
+    <b>BLACK SYMBOLS alt kültürünün bir parçası ol.</b><br>
+    Kendi cümleni öner — belki de senin ifaden başka insanlara ilham verir. Yakında Black Coin ile katılımını ödüllendireceğiz.
+    <div class="flow-actions">
+      <a class="mini-btn orange" href="https://blacksymbols.com/cumle-oner" target="_blank">CÜMLE ÖNER</a>
+      <button class="mini-btn light" onclick="hideDownloadPromo()">KAPAT</button>
+    </div>
   </div>
-  <div class="modmsg" id="modmsg"></div>
+
   <div class="dlr">
     <button class="btn phone disabled" id="btn-p" onclick="bwDl('p')">&#8595; TELEFON İÇİN İNDİR</button>
     <button class="btn desktop disabled" id="btn-d" onclick="bwDl('d')">&#8595; MASAÜSTÜ İÇİN İNDİR</button>
     <button class="btn square disabled temp-hide" id="btn-s" onclick="bwDl('s')">&#8595; KARE İÇİN İNDİR</button>
   </div>
+
   <div class="ph">HIZLI CÜMLELER - Ruh Haline Göre</div>
   <div class="ps" id="ps"></div>
 </div>
@@ -303,14 +382,176 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzosg5BAbBB6WKp
 
 
 
+const MODERATION_VERSION = 'wallpaper_v4_0_social_gate_client_rules';
 let moderationState = 'pending'; // pending | green | yellow | red
 let lastModeratedSignature = '';
 let lastModerationResult = null;
+let lastRedPimSignatureSent = '';
+let socialGateDone = false;
+let clickedSocial = '';
+let socialClickedAt = '';
+let downloadUnlocked = false;
+let currentDecision = '';
+let contactSubmittedForCurrentPhrase = false;
 
-const MODERATION_TEXT_GREEN = 'Cümleniz kontrol edildi. Görsellerinizi indirebilirsiniz.';
-const MODERATION_TEXT_YELLOW = 'Cümlenizde hassas / küfürlü kelimeler tespit edildi. Görsellerinizde bu kelimelerde yalnızca 1 harf * ile maskelenmiştir. İndirme yapabilirsiniz. Orijinal içerik gerekli görülürse ayrıca BLACK SYMBOLS ekibi tarafından incelenebilir.';
-const MODERATION_TEXT_RED = 'Cümleniz, BLACK SYMBOLS eğlence ve ifade özgürlüğü kurallarına göre otomatik indirme için uygun bulunmadı. Hukuk ekibimizin moderasyonuna iletilecektir. Onay verilirse size ayrıca bilgi paylaşılacaktır.';
-const MODERATION_TEXT_NEED = 'İndirme düğmelerini açmak için önce cümlenizi kontrol edin.';
+const MODERATION_TEXT_GREEN = 'Cümleniz hazır. Görsellerinizi indirebilirsiniz.';
+const MODERATION_TEXT_YELLOW = 'Cümlenizde hassas / küfürlü kelimeler tespit edildi. Otomatik görselde bu kelimelerde yalnızca 1 harf * ile maskelenir.';
+const MODERATION_TEXT_RED = 'Cümleniz BLACK SYMBOLS kurallarına göre otomatik indirme için uygun bulunmadı.';
+const MODERATION_TEXT_NEED = 'Önce sosyal medya destek adımını tamamlayın ve GÖRSELİ HAZIRLA düğmesine basın.';
+
+// Update these links after your official social URLs are final.
+const SOCIAL_LINKS = {
+  instagram:'https://www.instagram.com/blacksymbolscom/',
+  tiktok:'https://www.tiktok.com/@blacksymbols',
+  pinterest:'https://www.pinterest.com/blacksymbols/',
+  youtube:'https://www.youtube.com/@blacksymbols'
+};
+
+function el(id){ return document.getElementById(id); }
+function show(id){ const x=el(id); if(x) x.classList.remove('hidden'); }
+function hide(id){ const x=el(id); if(x) x.classList.add('hidden'); }
+
+function socialGateClick(network){
+  clickedSocial = network;
+  socialClickedAt = new Date().toISOString();
+  const url = SOCIAL_LINKS[network] || '';
+  if(url) window.open(url, '_blank', 'noopener,noreferrer');
+
+  const note = el('social-click-note');
+  if(note){
+    note.textContent = (network || '').toUpperCase() + ' açıldı. Takip ettikten sonra devam edebilirsiniz.';
+    note.className = 'notice-inline ok';
+  }
+  show('social-confirm-row');
+  updateActionButtons();
+}
+
+function confirmSocialGate(){
+  if(!clickedSocial){
+    const note = el('social-click-note');
+    if(note){
+      note.textContent = 'Lütfen önce sosyal medya hesaplarımızdan birini açın.';
+      note.className = 'notice-inline warn';
+    }
+    return;
+  }
+  socialGateDone = true;
+  const note = el('social-click-note');
+  if(note){
+    note.textContent = 'Teşekkürler. Şimdi görselinizi hazırlayabilirsiniz.';
+    note.className = 'notice-inline ok';
+  }
+  updateActionButtons();
+}
+
+function mainPhraseOK(){
+  return visLen(el('inp').value || '') > 0;
+}
+
+function resetFlowOnPhraseChange(){
+  moderationState = 'pending';
+  lastModeratedSignature = '';
+  lastModerationResult = null;
+  downloadUnlocked = false;
+  currentDecision = '';
+  contactSubmittedForCurrentPhrase = false;
+  hide('decision-block');
+  hide('cblock');
+  hide('download-promo');
+  setModerationMessage('', '');
+}
+
+function showDecision(type, text, actionsHtml){
+  currentDecision = type;
+  const title = el('decision-title');
+  const body = el('decision-text');
+  const actions = el('decision-actions');
+  if(title) title.textContent = type === 'yellow' ? 'MASKELENMİŞ GÖRSEL' : 'MANUEL KONTROL GEREKLİ';
+  if(body) body.textContent = text || '';
+  if(actions) actions.innerHTML = actionsHtml || '';
+  show('decision-block');
+}
+
+function continueYellowWithoutForm(){
+  downloadUnlocked = true;
+  hide('cblock');
+  hide('decision-block');
+  setModerationMessage('yellow', 'Maskelenmiş görseli indirebilirsiniz.');
+  updateActionButtons();
+}
+
+function openContactForm(mode){
+  currentDecision = mode;
+  const ctx = el('contact-context');
+  if(ctx){
+    ctx.textContent = mode === 'yellow'
+      ? 'Orijinal versiyonun kontrol edilmesini ve onaylanırsa size gönderilmesini istiyorsanız iletişim bilgilerinizi bırakın. Maskelenmiş görseli yine indirebilirsiniz.'
+      : 'İfadeniz hukuk / moderasyon ekibi tarafından incelenir. Onay verilirse sizinle iletişime geçilir.';
+  }
+  show('cblock');
+  validateContactForm();
+}
+
+function hideContactForm(){
+  hide('cblock');
+  validateContactForm();
+}
+
+function redDecline(){
+  sendToPim(collectCustomerPayloadBase({
+    event_type:'red_declined',
+    contact_requested:'false',
+    manual_review_needed:'false',
+    input_reset:'true',
+    download_blocked:'true',
+    download_allowed:'false'
+  }));
+  el('inp').value = '';
+  resetFlowOnPhraseChange();
+  bwInput(true);
+  bwGo();
+}
+
+function submitContactForm(){
+  if(!validateContactForm(true)){
+    alert('Lütfen iletişim formundaki zorunlu alanları doldurun ve onay kutularını işaretleyin.');
+    return false;
+  }
+  contactSubmittedForCurrentPhrase = true;
+  const isRed = currentDecision === 'red' || moderationState === 'red';
+  sendToPim(collectCustomerPayloadBase({
+    event_type:'manual_review_request',
+    contact_requested:'true',
+    manual_review_needed:'true',
+    download_blocked:isRed?'true':'false',
+    download_allowed:isRed?'false':'true'
+  }));
+
+  if(isRed){
+    downloadUnlocked = false;
+    hide('cblock');
+    hide('decision-block');
+    setModerationMessage('red', 'Talebiniz hukuk / moderasyon kontrolüne iletildi. Sonuç hakkında sizinle iletişime geçilecektir.');
+  } else {
+    downloadUnlocked = true;
+    hide('cblock');
+    hide('decision-block');
+    setModerationMessage('yellow', 'Talebiniz BLACK SYMBOLS ekibine iletildi. Bu sırada maskelenmiş görseli indirebilirsiniz.');
+  }
+  updateActionButtons();
+  return true;
+}
+
+function showDownloadPromo(){
+  const box = el('download-promo');
+  if(box){ box.classList.add('show'); }
+}
+
+function hideDownloadPromo(){
+  const box = el('download-promo');
+  if(box){ box.classList.remove('show'); }
+}
+
 
 // YELLOW: profanity / hype words. They are NOT blocked. One internal letter is masked with * in visuals, download stays allowed.
 const YELLOW_RULES = [
@@ -328,11 +569,11 @@ const YELLOW_RULES = [
 const RED_RULES = [
   {cat:'violence', terms:[
     // EN
-    'KILL*','MURDER*','EXECUTE','EXECUTION','DEATH','DIE','DEAD','BOMB*','BLOOD','VIOLENCE','VIOLENT','RAPE*','ABUSE*','TORTURE*','BEAT','LYNCH*','MASSACRE','GENOCIDE','SHOOT*','STAB*','BURN','HANG','DESTROY','ATTACK*','WEAPON*','GUN','KNIFE',
+    'KILL*','MURDER*','EXECUTE','EXECUTION','DEATH','DIE','DEAD','BOMB*','BLOOD','VIOLENCE','VIOLENT','RAPE*','ABUSE*','TORTURE*','BEAT','LYNCH*','MASSACRE','GENOCIDE','SHOOT*','STAB*','BURN','HANG','DESTROY','ATTACK*','WEAPON*','GUN','PISTOL*','RIFLE*','KNIFE',
     // TR
-    'OLDUR*','OLUM','OL','GEBER*','KATIL','CINAYET','INFAZ','BOMBA*','KAN','SIDDET','TECAVUZ*','ISTISMAR*','ISKENCE*','DOV','LINÇ','LINC','KATLİAM','KATLIAM','SOYKIRIM','VUR','BICAK','YAK','SALDIR*','SILAH',
+    'OLDUR*','OLUM','OL','GEBER*','KATIL','CINAYET','INFAZ','BOMBA*','KAN','SIDDET','TECAVUZ*','ISTISMAR*','ISKENCE*','DOV','LINÇ','LINC','KATLİAM','KATLIAM','SOYKIRIM','VUR','BICAK','YAK','SALDIR*','SILAH*','TABANCA*','TUFEK*',
     // RU
-    'УБЕЙ*','УБИТЬ','УБИЙ*','УБЬЮ','УМРИ','СМЕРТЬ','МЕРТВ*','БОМБ*','КРОВ*','НАСИЛ*','ИЗНАСИЛ*','ПЫТК*','БЕЙ','ИЗБЕЙ','ЛИНЧ*','МАССОВОЕ УБИЙСТВО','ГЕНОЦИД','СТРЕЛЯ*','ЗАРЕЖ*','СЖЕЧЬ','ПОВЕС*','УНИЧТОЖ*','АТАК*','ОРУЖ*','ПИСТОЛЕТ','НОЖ'
+    'УБЕЙ*','УБИТЬ','УБИЙ*','УБЬЮ','УМРИ','СМЕРТЬ','МЕРТВ*','БОМБ*','КРОВ*','НАСИЛ*','ИЗНАСИЛ*','ПЫТК*','БЕЙ','ИЗБЕЙ','ЛИНЧ*','МАССОВОЕ УБИЙСТВО','ГЕНОЦИД','СТРЕЛЯ*','ЗАРЕЖ*','СЖЕЧЬ','ПОВЕС*','УНИЧТОЖ*','АТАК*','ОРУЖ*','ПИСТОЛЕТ*','СТВОЛ','АВТОМАТ','НОЖ'
   ]},
   {cat:'child_safety', terms:[
     // EN
@@ -352,7 +593,7 @@ const RED_RULES = [
   ]},
   {cat:'politics_state', terms:[
     // EN
-    'PRESIDENT','GOVERNMENT','STATE','PARLIAMENT','MINISTER','ELECTION','VOTE','REGIME','DICTATOR*','KING','QUEEN','ARMY','POLICE','COURT','LAW','ERDOGAN*','PUTIN*','ZELENSKY*','ZELENSKYY*','TRUMP*','BIDEN*','OBAMA*','NETANYAHU*',
+    'PRESIDENT','GOVERNMENT','STATE','PARLIAMENT','MINISTER','ELECTION','VOTE','REGIME','DICTATOR*','KING','QUEEN','ARMY','POLICE','COURT','LAW','ERDOGAN*','PUTIN*','PUTINA*','ZELENSKY*','ZELENSKYY*','TRUMP*','BIDEN*','OBAMA*','NETANYAHU*',
     // TR
     'BASKAN','CUMHURBASKANI','HUKUMET','DEVLET','MECLIS','BAKAN','SECIM','OY VER','REJIM','DIKTATOR*','KRAL','KRALICE','ORDU','POLIS','MAHKEME','KANUN','ERDOGAN*','PUTIN*','ZELENSKI*','TRUMP*','BIDEN*','NETANYAHU*',
     // RU
@@ -389,6 +630,12 @@ function normalizeForModeration(text){
     .replace(/%/g,' ')
     .replace(/\|/g,' ')
     .replace(/Ё/g,'Е').replace(/ё/g,'е')
+    .replace(/[0]/g,'O')
+    .replace(/[1!]/g,'I')
+    .replace(/[3]/g,'E')
+    .replace(/[4@]/g,'A')
+    .replace(/[5$]/g,'S')
+    .replace(/[7]/g,'T')
     .normalize('NFKD')
     .replace(/[\u0300-\u036f]/g,'')
     .replace(/İ/g,'I').replace(/ı/g,'I')
@@ -398,27 +645,67 @@ function normalizeForModeration(text){
     .trim();
 }
 
+function compactForModeration(text){
+  return normalizeForModeration(text).replace(/\s+/g,'');
+}
+
 function phraseModerationSignature(){
   return normalizeForModeration(normalizeInputValue(document.getElementById('inp').value||'', true));
 }
 
 function escapeRegExp(str){ return String(str).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
 
+function termMeta(term){
+  let raw = String(term || '');
+  const prefix = /\*$/.test(raw);
+  let normalized = normalizeForModeration(raw);
+  if(prefix) normalized = normalized.replace(/\*+$/,'');
+  const compact = normalized.replace(/\s+/g,'');
+  return {raw, prefix, normalized, compact};
+}
+
 function termToRegExp(term){
-  let t = normalizeForModeration(term);
-  const prefix = /\*$/.test(String(term));
-  if(prefix) t = t.replace(/\*+$/,'');
-  if(!t) return null;
-  const pattern = escapeRegExp(t).replace(/\\ /g,'\\s+');
-  return new RegExp('(^|\\s)' + pattern + (prefix ? '[A-ZА-ЯЕ0-9]*' : '') + '(?=\\s|$)', 'i');
+  const m = termMeta(term);
+  if(!m.normalized) return null;
+  const pattern = escapeRegExp(m.normalized).replace(/\\ /g,'\\s+');
+  return new RegExp('(^|\\s)' + pattern + (m.prefix ? '[A-ZА-ЯЕ0-9]*' : '') + '(?=\\s|$)', 'i');
+}
+
+function spacedLetterRegExp(term){
+  const m = termMeta(term);
+  if(!m.compact || m.compact.length < 4) return null;
+  const letters = Array.from(m.compact).map(ch=>escapeRegExp(ch)).join('\\s*');
+  return new RegExp('(^|\\s)' + letters + (m.prefix ? '(?:\\s*[A-ZА-ЯЕ0-9])*' : '') + '(?=\\s|$)', 'i');
+}
+
+function compactMatch(normalized, term){
+  const m = termMeta(term);
+  // Compact match is used only for multi-word high-risk terms, e.g. CHILD ABUSE -> CHILDABUSE.
+  // It is NOT used for one-word roots such as KILL, to avoid false positives like SKILL.
+  if(!m.normalized.includes(' ') || !m.compact || m.compact.length < 6) return false;
+  const compactPhrase = normalized.replace(/\s+/g,'');
+  return compactPhrase.includes(m.compact);
 }
 
 function findRuleHits(normalized, rules){
   const hits = [];
+  const seen = new Set();
   rules.forEach(rule=>{
     (rule.terms||[]).forEach(term=>{
+      const meta = termMeta(term);
+      if(!meta.normalized) return;
       const re = termToRegExp(term);
-      if(re && re.test(normalized)) hits.push({cat:rule.cat, term:normalizeForModeration(term).replace(/\*+$/,'')});
+      const spacedRe = spacedLetterRegExp(term);
+      const matched = (re && re.test(normalized)) ||
+                      (spacedRe && spacedRe.test(normalized)) ||
+                      compactMatch(normalized, term);
+      if(matched){
+        const key = rule.cat + '|' + meta.normalized;
+        if(!seen.has(key)){
+          seen.add(key);
+          hits.push({cat:rule.cat, term:meta.normalized});
+        }
+      }
     });
   });
   return hits;
@@ -554,8 +841,10 @@ function getRenderPhraseRaw(){
 function collectCustomerPayloadBase(extra={}){
   const raw = normalizeInputValue(document.getElementById('inp').value||'', true);
   const active = getActiveModerationResult() || checkPhraseModeration(raw);
-  const pub = document.getElementById('cpub').checked;
-  return Object.assign({
+  const kvkk = !!(el('ckvkk') && el('ckvkk').checked);
+  const pub = !!(el('cpub') && el('cpub').checked);
+  const contactRequested = String(extra.contact_requested || (contactSubmittedForCurrentPhrase ? 'true' : 'false')) === 'true';
+  const base = {
     created_at:new Date().toISOString(),
     source:'wallpaper',
     phrase:active.phrase_original,
@@ -573,6 +862,10 @@ function collectCustomerPayloadBase(extra={}){
     moderation_reason:active.moderation_reason,
     download_allowed:active.download_allowed?'true':'false',
     visual_mode:active.visual_mode,
+    logo_visible:active.status === 'RED' ? 'false' : 'true',
+    moderation_version:MODERATION_VERSION,
+    moderation_source:'client_local_rules',
+    moderation_engine:'black_symbols_local_regex_v4_0',
     phrase_masked:active.phrase_visual,
     phrase_for_display:active.phrase_visual,
     phrase_display:active.phrase_visual,
@@ -581,25 +874,38 @@ function collectCustomerPayloadBase(extra={}){
     status:active.status,
     moderation_categories:(active.categories||[]).join(','),
     moderation_checked_at:new Date().toISOString(),
+    pim_payload_json:JSON.stringify({moderation_status:active.status, phrase_original:active.phrase_original, phrase_visual:active.phrase_visual, phrase_clean:active.phrase_clean, detected_terms:active.detected_terms||[], risk_category:active.categories||[], visual_mode:active.visual_mode, download_allowed:!!active.download_allowed, moderation_version:MODERATION_VERSION}),
     background:document.getElementById('bg').value,
-    customer_name:(document.getElementById('cname').value||'').trim(),
-    customer_phone:phoneForPim(),
-    social_network:document.getElementById('csocial').value||'',
-    social_nickname:(document.getElementById('cnick').value||'').trim(),
-    consent_kvkk:'true', consent_publish:pub?'true':'false', consent_legal:'true',
+    social_gate_done:socialGateDone?'true':'false',
+    social_gate_network:clickedSocial || '',
+    social_gate_clicked_at:socialClickedAt || '',
+    contact_requested:contactRequested?'true':'false',
+    customer_name:contactRequested ? ((el('cname')||{}).value||'').trim() : '',
+    customer_phone:contactRequested ? phoneForPim() : '',
+    social_network:contactRequested ? ((el('csocial')||{}).value||'') : '',
+    social_nickname:contactRequested ? ((el('cnick')||{}).value||'').trim() : '',
+    consent_kvkk:contactRequested && kvkk ? 'true':'false',
+    consent_publish:contactRequested && pub ? 'true':'false',
+    consent_phrase_site:contactRequested && pub ? 'true':'false',
+    consent_legal:contactRequested && kvkk ? 'true':'false',
     page_url:getSourcePageUrl(),
     iframe_url:location.href,
     referrer_url:document.referrer || '',
     user_agent:navigator.userAgent
-  }, extra);
+  };
+  return Object.assign(base, extra);
 }
 
 function updateActionButtons(){
-  const formOK = validateForm(false);
+  const phraseOK = mainPhraseOK();
   const sig = phraseModerationSignature();
-  const approved = formOK && (moderationState === 'green' || moderationState === 'yellow') && lastModeratedSignature === sig;
+  const preparedSamePhrase = lastModeratedSignature && sig === lastModeratedSignature && lastModerationResult;
+  const modReady = phraseOK && socialGateDone;
+
   const modBtn = document.getElementById('btn-mod');
-  if(modBtn) modBtn.classList.toggle('disabled', !formOK);
+  if(modBtn) modBtn.classList.toggle('disabled', !modReady);
+
+  const approved = phraseOK && preparedSamePhrase && downloadUnlocked && (moderationState === 'green' || moderationState === 'yellow');
   ['btn-p','btn-d','btn-s'].forEach(id=>{
     const b = document.getElementById(id);
     if(b){ b.classList.toggle('disabled', !approved); }
@@ -609,40 +915,55 @@ function updateActionButtons(){
 
 function runModeration(){
   bwInput(true);
-  if(!validateForm(true)) return;
+  if(!mainPhraseOK()){
+    alert('Lütfen önce bir cümle yazın.');
+    return false;
+  }
+  if(!socialGateDone){
+    alert('Görseli hazırlamak için önce sosyal medya destek adımını tamamlayın.');
+    return false;
+  }
+
   const raw = normalizeInputValue(document.getElementById('inp').value||'', true);
   const result = checkPhraseModeration(raw);
   lastModeratedSignature = phraseModerationSignature();
   lastModerationResult = result;
+  contactSubmittedForCurrentPhrase = false;
+  hide('cblock');
+  hide('decision-block');
+  hide('download-promo');
 
   if(result.status === 'GREEN'){
     moderationState = 'green';
+    downloadUnlocked = true;
     setModerationMessage('ok', MODERATION_TEXT_GREEN);
     updateActionButtons();
     bwGo();
-    alert(MODERATION_TEXT_GREEN);
     return true;
   }
 
   if(result.status === 'YELLOW'){
     moderationState = 'yellow';
+    downloadUnlocked = false;
     setModerationMessage('yellow', MODERATION_TEXT_YELLOW);
+    showDecision('yellow',
+      'Bu haliyle * ile maskelenmiş görseli indirebilirsiniz. Orijinal versiyonun kontrol edilmesini ve onaylanırsa size gönderilmesini isterseniz iletişim formunu doldurabilirsiniz.',
+      `<button class="mini-btn orange" onclick="openContactForm('yellow')">FORMU DOLDUR</button><button class="mini-btn light" onclick="continueYellowWithoutForm()">FORMU DOLDURMADAN DEVAM ET</button>`
+    );
     updateActionButtons();
     bwGo();
-    alert(MODERATION_TEXT_YELLOW);
     return true;
   }
 
   moderationState = 'red';
+  downloadUnlocked = false;
   setModerationMessage('red', MODERATION_TEXT_RED);
+  showDecision('red',
+    'İsterseniz iletişim formunu doldurabilirsiniz. İfadeniz hukuk / moderasyon ekibi tarafından incelenir. Onay verilirse görseliniz size gönderilir.',
+    `<button class="mini-btn orange" onclick="openContactForm('red')">FORMU DOLDUR</button><button class="mini-btn red" onclick="redDecline()">VAZGEÇ</button>`
+  );
   updateActionButtons();
   bwGo();
-  alert(MODERATION_TEXT_RED);
-
-  // RED goes to PIM immediately because download is blocked.
-  sendToPim(collectCustomerPayloadBase({
-    format:'blocked', filename:'', download_blocked:'true'
-  }));
   return false;
 }
 
@@ -690,24 +1011,30 @@ function phoneForPim(){
   return digits;
 }
 
-function validateForm(updateButtons=true){
+function validateContactForm(updateButtons=true){
   sanitizeNameInput();
-  const nameRaw = (document.getElementById('cname').value||'').trim();
+  const nameRaw = ((document.getElementById('cname')||{}).value||'').trim();
   const nameOK = nameRaw.replace(/\s/g,'').length >= 2 && !NAME_INVALID_RE.test(nameRaw);
 
-  const phoneValue = (document.getElementById('cphone').value||'').trim();
+  const phoneValue = ((document.getElementById('cphone')||{}).value||'').trim();
   const phoneDigits = phoneDigitsOnly();
   const phoneOK = /^\+\d{11,13}$/.test(phoneValue) && phoneValue.length >= 12 && phoneValue.length <= 14 && phoneDigits.length >= 11 && phoneDigits.length <= 13;
 
-  const social = document.getElementById('csocial').value || '';
-  const nick = (document.getElementById('cnick').value||'').trim();
-  const kvkk = document.getElementById('ckvkk').checked;
-  const pub = document.getElementById('cpub').checked;
-  const phraseOK = visLen(document.getElementById('inp').value||'') > 0;
+  const social = (document.getElementById('csocial')||{}).value || '';
+  const nick = ((document.getElementById('cnick')||{}).value||'').trim();
+  const kvkk = !!(document.getElementById('ckvkk') && document.getElementById('ckvkk').checked);
+  const pub = !!(document.getElementById('cpub') && document.getElementById('cpub').checked);
+  const honeypotOK = !String((document.getElementById('cwebsite')||{}).value||'').trim();
 
-  const ok = nameOK && phoneOK && !!social && nick.length >= 2 && kvkk && pub && phraseOK;
+  const ok = nameOK && phoneOK && !!social && nick.length >= 2 && kvkk && pub && honeypotOK;
+  const b = document.getElementById('btn-contact-submit');
+  if(b){ b.classList.toggle('disabled', !ok); }
   if(updateButtons){ updateActionButtons(); }
   return ok;
+}
+
+function validateForm(updateButtons=true){
+  return validateContactForm(updateButtons);
 }
 
 function bwInput(finalClean=false){
@@ -749,13 +1076,8 @@ function bwInput(finalClean=false){
   cc.className = 'cc'+(len>45?' over':len>38?' warn':'');
 
   const afterSig = phraseModerationSignature();
-  const phraseChanged = !lastModeratedSignature || afterSig !== lastModeratedSignature;
-  if(phraseChanged){
-    moderationState = 'pending';
-    lastModeratedSignature = '';
-    lastModerationResult = null;
-    setModerationMessage('', '');
-  }
+  const phraseChanged = lastModeratedSignature && afterSig !== lastModeratedSignature;
+  if(phraseChanged){ resetFlowOnPhraseChange(); }
   updateActionButtons();
   bwGo();
 }
@@ -1004,7 +1326,6 @@ function sendToPim(payload){
 }
 
 function bwDl(key){
-  if(!validateForm()) return;
   if(!updateActionButtons()){
     setModerationMessage('wait', MODERATION_TEXT_NEED);
     alert(MODERATION_TEXT_NEED);
@@ -1016,13 +1337,16 @@ function bwDl(key){
   const slug=stripAccent(slugSource).replace(/[|]/g,'-').trim().slice(0,18).replace(/[^A-Za-zА-Яа-я0-9*]+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'').toLowerCase() || 'bs';
   const fname='bs_'+key+'_'+slug+'.jpg';
 
-  // GREEN and YELLOW go to PIM only when the user clicks a download button.
-  // YELLOW sends both original phrase and masked visual phrase.
+  showDownloadPromo();
+
   sendToPim(collectCustomerPayloadBase({
-    format:key, filename:fname, download_blocked:'false'
+    format:key,
+    filename:fname,
+    download_blocked:'false',
+    event_type:'download',
+    contact_requested:contactSubmittedForCurrentPhrase?'true':'false'
   }));
 
-  // Download image
   off.toBlob(function(blob){
     const url=URL.createObjectURL(blob);
     const a=document.createElement('a');
@@ -1127,7 +1451,7 @@ PHRASE_GROUPS.forEach(group=>{
   pc.appendChild(box);
 });
 
-function init(){ defaultPhonePrefix(); sanitizePhoneInput(); validateForm(); bwInput(); }
+function init(){ defaultPhonePrefix(); sanitizePhoneInput(); validateContactForm(false); updateActionButtons(); bwInput(); }
 if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',init); }
 else{ setTimeout(init,0); }
 window.addEventListener('resize',()=>{ clearTimeout(window._rt); window._rt=setTimeout(bwGo,200); });
